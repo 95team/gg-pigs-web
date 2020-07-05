@@ -35,9 +35,7 @@
 
     <!-- Content -->
     <v-content>
-      <v-container>
-        <nuxt />
-      </v-container>
+      <content-layout />
     </v-content>
 
     <!-- Navigation -->
@@ -60,10 +58,12 @@
 </template>
 
 <script>
+import ContentLayout from '~/layouts/content.vue';
 import FooterLayout from '~/layouts/footer.vue';
 
 export default {
   components: {
+    ContentLayout,
     FooterLayout,
   },
   data() {

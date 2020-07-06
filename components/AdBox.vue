@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center">
+  <div class="text-center ma-1 ma-md-2 ma-lg-2">
     <img :src="advert.src" :title="advert.title" :alt="advert.alt" :style="advert.type" />
   </div>
 </template>

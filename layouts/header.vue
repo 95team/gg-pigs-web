@@ -1,15 +1,15 @@
 <template>
   <div>
     <v-app-bar class="white" height="116" flat>
-      <div class="pangoLogo" style="padding-left:88px;">
+      <div class="pangoLogo" style="margin-left:88px;">
         <v-img :src="pangoLogo" width="80" height="56"></v-img>
       </div>
       <v-spacer></v-spacer>
-      <div class="nightDay mr-8">
-        <v-img :src="nightDay" width="48" height="48"></v-img>
+      <div class="clickArea mr-8">
+        <v-img :src="nightDay" class="iconArea"></v-img>
       </div>
-      <div class="userInfo" style="padding-right:88px;">
-        <v-img :src="userInfo" width="48" height="48"></v-img>
+      <div class="clickArea" style="margin-right:88px;">
+        <v-img :src="userInfo" class="iconArea"></v-img>
       </div>
     </v-app-bar>
   </div>
@@ -26,6 +26,24 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.clickArea {
+  width: 48px;
+  height: 48px;
+  position: relative;
+}
+.iconArea {
+  width: 36px;
+  height: 36px;
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+</style>
 
 <style>
 .v-toolbar__content {

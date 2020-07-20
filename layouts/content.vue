@@ -1,9 +1,9 @@
 <template>
   <!-- Content Layout -->
-  <v-container fluid>
+  <v-container fluid pa-0 pa-lg-5>
     <v-layout row wrap>
       <!-- Column1 -->
-      <v-flex xs4 md4 lg2>
+      <v-flex xs4 md2 lg2>
         <ad-box :advert="boxObjectForTest1"></ad-box>
         <ad-box :advert="boxObjectForTest2"></ad-box>
         <ad-box :advert="boxObjectForTest3"></ad-box>
@@ -14,7 +14,7 @@
       </v-flex>
 
       <!-- Column2 -->
-      <v-flex xs4 md4 lg2>
+      <v-flex xs4 md2 lg2>
         <ad-box :advert="boxObjectForTest1"></ad-box>
         <ad-box :advert="boxObjectForTest2"></ad-box>
         <ad-box :advert="boxObjectForTest3"></ad-box>
@@ -25,7 +25,7 @@
       </v-flex>
 
       <!-- Column3 -->
-      <v-flex xs4 md4 lg2>
+      <v-flex xs4 md2 lg2>
         <ad-box :advert="boxObjectForTest1"></ad-box>
         <ad-box :advert="boxObjectForTest2"></ad-box>
         <ad-box :advert="boxObjectForTest3"></ad-box>
@@ -36,7 +36,7 @@
       </v-flex>
 
       <!-- Column4 -->
-      <v-flex xs4 md4 lg2>
+      <v-flex xs4 md2 lg2>
         <ad-box :advert="boxObjectForTest1"></ad-box>
         <ad-box :advert="boxObjectForTest2"></ad-box>
         <ad-box :advert="boxObjectForTest3"></ad-box>
@@ -47,7 +47,7 @@
       </v-flex>
 
       <!-- Column5 -->
-      <v-flex xs4 md4 lg2>
+      <v-flex xs4 md2 lg2>
         <ad-box :advert="boxObjectForTest1"></ad-box>
         <ad-box :advert="boxObjectForTest2"></ad-box>
         <ad-box :advert="boxObjectForTest3"></ad-box>
@@ -58,7 +58,7 @@
       </v-flex>
 
       <!-- Column6 -->
-      <v-flex xs4 md4 lg2>
+      <v-flex xs4 md2 lg2>
         <ad-box :advert="boxObjectForTest1"></ad-box>
         <ad-box :advert="boxObjectForTest2"></ad-box>
         <ad-box :advert="boxObjectForTest3"></ad-box>

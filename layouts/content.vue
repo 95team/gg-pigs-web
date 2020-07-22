@@ -1,9 +1,9 @@
 <template>
-  <!-- Content Layout -->
-  <v-container fluid pa-0 pa-lg-5>
+  <!-- content layout -->
+  <v-container fluid pa-0 ma-0>
     <v-layout row wrap>
-      <!-- Column1 -->
-      <v-flex xs4 md2 lg2>
+      <!-- flex1 -->
+      <v-flex xs4 md4 lg2>
         <ad-box :advert="boxObjectForTest1"></ad-box>
         <ad-box :advert="boxObjectForTest2"></ad-box>
         <ad-box :advert="boxObjectForTest3"></ad-box>
@@ -13,8 +13,8 @@
         <ad-box :advert="boxObjectForTest1"></ad-box>
       </v-flex>
 
-      <!-- Column2 -->
-      <v-flex xs4 md2 lg2>
+      <!-- flex2 -->
+      <v-flex xs4 md4 lg2>
         <ad-box :advert="boxObjectForTest1"></ad-box>
         <ad-box :advert="boxObjectForTest2"></ad-box>
         <ad-box :advert="boxObjectForTest3"></ad-box>
@@ -24,8 +24,8 @@
         <ad-box :advert="boxObjectForTest1"></ad-box>
       </v-flex>
 
-      <!-- Column3 -->
-      <v-flex xs4 md2 lg2>
+      <!-- flex3 -->
+      <v-flex xs4 md4 lg2>
         <ad-box :advert="boxObjectForTest1"></ad-box>
         <ad-box :advert="boxObjectForTest2"></ad-box>
         <ad-box :advert="boxObjectForTest3"></ad-box>
@@ -35,8 +35,8 @@
         <ad-box :advert="boxObjectForTest1"></ad-box>
       </v-flex>
 
-      <!-- Column4 -->
-      <v-flex xs4 md2 lg2>
+      <!-- flex4 -->
+      <v-flex xs4 md4 lg2>
         <ad-box :advert="boxObjectForTest1"></ad-box>
         <ad-box :advert="boxObjectForTest2"></ad-box>
         <ad-box :advert="boxObjectForTest3"></ad-box>
@@ -46,8 +46,8 @@
         <ad-box :advert="boxObjectForTest1"></ad-box>
       </v-flex>
 
-      <!-- Column5 -->
-      <v-flex xs4 md2 lg2>
+      <!-- flex5 -->
+      <v-flex xs4 md4 lg2>
         <ad-box :advert="boxObjectForTest1"></ad-box>
         <ad-box :advert="boxObjectForTest2"></ad-box>
         <ad-box :advert="boxObjectForTest3"></ad-box>
@@ -57,8 +57,8 @@
         <ad-box :advert="boxObjectForTest1"></ad-box>
       </v-flex>
 
-      <!-- Column6 -->
-      <v-flex xs4 md2 lg2>
+      <!-- flex6 -->
+      <v-flex xs4 md4 lg2>
         <ad-box :advert="boxObjectForTest1"></ad-box>
         <ad-box :advert="boxObjectForTest2"></ad-box>
         <ad-box :advert="boxObjectForTest3"></ad-box>
@@ -104,4 +104,25 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.layout {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+@media all and (max-width: 960px) {
+  .container {
+    max-width: 932px !important;
+  }
+}
+@media all and (min-width: 961px) and (max-width: 1264px) {
+  .container {
+    max-width: 932px !important;
+  }
+}
+@media all and (min-width: 1265px) {
+  .container {
+    max-width: 1880px !important;
+  }
+}
+</style>

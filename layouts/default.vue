@@ -34,7 +34,7 @@
     </v-app-bar>
 
     <!-- Content -->
-    <v-content>
+    <v-content style="margin:auto">
       <content-layout />
     </v-content>
 

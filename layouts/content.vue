@@ -1,6 +1,6 @@
 <template>
   <!-- content layout -->
-  <v-container fluid pa-0 ma-0>
+  <v-container fluid pa-0>
     <v-layout row wrap>
       <!-- flex1 -->
       <v-flex xs4 md4 lg2>

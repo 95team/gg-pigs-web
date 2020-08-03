@@ -1,15 +1,15 @@
 <template>
   <div>
-    <v-app-bar class="white" height="116" flat>
+    <v-app-bar class="white" height="116px" flat>
       <div class="pangoLogo" style="margin-left:88px;">
-        <v-img :src="pangoLogo" width="80" height="56"></v-img>
+        <v-img :src="pangoLogo" width="80px" height="56px"></v-img>
       </div>
       <v-spacer></v-spacer>
       <div class="clickArea mr-8">
-        <v-img :src="nightDay" class="iconArea"></v-img>
+        <img :src="nightDay" class="iconArea" />
       </div>
       <div class="clickArea" style="margin-right:88px;">
-        <v-img :src="userInfo" class="iconArea"></v-img>
+        <img :src="userInfo" class="iconArea" />
       </div>
     </v-app-bar>
   </div>
@@ -19,9 +19,9 @@
 export default {
   data() {
     return {
-      pangoLogo: require('../assets/img/+++logo_panggo@3x.png'),
-      nightDay: require('../assets/icon/nightDay.svg'),
-      userInfo: require('../assets/icon/userInfo.svg'),
+      pangoLogo: require('../static/img/pangoLogo.png'),
+      nightDay: require('../static/icon/nightDay.svg'),
+      userInfo: require('../static/icon/userInfo.svg'),
     };
   },
 };

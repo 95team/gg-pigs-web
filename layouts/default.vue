@@ -15,7 +15,23 @@
     </v-navigation-drawer>
 
     <!-- Header -->
-    <header-layout />
+    <v-app-bar class="mx-0 px-5" :clipped-left="clipped" fixed app>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-btn icon @click.stop="miniVariant = !miniVariant">
+        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
+      </v-btn>
+      <v-btn icon @click.stop="clipped = !clipped">
+        <v-icon>mdi-application</v-icon>
+      </v-btn>
+      <v-btn icon @click.stop="fixed = !fixed">
+        <v-icon>mdi-minus</v-icon>
+      </v-btn>
+      <v-toolbar-title v-text="title" />
+      <v-spacer />
+      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
+        <v-icon>mdi-menu</v-icon>
+      </v-btn>
+    </v-app-bar>
 
     <!-- Content -->
     <v-content>
@@ -44,12 +60,10 @@
 </template>
 
 <script>
-import HeaderLayout from '~/layouts/header.vue';
 import FooterLayout from '~/layouts/footer.vue';
 
 export default {
   components: {
-    HeaderLayout,
     FooterLayout,
   },
   data() {

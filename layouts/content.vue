@@ -110,17 +110,17 @@ export default {
   margin-right: 0px;
 }
 
-@media all and (max-width: 960px) {
+@media all and (max-width: 959px) {
   .container {
     max-width: 932px !important;
   }
 }
-@media all and (min-width: 961px) and (max-width: 1264px) {
+@media all and (min-width: 960px) and (max-width: 1263px) {
   .container {
     max-width: 932px !important;
   }
 }
-@media all and (min-width: 1265px) {
+@media all and (min-width: 1264px) {
   .container {
     max-width: 1880px !important;
   }

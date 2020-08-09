@@ -24,7 +24,7 @@
 
 <style scoped>
 /* Viewport: ~ sm */
-@media all and (max-width: 960px) {
+@media all and (max-width: 959px) {
   .container {
     max-width: 900px;
     max-height: 56px;
@@ -44,7 +44,7 @@
 }
 
 /* Viewport: md */
-@media all and (min-width: 961px) and (max-width: 1264px) {
+@media all and (min-width: 960px) and (max-width: 1263px) {
   .container {
     max-width: 932px;
     max-height: 108px;
@@ -61,7 +61,7 @@
 }
 
 /* Viewport: lg ~ */
-@media all and (min-width: 1265px) {
+@media all and (min-width: 1264px) {
   .container {
     max-width: 1880px;
     max-height: 108px;

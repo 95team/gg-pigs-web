@@ -11,6 +11,9 @@
   --black: #222222;
   --white: #ffffff;
   --white-two: #dddddd;
+  --spacing-md: 16px;
+  --spacing-lg: 32px;
+  --spacing-xl: 64px;
 }
 
 

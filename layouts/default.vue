@@ -1,79 +1,52 @@
 <template>
-  <v-app dark>
-    <!-- Navigation -->
-    <v-navigation-drawer v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" fixed app>
-      <v-list>
-        <v-list-item v-for="(item, i) in items" :key="i" :to="item.to" router exact>
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-
-    <!-- Header -->
-    <header-layout />
-
-    <!-- Content -->
-    <v-content>
-      <content-layout />
-    </v-content>
-
-    <!-- Navigation -->
-    <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-
-    <!-- Footer -->
-    <footer-layout />
-  </v-app>
+  <div>
+    <v-app-bar class="white" height="116px" flat>
+      <div class="pangoLogo" style="margin-left:88px;">
+        <v-img :src="pangoLogo" width="80px" height="56px"></v-img>
+      </div>
+      <v-spacer></v-spacer>
+      <div class="clickArea mr-8">
+        <img :src="nightDay" class="iconArea" />
+      </div>
+      <div class="clickArea" style="margin-right:88px;">
+        <img :src="userInfo" class="iconArea" />
+      </div>
+    </v-app-bar>
+  </div>
 </template>
 
 <script>
-import HeaderLayout from '~/layouts/header.vue';
-import FooterLayout from '~/layouts/footer.vue';
-import ContentLayout from '~/layouts/content.vue';
-
 export default {
-  components: {
-    HeaderLayout,
-    FooterLayout,
-    ContentLayout
-  },
   data() {
     return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/',
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire',
-        },
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js',
+      pangoLogo: require('../static/img/pangoLogo.png'),
+      nightDay: require('../static/icon/nightDay.svg'),
+      userInfo: require('../static/icon/userInfo.svg'),
     };
   },
 };
 </script>
+
+<style scoped>
+.clickArea {
+  width: 48px;
+  height: 48px;
+  position: relative;
+}
+.iconArea {
+  width: 36px;
+  height: 36px;
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+</style>
+
+<style>
+.v-toolbar__content {
+  padding: 0;
+}
+</style>

@@ -28,6 +28,9 @@ export default {
 </script>
 
 <style scoped>
+.v-toolbar__content {
+  padding: 0;
+}
 .clickArea {
   width: 48px;
   height: 48px;
@@ -42,11 +45,5 @@ export default {
   right: 0;
   top: 0;
   bottom: 0;
-}
-</style>
-
-<style>
-.v-toolbar__content {
-  padding: 0;
 }
 </style>

@@ -1,18 +1,25 @@
 <template>
-  <v-app-bar flat dense class="white">
+  <v-app-bar flat dense>
     <v-container fluid pa-0>
       <v-layout align-center>
         <v-flex>
           <div class="pangoLogo">
-            <v-img :src="pangoLogo"></v-img>
+            <v-img v-if="!this.$vuetify.theme.dark" :src="pangoLogoDay"></v-img>
+            <v-img v-else :src="pangoLogoNight"></v-img>
           </div>
         </v-flex>
         <v-flex d-flex justify-end>
           <div class="clickArea nightDayMargin">
-            <v-img :src="nightDay" class="iconArea"></v-img>
+            <v-btn text block @click="nightDayHandler">
+              <v-img v-if="!this.$vuetify.theme.dark" :src="day" class="iconArea"></v-img>
+              <v-img v-else :src="night" class="iconArea"></v-img>
+            </v-btn>
           </div>
           <div class="clickArea userInfoMargin">
-            <v-img :src="userInfo" class="iconArea"></v-img>
+            <v-btn text block>
+              <v-img v-if="!this.$vuetify.theme.dark" :src="userInfoDay" class="iconArea"></v-img>
+              <v-img v-else :src="userInfoNight" class="iconArea"></v-img>
+            </v-btn>
           </div>
         </v-flex>
       </v-layout>
@@ -24,10 +31,18 @@
 export default {
   data() {
     return {
-      pangoLogo: require('../static/image/pangoLogo.png'),
-      nightDay: require('../static/icon/nightDay.svg'),
-      userInfo: require('../static/icon/userInfo.svg'),
+      pangoLogoDay: require('../static/image/pangoLogoDay.png'),
+      pangoLogoNight: require('../static/image/pangoLogoNight.png'),
+      day: require('../static/icon/day.svg'),
+      night: require('../static/icon/night.svg'),
+      userInfoDay: require('../static/icon/userInfoDay.svg'),
+      userInfoNight: require('../static/icon/userInfoNight.svg'),
     };
+  },
+  methods: {
+    nightDayHandler(self) {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+    },
   },
 };
 </script>
@@ -47,15 +62,17 @@ export default {
   width: 36px;
   height: 36px;
   position: absolute;
-  top: 12.5%;
-  left: 12.5%;
-  margin: auto;
 }
 
 .clickArea {
   width: 48px;
   height: 48px;
   position: relative;
+}
+
+.v-btn {
+  height: 48px !important;
+  padding: 0px !important;
 }
 
 @media all and (min-width: 1264px) {
@@ -102,9 +119,6 @@ export default {
     width: 24px;
     height: 24px;
     position: absolute;
-    top: 25%;
-    left: 25%;
-    margin: auto;
   }
   .userInfoMargin {
     margin-right: 2px;

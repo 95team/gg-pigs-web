@@ -104,7 +104,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .layout {
   margin-left: 0px;
   margin-right: 0px;

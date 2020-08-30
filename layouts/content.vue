@@ -1,74 +1,76 @@
 <template>
-  <!-- content layout -->
-  <v-container fluid pa-0>
-    <v-layout row wrap>
-      <!-- flex1 -->
-      <v-flex xs4 md4 lg2>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-        <ad-box :advert="boxObjectForTest2"></ad-box>
-        <ad-box :advert="boxObjectForTest3"></ad-box>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-      </v-flex>
+  <v-content>
+    <!-- content layout -->
+    <v-container fluid pa-0>
+      <v-layout row wrap>
+        <!-- flex1 -->
+        <v-flex xs4 md4 lg2>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+          <ad-box :advert="boxObjectForTest2"></ad-box>
+          <ad-box :advert="boxObjectForTest3"></ad-box>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+        </v-flex>
 
-      <!-- flex2 -->
-      <v-flex xs4 md4 lg2>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-        <ad-box :advert="boxObjectForTest2"></ad-box>
-        <ad-box :advert="boxObjectForTest3"></ad-box>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-      </v-flex>
+        <!-- flex2 -->
+        <v-flex xs4 md4 lg2>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+          <ad-box :advert="boxObjectForTest2"></ad-box>
+          <ad-box :advert="boxObjectForTest3"></ad-box>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+        </v-flex>
 
-      <!-- flex3 -->
-      <v-flex xs4 md4 lg2>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-        <ad-box :advert="boxObjectForTest2"></ad-box>
-        <ad-box :advert="boxObjectForTest3"></ad-box>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-      </v-flex>
+        <!-- flex3 -->
+        <v-flex xs4 md4 lg2>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+          <ad-box :advert="boxObjectForTest2"></ad-box>
+          <ad-box :advert="boxObjectForTest3"></ad-box>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+        </v-flex>
 
-      <!-- flex4 -->
-      <v-flex xs4 md4 lg2>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-        <ad-box :advert="boxObjectForTest2"></ad-box>
-        <ad-box :advert="boxObjectForTest3"></ad-box>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-      </v-flex>
+        <!-- flex4 -->
+        <v-flex xs4 md4 lg2>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+          <ad-box :advert="boxObjectForTest2"></ad-box>
+          <ad-box :advert="boxObjectForTest3"></ad-box>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+        </v-flex>
 
-      <!-- flex5 -->
-      <v-flex xs4 md4 lg2>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-        <ad-box :advert="boxObjectForTest2"></ad-box>
-        <ad-box :advert="boxObjectForTest3"></ad-box>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-      </v-flex>
+        <!-- flex5 -->
+        <v-flex xs4 md4 lg2>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+          <ad-box :advert="boxObjectForTest2"></ad-box>
+          <ad-box :advert="boxObjectForTest3"></ad-box>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+        </v-flex>
 
-      <!-- flex6 -->
-      <v-flex xs4 md4 lg2>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-        <ad-box :advert="boxObjectForTest2"></ad-box>
-        <ad-box :advert="boxObjectForTest3"></ad-box>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-        <ad-box :advert="boxObjectForTest1"></ad-box>
-      </v-flex>
-    </v-layout>
-  </v-container>
+        <!-- flex6 -->
+        <v-flex xs4 md4 lg2>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+          <ad-box :advert="boxObjectForTest2"></ad-box>
+          <ad-box :advert="boxObjectForTest3"></ad-box>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+          <ad-box :advert="boxObjectForTest1"></ad-box>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </v-content>
 </template>
 
 <script>
@@ -104,7 +106,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .layout {
   margin-left: 0px;
   margin-right: 0px;

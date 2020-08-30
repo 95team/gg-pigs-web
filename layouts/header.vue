@@ -54,7 +54,7 @@ export default {
 }
 
 .pangoLogo {
-  width: 80px;
+  width: 170px;
   height: 56px;
 }
 
@@ -111,7 +111,7 @@ export default {
     padding-top: 0px;
   }
   .pangoLogo {
-    width: 38px;
+    width: 79px;
     height: 26px;
     margin-left: 14px;
   }

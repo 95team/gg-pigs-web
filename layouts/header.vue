@@ -4,20 +4,20 @@
       <v-layout align-center>
         <v-flex>
           <div class="pangoLogo">
-            <v-img v-if="!this.$vuetify.theme.dark" :src="pangoLogoDay"></v-img>
+            <v-img v-if="nightDayMode" :src="pangoLogoDay"></v-img>
             <v-img v-else :src="pangoLogoNight"></v-img>
           </div>
         </v-flex>
         <v-flex d-flex justify-end>
           <div class="clickArea nightDayMargin">
-            <v-btn text block @click="nightDayHandler">
-              <v-img v-if="!this.$vuetify.theme.dark" :src="day" class="iconArea"></v-img>
+            <v-btn text block @click="nightDayHandler(this)">
+              <v-img v-if="nightDayMode" :src="day" class="iconArea"></v-img>
               <v-img v-else :src="night" class="iconArea"></v-img>
             </v-btn>
           </div>
           <div class="clickArea userInfoMargin">
             <v-btn text block>
-              <v-img v-if="!this.$vuetify.theme.dark" :src="userInfoDay" class="iconArea"></v-img>
+              <v-img v-if="nightDayMode" :src="userInfoDay" class="iconArea"></v-img>
               <v-img v-else :src="userInfoNight" class="iconArea"></v-img>
             </v-btn>
           </div>
@@ -37,11 +37,27 @@ export default {
       night: require('../static/icon/night.svg'),
       userInfoDay: require('../static/icon/userInfoDay.svg'),
       userInfoNight: require('../static/icon/userInfoNight.svg'),
+      nightDayMode: true,
+    };
+  },
+  mounted() {
+    window.onload = function() {
+      document.querySelector('header').style.backgroundColor = '#ffffff';
     };
   },
   methods: {
     nightDayHandler(self) {
-      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+      if (this.nightDayMode) {
+        document.querySelector('#app').style.backgroundColor = '#1e1f21';
+        document.querySelector('header').style.backgroundColor = '#1e1f21';
+        document.querySelector('.v-divider').style.borderColor = '#525252';
+        this.nightDayMode = false;
+      } else {
+        document.querySelector('#app').style.backgroundColor = '#ffffff';
+        document.querySelector('header').style.backgroundColor = '#ffffff';
+        document.querySelector('.v-divider').style.borderColor = '#dddddd';
+        this.nightDayMode = true;
+      }
     },
   },
 };

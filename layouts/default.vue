@@ -1,13 +1,21 @@
 <template>
-  <v-app dark>
+  <!-- dayMode -->
+  <v-app v-if="dayMode" class="background-white">
     <!-- Header -->
-    <header-layout />
+    <header-layout :day-mode="dayMode" @update="nightDayUpdate" />
 
     <!-- Content -->
     <content-layout />
 
     <!-- Footer -->
-    <footer-layout />
+    <footer-layout :day-mode="dayMode" />
+  </v-app>
+
+  <!-- nightMode -->
+  <v-app v-else class="background-dark-grey">
+    <header-layout :day-mode="dayMode" @update="nightDayUpdate" />
+    <content-layout />
+    <footer-layout :day-mode="dayMode" />
   </v-app>
 </template>
 
@@ -21,6 +29,20 @@ export default {
     HeaderLayout,
     ContentLayout,
     FooterLayout,
+  },
+  data() {
+    return {
+      dayMode: true,
+    };
+  },
+  methods: {
+    nightDayUpdate() {
+      if (this.dayMode) {
+        this.dayMode = false;
+      } else {
+        this.dayMode = true;
+      }
+    },
   },
 };
 </script>

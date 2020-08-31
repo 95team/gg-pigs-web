@@ -1,28 +1,46 @@
 <template>
-  <v-footer>
-    <!-- container -->
-    <v-container fluid text-right>
-      <!-- layout1 -->
-      <v-layout class="divider">
-        <v-flex>
-          <v-divider />
-        </v-flex>
-      </v-layout>
+  <!-- container -->
+  <v-container fluid text-right>
+    <!-- layout1 -->
+    <v-layout class="divider">
+      <v-flex>
+        <v-divider v-if="dayMode" class="border-white-two" />
+        <v-divider v-else class="border-greyish-brown" />
+      </v-flex>
+    </v-layout>
 
-      <!-- layout2 -->
-      <v-layout class="content">
-        <v-flex>
-          <span class="text greyish">
-            &copy; {{ new Date().getFullYear() }} PangGo, Inc. All rights reserved
-          </span>
-          <span class="text greyish">개인정보 처리방침</span>
-          <span class="text greyish">이용 약관</span>
-          <span class="greyish">사이트맵</span>
-        </v-flex>
-      </v-layout>
-    </v-container>
-  </v-footer>
+    <!-- layout2 -->
+    <v-layout class="content">
+      <!-- dayMode -->
+      <v-flex v-if="dayMode">
+        <span class="text greyish">
+          &copy; {{ new Date().getFullYear() }} PangGo, Inc. All rights reserved
+        </span>
+        <span class="text greyish">개인정보 처리방침</span>
+        <span class="text greyish">이용 약관</span>
+        <span class="greyish">사이트맵</span>
+      </v-flex>
+
+      <!-- nightMode -->
+      <v-flex v-else>
+        <span class="text warm-grey">
+          &copy; {{ new Date().getFullYear() }} PangGo, Inc. All rights reserved
+        </span>
+        <span class="text warm-grey">개인정보 처리방침</span>
+        <span class="text warm-grey">이용 약관</span>
+        <span class="warm-grey">사이트맵</span>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
+
+<script>
+export default {
+  props: {
+    dayMode: Boolean,
+  },
+};
+</script>
 
 <style scoped>
 /* Viewport: ~ sm */

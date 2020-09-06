@@ -2,7 +2,7 @@
   <v-content>
     <!-- content layout -->
     <v-container fluid pa-0>
-      <v-layout row wrap>
+      <v-layout class="contents" row wrap>
         <!-- flex1 -->
         <v-flex xs4 md4 lg2>
           <ad-box :advert="boxObjectForTest1"></ad-box>
@@ -69,6 +69,25 @@
           <ad-box :advert="boxObjectForTest1"></ad-box>
         </v-flex>
       </v-layout>
+      <v-layout class="pages centerAlign">
+        <div class="page centerAlign">
+          <button class="clickArea centerAlign">
+            <img
+              :src="[dayMode ? 'icon/prePageDay.svg' : 'icon/prePageNight.svg']"
+              class="pageIcon"
+            />
+          </button>
+          <v-spacer></v-spacer>
+          <div class="pageNum" :class="[dayMode ? 'text-black' : 'text-white']">1</div>
+          <v-spacer></v-spacer>
+          <button class="clickArea centerAlign">
+            <img
+              :src="[dayMode ? 'icon/nextPageDay.svg' : 'icon/nextPageNight.svg']"
+              class="pageIcon"
+            />
+          </button>
+        </div>
+      </v-layout>
     </v-container>
   </v-content>
 </template>
@@ -78,6 +97,9 @@ import AdBox from '~/components/AdBox.vue';
 
 export default {
   components: { AdBox },
+  props: {
+    dayMode: Boolean,
+  },
   data() {
     return {
       boxObjectForTest1: {
@@ -107,9 +129,44 @@ export default {
 </script>
 
 <style scoped>
-.layout {
+.contents {
+  margin-top: 28px;
+  margin-bottom: 28px;
   margin-left: 0px;
   margin-right: 0px;
+}
+
+.pages {
+  margin-bottom: 64px;
+}
+
+.page {
+  width: 250px;
+  height: 48px;
+}
+
+.clickArea {
+  width: 48px;
+  height: 48px;
+  outline: none;
+}
+
+.pageNum {
+  width: 14px;
+  height: 36px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 24px;
+}
+
+.pageIcon {
+  width: 18px;
+  height: 36px;
+}
+
+.centerAlign {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media all and (max-width: 959px) {

@@ -10,15 +10,13 @@
 
     <!-- layout2 -->
     <v-layout class="content">
-      <v-flex>
-        <span class="text" :class="[dayMode ? 'text-greyish' : ' text-warm-grey']">
+      <v-flex :class="[dayMode ? 'text-greyish' : ' text-warm-grey']">
+        <span class="text">
           &copy; {{ new Date().getFullYear() }} PangGo, Inc. All rights reserved
         </span>
-        <span class="text" :class="[dayMode ? 'text-greyish' : ' text-warm-grey']"
-          >개인정보 처리방침</span
-        >
-        <span class="text" :class="[dayMode ? 'text-greyish' : ' text-warm-grey']">이용 약관</span>
-        <span :class="[dayMode ? 'text-greyish' : ' text-warm-grey']">사이트맵</span>
+        <span class="text">개인정보 처리방침</span>
+        <span class="text">이용 약관</span>
+        <span>사이트맵</span>
       </v-flex>
     </v-layout>
   </v-container>

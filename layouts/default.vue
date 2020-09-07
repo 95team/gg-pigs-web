@@ -1,20 +1,13 @@
 <template>
   <!-- dayMode -->
-  <v-app v-if="dayMode" class="background-white">
+  <v-app :class="[dayMode ? 'background-white' : 'background-dark-grey']">
     <!-- Header -->
     <header-layout :day-mode="dayMode" @update="nightDayUpdate" />
 
     <!-- Content -->
-    <content-layout />
+    <content-layout :day-mode="dayMode" />
 
     <!-- Footer -->
-    <footer-layout :day-mode="dayMode" />
-  </v-app>
-
-  <!-- nightMode -->
-  <v-app v-else class="background-dark-grey">
-    <header-layout :day-mode="dayMode" @update="nightDayUpdate" />
-    <content-layout />
     <footer-layout :day-mode="dayMode" />
   </v-app>
 </template>

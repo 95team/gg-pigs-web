@@ -26,7 +26,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['~assets/css/style.css'],
+  css: ['~assets/css/style.css', '~assets/fonts/notosanskr.css'],
   /*
    ** Plugins to load before mounting the App
    */

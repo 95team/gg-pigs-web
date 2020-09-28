@@ -16,7 +16,7 @@
           </v-btn>
         </div>
         <div class="clickArea userInfoMargin">
-          <v-btn text block>
+          <v-btn text block href="/ownerApply1" target="_blank">
             <v-img v-if="dayMode" :src="userInfoDay" class="iconArea"></v-img>
             <v-img v-else :src="userInfoNight" class="iconArea"></v-img>
           </v-btn>

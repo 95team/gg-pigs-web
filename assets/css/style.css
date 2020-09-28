@@ -23,13 +23,16 @@
 
 
 /* Color */
-.text-white      { color: #ffffff !important; }
-.text-white-two  { color: #dddddd !important; }
-.text-black      { color: #222222 !important; }
-.text-greyish    { color: #b6b6b6 !important; }
-.text-dark-grey    { color: #1e1f21 !important; }
-.text-warm-grey    { color: #a1a1a1 !important; }
-.text-greyish-brown    { color: #525252 !important; }
+.text-white         { color: #ffffff !important; }
+.text-white-two     { color: #dddddd !important; }
+.text-black         { color: #222222 !important; }
+.text-greyish       { color: #b6b6b6 !important; }
+.text-dark-grey     { color: #1e1f21 !important; }
+.text-warm-grey     { color: #a1a1a1 !important; }
+.text-greyish-brown { color: #525252 !important; }
+.text-primary1           { color: #9E1E65 !important; }
+.text-primary2           { color: #C95A97 !important; }
+.text-primary3           { color: #D671A9 !important; }
 
 
 /* Background Color */

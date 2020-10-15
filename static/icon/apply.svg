@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="176" viewBox="0 0 1920 176">
+    <path fill="#ececec" d="M0 0H1920V176H0z"/>
+    <text fill="#b6b6b6" font-family="NotoSansCJKkr-Regular, Noto Sans CJK KR" font-size="52px" transform="translate(960 110)">
+        <tspan x="-95.68" y="0">신청하기</tspan>
+    </text>
+</svg>

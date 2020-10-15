@@ -4,13 +4,13 @@
     <!-- layout1 -->
     <v-layout class="divider">
       <v-flex>
-        <v-divider :class="[dayMode ? 'border-white-two' : 'border-greyish-brown']" />
+        <v-divider :class="[dayMode ? 'border-light3' : 'border-dark2']" />
       </v-flex>
     </v-layout>
 
     <!-- layout2 -->
     <v-layout class="content">
-      <v-flex :class="[dayMode ? 'text-greyish' : ' text-warm-grey']">
+      <v-flex :class="[dayMode ? 'text-light2' : ' text-dark3']">
         <span class="text">
           &copy; {{ new Date().getFullYear() }} PangGo, Inc. All rights reserved
         </span>

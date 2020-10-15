@@ -1,6 +1,6 @@
 <template>
   <!-- dayMode -->
-  <v-app :class="[dayMode ? 'background-white' : 'background-dark-grey']">
+  <v-app :class="[dayMode ? 'background-light5' : 'background-dark1']">
     <!-- Header -->
     <header-layout :day-mode="dayMode" @update="nightDayUpdate" />
 

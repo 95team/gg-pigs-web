@@ -5,7 +5,7 @@
       <v-flex>
         <div class="text52">광고 신청하기</div>
       </v-flex>
-      <v-flex class="text20" d-flex justify-end text-greyish>
+      <v-flex class="text20 text-light2" d-flex justify-end>
         <span class="text-primary3">&#9312; 시점/지점 선택</span>
         <span class="margin16">···</span>
         <span>&#9313; 광고정보입력</span>
@@ -36,7 +36,7 @@
             no-title
           ></v-date-picker>
         </v-card>
-        <div class="text20 text-greyish">
+        <div class="text20 text-light2">
           <v-img :src="warning" class="warningIcon"></v-img>
           <div>시작날짜를 선택해주세요.</div>
           <v-img :src="warning" class="warningIcon"></v-img>
@@ -53,7 +53,7 @@
 
     <!-- 다음 -->
     <v-layout>
-      <v-btn class="background-btn1" block text>
+      <v-btn block text>
         <nuxt-link to="/ownerApply2">
           <v-img :src="nextStep"></v-img>
         </nuxt-link>

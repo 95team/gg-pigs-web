@@ -2,12 +2,12 @@
   <v-container fluid pa-0>
     <!-- 분할선 -->
     <v-layout>
-      <v-divider class="border-white-two"></v-divider>
+      <v-divider class="border-light3"></v-divider>
     </v-layout>
 
     <!-- footer -->
     <v-layout class="content">
-      <v-flex d-flex justify-end class="text-greyish">
+      <v-flex d-flex justify-end class="text-light2">
         <span class="text rigthMargin32">
           &copy; {{ new Date().getFullYear() }} PangGo, Inc. All rights reserved
         </span>

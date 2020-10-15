@@ -5,7 +5,7 @@
       <v-flex>
         <div class="text52">광고 신청하기</div>
       </v-flex>
-      <v-flex d-flex justify-end text-greyish>
+      <v-flex class="text-light2" d-flex justify-end>
         <span class="text20">&#9312; 시점/지점 선택</span>
         <span class="margin16">···</span>
         <span class="text20 text-primary3">&#9313; 광고정보입력</span>
@@ -24,7 +24,7 @@
         </div>
       </v-flex>
       <v-flex>
-        <div class="text20 text-greyish height80">
+        <div class="text20 text-light2 height80">
           <v-img :src="warning" class="warningIcon"></v-img>
           <div>Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,</div>
           <v-img :src="warning" class="warningIcon"></v-img>
@@ -57,7 +57,7 @@
           <div>랜딩 페이지 URL</div>
           <v-textarea auto-grow outlined rows="1" row-height="62px"></v-textarea>
         </div>
-        <div class="text20 text-greyish">
+        <div class="text20 text-light2">
           <input id="check1" type="checkbox" name="check1" />
           <label for="check1"
             >Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,</label
@@ -169,7 +169,7 @@ input[type='checkbox'] {
   vertical-align: middle;
   background-color: #fafbfc;
   cursor: pointer;
-  border: solid 1px var(--greyish);
+  border: solid 1px var(--light2);
   border-radius: 14px;
   padding: 22px 26px;
 }

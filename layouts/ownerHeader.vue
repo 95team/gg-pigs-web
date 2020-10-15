@@ -13,7 +13,7 @@
 
     <!-- 분할선 -->
     <v-layout>
-      <v-divider class="border-white-two"></v-divider>
+      <v-divider class="border-light3"></v-divider>
     </v-layout>
 
     <!-- 메뉴 -->
@@ -24,7 +24,7 @@
         </div>
         <v-divider class="menuSelected"></v-divider>
       </div>
-      <div id="menu2" class="menu text-greyish">문의하기</div>
+      <div id="menu2" class="menu text-light2">문의하기</div>
     </v-layout>
   </v-container>
 </template>

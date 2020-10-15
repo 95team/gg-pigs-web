@@ -25,6 +25,7 @@ export default {};
 
 <style scoped>
 .container {
+  max-width: 1920px;
   height: 108px;
 }
 .content {

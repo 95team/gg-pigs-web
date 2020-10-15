@@ -7,7 +7,7 @@
       </v-flex>
       <v-flex d-flex justify-end>
         <v-btn id="btn1" text><v-img :src="day" class="iconArea"></v-img></v-btn>
-        <v-btn id="btn2" text><v-img :src="userInfoDay" class="iconArea"></v-img></v-btn>
+        <v-btn id="btn2" text><v-img :src="close" class="iconArea"></v-img></v-btn>
       </v-flex>
     </v-layout>
 
@@ -24,7 +24,7 @@
         </div>
         <v-divider class="menuSelected"></v-divider>
       </div>
-      <div id="menu2" class="menu">문의하기</div>
+      <div id="menu2" class="menu text-greyish">문의하기</div>
     </v-layout>
   </v-container>
 </template>
@@ -35,7 +35,7 @@ export default {
     return {
       pangoLogoDay: require('../static/image/pangoLogoDay.png'),
       day: require('../static/icon/day.svg'),
-      userInfoDay: require('../static/icon/userInfoDay.svg'),
+      close: require('../static/icon/close.svg'),
     };
   },
 };
@@ -43,6 +43,7 @@ export default {
 
 <style scoped>
 .container {
+  max-width: 1920px;
   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.1);
 }
 .layout {

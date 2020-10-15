@@ -5,7 +5,7 @@
       <v-flex>
         <div class="text52">광고 신청하기</div>
       </v-flex>
-      <v-flex d-flex justify-end>
+      <v-flex d-flex justify-end text-greyish>
         <span class="text20">&#9312; 시점/지점 선택</span>
         <span class="margin16">···</span>
         <span class="text20 text-primary3">&#9313; 광고정보입력</span>
@@ -16,10 +16,24 @@
 
     <!-- 컨텐츠 -->
     <v-layout class="content">
-      <v-flex>
-        <div class="margin64">
-          <v-btn class="imageBtn">이미지 첨부</v-btn>
+      <v-flex md2>
+        <div class="imgFileAdd">
+          <!-- <v-btn class="imageBtn">이미지 첨부</v-btn> -->
+          <label for="imgFile">이미지 첨부</label>
+          <input id="imgFile" type="file" />
         </div>
+      </v-flex>
+      <v-flex>
+        <div class="text20 text-greyish height80">
+          <v-img :src="warning" class="warningIcon"></v-img>
+          <div>Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,</div>
+          <v-img :src="warning" class="warningIcon"></v-img>
+          <div>Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,</div>
+        </div>
+      </v-flex>
+    </v-layout>
+    <v-layout class="content">
+      <v-flex>
         <div class="margin34 text24">
           <div>제목</div>
           <v-textarea auto-grow outlined rows="1" row-height="62px"></v-textarea>
@@ -62,8 +76,10 @@
 
     <!-- 신청하기 -->
     <v-layout>
-      <v-btn href="/ownerApply1" class="applyBtn" block text>
-        <v-img :src="apply"></v-img>
+      <v-btn class="applyBtn" block text>
+        <nuxt-link to="/ownerApply1">
+          <v-img :src="apply"></v-img>
+        </nuxt-link>
       </v-btn>
     </v-layout>
   </v-container>
@@ -74,13 +90,17 @@ export default {
   layout: 'ownerDefault',
   data() {
     return {
-      apply: require('~/static/icon/nextStep.svg'),
+      apply: require('~/static/icon/apply.svg'),
+      warning: require('~/static/icon/warning.svg'),
     };
   },
 };
 </script>
 
 <style scoped>
+.container {
+  max-width: 1920px;
+}
 .content {
   margin-left: 352px;
   margin-right: 352px;
@@ -117,8 +137,8 @@ export default {
   margin-top: 96px;
   margin-bottom: 128px;
 }
-.margin64 {
-  margin-bottom: 64px;
+.imgFileAdd {
+  margin: 22px 0 86px 0;
 }
 .margin34 {
   margin-bottom: 34px;
@@ -127,10 +147,41 @@ export default {
   margin-top: 16px;
 }
 input[type='checkbox'] {
-  transform: scale(2);
+  /* transform: scale(2); */
   margin-right: 29px;
 }
 #check2 {
   margin: 16px 29px 16px 0;
+}
+.imgFileAdd input[type='file'] {
+  /* 파일 필드 숨기기 */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+.imgFileAdd label {
+  font-size: 24px;
+  vertical-align: middle;
+  background-color: #fafbfc;
+  cursor: pointer;
+  border: solid 1px var(--greyish);
+  border-radius: 14px;
+  padding: 22px 26px;
+}
+.warningIcon {
+  width: 17px;
+  height: 15px;
+  float: left;
+  margin-top: 7.5px;
+  margin-right: 7.7px;
+}
+.height80 {
+  height: 80px;
+  padding-top: 10px;
 }
 </style>

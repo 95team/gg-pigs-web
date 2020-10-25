@@ -19,22 +19,41 @@
       <v-flex class="leftContent">
         <div class="text24">광고 크기</div>
         <v-card outlined class="text20 adSize" width="520px" height="183px">
-          <input id="size1" type="checkbox" name="1x1" />
+          <!-- <input id="size1" type="checkbox" name="1x1" />
           <label for="size1">1x1 (300*250)</label><br />
           <input id="size2" type="checkbox" name="1x2" />
           <label for="size2">1x2 (300*250)</label><br />
           <input id="size3" type="checkbox" name="1x3" />
-          <label for="size3">1x3 (300*250)</label><br />
+          <label for="size3">1x3 (300*250)</label><br /> -->
+          <label class="checkbox-wrap"
+            ><input type="checkbox" name="transportation[]" value="1x1" /><i class="check-icon"></i
+            >1x1 (300*250)</label
+          ><br />
+          <label class="checkbox-wrap"
+            ><input type="checkbox" name="transportation[]" value="1x2" /><i class="check-icon"></i
+            >1x2 (300*250)</label
+          ><br />
+          <label class="checkbox-wrap"
+            ><input type="checkbox" name="transportation[]" value="1x3" /><i class="check-icon"></i
+            >1x3 (300*250)</label
+          >
         </v-card>
         <div class="text24">게시 기간</div>
         <v-card outlined width="520px" height="342px">
           <v-date-picker
-            v-model="picker"
+            v-model="dates"
             elevation="1"
+            range
             color="background-primary2"
             full-width
             no-title
           ></v-date-picker>
+          <v-text-field
+            v-model="dateRangeText"
+            label="Date range"
+            prepend-icon="mdi-calendar"
+            readonly
+          ></v-text-field>
         </v-card>
         <div class="text20 text-light2">
           <v-img :src="warning" class="warningIcon"></v-img>
@@ -70,7 +89,13 @@ export default {
       nextStep: require('~/static/icon/nextStep.svg'),
       warning: require('~/static/icon/warning.svg'),
       picker: null,
+      dates: [],
     };
+  },
+  computed: {
+    dateRangeText() {
+      return this.dates.join(' ~ ');
+    },
   },
 };
 </script>
@@ -109,17 +134,13 @@ export default {
   margin-right: 16px;
 }
 .adSize {
-  padding: 32px 59px;
+  padding: 24px 56px;
   margin-top: 16px;
   margin-bottom: 32px;
 }
-input[type='checkbox'] {
-  /* transform: scale(2); */
-  margin-right: 16px;
-}
-#size2 {
+/* #size2 {
   margin: 16px 16px 16px 0;
-}
+} */
 .adPosition {
   padding: 290px 142px;
   margin-top: 16px;
@@ -134,5 +155,22 @@ input[type='checkbox'] {
   float: left;
   margin-top: 7.5px;
   margin-right: 7.7px;
+}
+.checkbox-wrap {
+  cursor: pointer;
+}
+.checkbox-wrap .check-icon {
+  display: inline-block;
+  width: 28.5px;
+  height: 28.5px;
+  background: url(~static/icon/unCheckedBox.svg) left center no-repeat;
+  vertical-align: middle;
+  margin: 8px 10px 8px 0;
+}
+.checkbox-wrap input[type='checkbox'] {
+  display: none;
+}
+.checkbox-wrap input[type='checkbox']:checked + .check-icon {
+  background-image: url(~static/icon/checkedBox.svg);
 }
 </style>

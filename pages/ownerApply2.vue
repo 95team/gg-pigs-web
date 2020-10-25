@@ -58,7 +58,25 @@
           <v-textarea auto-grow outlined rows="1" row-height="62px"></v-textarea>
         </div>
         <div class="text20 text-light2">
-          <input id="check1" type="checkbox" name="check1" />
+          <label class="checkbox-wrap"
+            ><input type="checkbox" name="transportation[]" value="check1" /><i
+              class="check-icon"
+            ></i
+            >Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,</label
+          ><br />
+          <label class="checkbox-wrap"
+            ><input type="checkbox" name="transportation[]" value="check1" /><i
+              class="check-icon"
+            ></i
+            >Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,</label
+          ><br />
+          <label class="checkbox-wrap"
+            ><input type="checkbox" name="transportation[]" value="check1" /><i
+              class="check-icon"
+            ></i
+            >Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,</label
+          >
+          <!-- <input id="check1" type="checkbox" name="check1" />
           <label for="check1"
             >Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,</label
           ><br />
@@ -69,7 +87,7 @@
           <input id="check3" type="checkbox" name="check3" />
           <label for="check3"
             >Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,</label
-          >
+          > -->
         </div>
       </v-flex>
     </v-layout>
@@ -146,13 +164,9 @@ export default {
 .v-textarea {
   margin-top: 16px;
 }
-input[type='checkbox'] {
-  /* transform: scale(2); */
-  margin-right: 29px;
-}
-#check2 {
+/* #check2 {
   margin: 16px 29px 16px 0;
-}
+} */
 .imgFileAdd input[type='file'] {
   /* 파일 필드 숨기기 */
   position: absolute;
@@ -183,5 +197,22 @@ input[type='checkbox'] {
 .height80 {
   height: 80px;
   padding-top: 10px;
+}
+.checkbox-wrap {
+  cursor: pointer;
+}
+.checkbox-wrap .check-icon {
+  display: inline-block;
+  width: 29px;
+  height: 29px;
+  background: url(~static/icon/unCheckedBox.svg) left center no-repeat;
+  vertical-align: middle;
+  margin: 9px 20px 11px 0;
+}
+.checkbox-wrap input[type='checkbox'] {
+  display: none;
+}
+.checkbox-wrap input[type='checkbox']:checked + .check-icon {
+  background-image: url(~static/icon/checkedBox.svg);
 }
 </style>

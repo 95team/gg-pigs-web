@@ -1,6 +1,11 @@
 <template>
   <div class="text-center ma-1">
-    <img :src="advert.src" :title="advert.title" :alt="advert.alt" :style="advert.type" />
+    <img
+      :src="adBox.imagePath"
+      :title="adBox.title"
+      :alt="adBox.detailDescription"
+      :class="adBox.advertisementType"
+    />
   </div>
 </template>
 
@@ -15,45 +20,68 @@ export default {
   data() {
     return {
       adBox: {},
-      type: 'type',
-      type1: {
-        maxWidth: '300px',
-        height: '250px',
+      emptyAdvertType1: {
+        id: 0,
+        title: '광고를 신청해주세요!',
+        detailDescription: '광고를 신청해주세요!',
+        imagePath: 'image/empty_type1.png',
+        siteUrl: 'www.example.com',
+        rowPosition: '-',
+        columnPosition: '-',
+        advertisementType: ['R1', 'example-image'],
+        advertisementWidth: '300',
+        advertisementHeight: '250',
+        startedDate: '2020-01-01',
+        finishedDate: '2030-01-01',
       },
-      type2: {
-        width: '300px',
-        height: '516px',
+      emptyAdvertType2: {
+        id: 0,
+        title: '광고를 신청해주세요!',
+        detailDescription: '광고를 신청해주세요!',
+        imagePath: 'image/empty_type2.png',
+        siteUrl: 'www.example.com',
+        rowPosition: '-',
+        columnPosition: '-',
+        advertisementType: ['R2', 'example-image'],
+        advertisementWidth: '300',
+        advertisementHeight: '516',
+        startedDate: '2020-01-01',
+        finishedDate: '2030-01-01',
       },
-      type3: {
-        width: '300px',
-        height: '782px',
-      },
-      type4: {
-        width: '300px',
-        height: '1048px',
-      },
-      type5: {
-        width: '300px',
-        height: '1314px',
-      },
-      type6: {
-        width: '300px',
-        height: '1580px',
+      emptyAdvertType3: {
+        id: 0,
+        title: '광고를 신청해주세요!',
+        detailDescription: '광고를 신청해주세요!',
+        imagePath: 'image/empty_type3.png',
+        siteUrl: 'www.example.com',
+        rowPosition: '-',
+        columnPosition: '-',
+        advertisementType: ['R3', 'example-image'],
+        advertisementWidth: '300',
+        advertisementHeight: '782',
+        startedDate: '2020-01-01',
+        finishedDate: '2030-01-01',
       },
     };
   },
   created() {
-    this.init();
+    const vm = this;
+    vm.init();
   },
   methods: {
     init() {
-      if (this.advert.type === '1') this.type = this.type1;
-      else if (this.advert.type === '2') this.type = this.type2;
-      else if (this.advert.type === '3') this.type = this.type3;
-      else if (this.advert.type === '4') this.type = this.type4;
-      else if (this.advert.type === '5') this.type = this.type5;
-      else if (this.advert.type === '6') this.type = this.type6;
-      else this.type = this.type1;
+      if (this.advert.type !== undefined && this.advert.type === 'EXAMPLE') {
+        this.adBox = this.emptyAdvertType1;
+        if (this.advert.size === '1') {
+          this.adBox = this.emptyAdvertType1;
+        } else if (this.advert.size === '2') {
+          this.adBox = this.emptyAdvertType2;
+        } else if (this.advert.size === '3') {
+          this.adBox = this.emptyAdvertType3;
+        }
+      } else {
+        this.adBox = this.advert;
+      }
     },
   },
 };
@@ -63,5 +91,9 @@ export default {
 img {
   max-width: 100%;
   height: auto !important;
+}
+
+.example-image {
+  opacity: 0.1;
 }
 </style>

@@ -78,7 +78,7 @@
             />
           </button>
           <v-spacer></v-spacer>
-          <div class="pageNum" :class="[dayMode ? 'text-black' : 'text-white']">1</div>
+          <div class="pageNum" :class="[dayMode ? 'text-light1' : 'text-light5']">1</div>
           <v-spacer></v-spacer>
           <button class="clickArea centerAlign">
             <img

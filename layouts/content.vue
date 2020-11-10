@@ -5,32 +5,32 @@
       <v-layout class="contents" row wrap>
         <!-- flex1 -->
         <v-flex xs4 md4 lg2>
-          <ad-box v-for="advert in advertisementsFirstColumn" :key="advert.id" :advert="advert" />
+          <ad-box v-for="advert in advertsFirstColumn" :key="advert.id" :advert="advert" />
         </v-flex>
 
         <!-- flex2 -->
         <v-flex xs4 md4 lg2>
-          <ad-box v-for="advert in advertisementsSecondColumn" :key="advert.id" :advert="advert" />
+          <ad-box v-for="advert in advertsSecondColumn" :key="advert.id" :advert="advert" />
         </v-flex>
 
         <!-- flex3 -->
         <v-flex xs4 md4 lg2>
-          <ad-box v-for="advert in advertisementsThirdColumn" :key="advert.id" :advert="advert" />
+          <ad-box v-for="advert in advertsThirdColumn" :key="advert.id" :advert="advert" />
         </v-flex>
 
         <!-- flex4 -->
         <v-flex xs4 md4 lg2>
-          <ad-box v-for="advert in advertisementsFourthColumn" :key="advert.id" :advert="advert" />
+          <ad-box v-for="advert in advertsFourthColumn" :key="advert.id" :advert="advert" />
         </v-flex>
 
         <!-- flex5 -->
         <v-flex xs4 md4 lg2>
-          <ad-box v-for="advert in advertisementsFifthColumn" :key="advert.id" :advert="advert" />
+          <ad-box v-for="advert in advertsFifthColumn" :key="advert.id" :advert="advert" />
         </v-flex>
 
         <!-- flex6 -->
         <v-flex xs4 md4 lg2>
-          <ad-box v-for="advert in advertisementsSixthColumn" :key="advert.id" :advert="advert" />
+          <ad-box v-for="advert in advertsSixthColumn" :key="advert.id" :advert="advert" />
         </v-flex>
       </v-layout>
       <v-layout class="pages centerAlign">
@@ -68,27 +68,27 @@ export default {
   data() {
     return {
       advertLayoutSize: 6,
-      advertisementsFirstColumn: [],
-      advertisementsSecondColumn: [],
-      advertisementsThirdColumn: [],
-      advertisementsFourthColumn: [],
-      advertisementsFifthColumn: [],
-      advertisementsSixthColumn: [],
+      advertsFirstColumn: [],
+      advertsSecondColumn: [],
+      advertsThirdColumn: [],
+      advertsFourthColumn: [],
+      advertsFifthColumn: [],
+      advertsSixthColumn: [],
     };
   },
   computed: {
     ...mapGetters({
-      advertisements: 'advertisements/fetchAdvertisements',
+      adverts: 'advertisements/fetchAdvertisements',
     }),
   },
   watch: {
-    advertisements() {
-      this.advertisementsFirstColumn = this.makeFilledAdvertsTargetColumn('1');
-      this.advertisementsSecondColumn = this.makeFilledAdvertsTargetColumn('2');
-      this.advertisementsThirdColumn = this.makeFilledAdvertsTargetColumn('3');
-      this.advertisementsFourthColumn = this.makeFilledAdvertsTargetColumn('4');
-      this.advertisementsFifthColumn = this.makeFilledAdvertsTargetColumn('5');
-      this.advertisementsSixthColumn = this.makeFilledAdvertsTargetColumn('6');
+    adverts() {
+      this.advertsFirstColumn = this.makeFilledAdvertsTargetColumn('1');
+      this.advertsSecondColumn = this.makeFilledAdvertsTargetColumn('2');
+      this.advertsThirdColumn = this.makeFilledAdvertsTargetColumn('3');
+      this.advertsFourthColumn = this.makeFilledAdvertsTargetColumn('4');
+      this.advertsFifthColumn = this.makeFilledAdvertsTargetColumn('5');
+      this.advertsSixthColumn = this.makeFilledAdvertsTargetColumn('6');
     },
   },
   created() {
@@ -102,9 +102,7 @@ export default {
     },
 
     getAdvertsFromColumn(targetColumn) {
-      const filteredAdverts = this.advertisements.filter(
-        advert => advert.columnPosition === targetColumn,
-      );
+      const filteredAdverts = this.adverts.filter(advert => advert.columnPosition === targetColumn);
       filteredAdverts.sort((advert1, advert2) =>
         advert1.rowPosition > advert2.rowPosition ? 1 : -1,
       );
@@ -150,6 +148,7 @@ export default {
     },
 
     makeFilledAdvertsTargetColumn(targetColumn) {
+      // 한 '열'에 대해서, (광고가 없는) 빈 '행'의 위치에 샘플 광고를 삽입하여 모든 '행'을 채우는 함수
       const EMPTY = 0;
       const FILLED = 1;
       const filledAdverts = this.getAdvertsFromColumn(targetColumn);

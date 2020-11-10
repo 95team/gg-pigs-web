@@ -52,7 +52,7 @@
             <v-select :items="pages" label="page"></v-select>
           </v-col>
           <v-col md="1" offset="1">
-            <v-select :items="titles"></v-select>
+            <v-select v-model="select" :items="titles" single-line></v-select>
           </v-col>
           &nbsp;
           <v-col md="2">
@@ -60,7 +60,8 @@
           </v-col>
           <span>
             <button type="button">
-              <img src="../static/image/pangoLogoDay.png" alt="검색 버튼" />
+              <!-- <img src="../static/image/pangoLogoDay.png" alt="검색 버튼" /> -->
+              검색
             </button>
           </span>
         </v-row>
@@ -68,7 +69,9 @@
 
       <div class="sort">
         <v-row no-gutters style="height: 84px;" align="center">
-          <v-col><input type="checkbox"/></v-col>
+          <v-col>
+            <input v-model="isCheckAll" type="checkbox" @click="checkAll" />
+          </v-col>
           <v-col md="3" align="center">광고 제목</v-col>
           <v-col md="2" align="center">시작 날짜</v-col>
           <v-col align="center">기간</v-col>
@@ -78,17 +81,21 @@
         </v-row>
         <ul>
           <li v-for="(ad, idx) in ads" :key="idx">
-            <v-row no-gutters style="height: 84px;">
-              <v-col><input type="checkbox"/></v-col>
+            <v-row no-gutters style="height: 84px;" align="center">
+              <v-col>
+                <input v-model="checked" :value="ad" type="checkbox" @change="updateCheckall" />
+              </v-col>
               <v-col md="3">{{ ad.title }}</v-col>
               <v-col md="2" align="center">{{ ad.startedDate }}</v-col>
               <v-col align="center">개월</v-col>
-              <v-col align="end">상세정보</v-col>
+              <v-col align="center">
+                <input type="button" value="상세정보" style="font-weight: bold;" />
+              </v-col>
               <v-col align="end">
-                <input class="btn" type="button" value="정보 수정" />
+                <input class="statusBtn" type="button" value="정보 수정" />
               </v-col>
               <v-col align="center">
-                <input class="btn" type="button" value="게시 중단" />
+                <input class="statusBtn" type="button" value="게시 중단" />
               </v-col>
             </v-row>
           </li>
@@ -104,11 +111,14 @@ export default {
   layout: 'adminDefault',
   data() {
     return {
-      ads: [],
       date: new Date().toISOString().substr(0, 10),
       menu: false,
       pages: ['1', '2', '3', '4', '5'],
+      select: '제목',
       titles: ['제목', '시작 날짜', '기간'],
+      ads: [],
+      isCheckAll: false,
+      checked: [],
     };
   },
   created() {
@@ -116,12 +126,30 @@ export default {
     axios
       .get('http://hj2server.ddns.net:8484/api/v1/advertisements')
       .then(function(response) {
-        console.log(response.data.data);
+        console.log(response.data);
         vm.ads = response.data.data;
       })
       .catch(function(error) {
         console.log(error);
       });
+  },
+  methods: {
+    checkAll() {
+      this.isCheckAll = !this.isCheckAll;
+      this.checked = [];
+      if (this.isCheckAll) {
+        for (const key in this.ads) {
+          this.checked.push(this.ads[key]);
+        }
+      }
+    },
+    updateCheckall() {
+      if (this.checked.length === this.ads.length) {
+        this.isCheckAll = true;
+      } else {
+        this.isCheckAll = false;
+      }
+    },
   },
 };
 </script>
@@ -138,7 +166,6 @@ ul {
 li {
   width: 1335px;
   height: 84px;
-  line-height: 84px;
   border-radius: 12px;
   border: solid 1px #707070;
   margin-bottom: 20px;
@@ -154,9 +181,9 @@ input[type='checkbox'] {
 .navigation {
   width: 340px;
   display: flex;
-  padding: 66px 5%;
+  padding: 66px 0;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
 }
 .contents {
   border-left: solid 1px #707070;
@@ -174,9 +201,9 @@ input[type='checkbox'] {
 .font {
   font-family: 'Noto Sans KR', sans-serif;
 }
-.btn {
+.statusBtn {
   width: 130px;
-  /* height: 45px; */
+  height: 45px;
   border-radius: 11px;
   background-color: #f0f2f8;
 }

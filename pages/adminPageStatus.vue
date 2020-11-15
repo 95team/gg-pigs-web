@@ -72,29 +72,31 @@
           <v-col>
             <input v-model="isCheckAll" type="checkbox" @click="checkAll" />
           </v-col>
-          <v-col md="3" align="center">광고 제목</v-col>
-          <v-col md="2" align="center">시작 날짜</v-col>
+          <v-col md="4" align="center">
+            광고 제목
+          </v-col>
+          <v-col md="1" align="center">시작 날짜</v-col>
+          <v-col md="1" align="center">종료 날짜</v-col>
           <v-col align="center">기간</v-col>
-          <v-col></v-col>
-          <v-col></v-col>
-          <v-col></v-col>
+          <v-col md="3"></v-col>
         </v-row>
         <ul>
-          <li v-for="(ad, idx) in ads" :key="idx">
+          <li v-for="(advert, idx) in adverts" :key="idx">
             <v-row no-gutters style="height: 84px;" align="center">
               <v-col>
-                <input v-model="checked" :value="ad" type="checkbox" @change="updateCheckall" />
+                <input v-model="checked" :value="advert" type="checkbox" @change="updateCheckall" />
               </v-col>
-              <v-col md="3">{{ ad.title }}</v-col>
-              <v-col md="2" align="center">{{ ad.startedDate }}</v-col>
+              <v-col md="4" align="center">{{ advert.title }}</v-col>
+              <v-col md="1" align="center">{{ advert.startedDate }}</v-col>
+              <v-col md="1" align="center">{{ advert.finishedDate }}</v-col>
               <v-col align="center">개월</v-col>
-              <v-col align="center">
+              <v-col md="1" align="center">
                 <input type="button" value="상세정보" style="font-weight: bold;" />
               </v-col>
-              <v-col align="end">
+              <v-col md="1" align="end">
                 <input class="statusBtn" type="button" value="정보 수정" />
               </v-col>
-              <v-col align="center">
+              <v-col md="1" align="center">
                 <input class="statusBtn" type="button" value="게시 중단" />
               </v-col>
             </v-row>
@@ -116,7 +118,7 @@ export default {
       pages: ['1', '2', '3', '4', '5'],
       select: '제목',
       titles: ['제목', '시작 날짜', '기간'],
-      ads: [],
+      adverts: [],
       isCheckAll: false,
       checked: [],
     };
@@ -127,7 +129,7 @@ export default {
       .get('http://hj2server.ddns.net:8484/api/v1/advertisements')
       .then(function(response) {
         console.log(response.data);
-        vm.ads = response.data.data;
+        vm.adverts = response.data.data;
       })
       .catch(function(error) {
         console.log(error);
@@ -138,13 +140,13 @@ export default {
       this.isCheckAll = !this.isCheckAll;
       this.checked = [];
       if (this.isCheckAll) {
-        for (const key in this.ads) {
-          this.checked.push(this.ads[key]);
+        for (const key in this.adverts) {
+          this.checked.push(this.adverts[key]);
         }
       }
     },
     updateCheckall() {
-      if (this.checked.length === this.ads.length) {
+      if (this.checked.length === this.adverts.length) {
         this.isCheckAll = true;
       } else {
         this.isCheckAll = false;
@@ -202,7 +204,7 @@ input[type='checkbox'] {
   font-family: 'Noto Sans KR', sans-serif;
 }
 .statusBtn {
-  width: 130px;
+  width: 100px;
   height: 45px;
   border-radius: 11px;
   background-color: #f0f2f8;

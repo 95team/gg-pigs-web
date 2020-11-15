@@ -78,11 +78,13 @@
           <v-col>
             <input v-model="isCheckAll" type="checkbox" @click="checkAll" />
           </v-col>
-          <v-col md="3" align="center">광고 제목</v-col>
+          <v-col md="4" align="center">광고 제목</v-col>
           <v-col align="center">상태</v-col>
-          <v-col md="2" align="center">시작 날짜</v-col>
+          <v-col md="1" align="center">시작 날짜</v-col>
+          <v-col md="1" align="center">종료 날짜</v-col>
           <v-col align="center">기간</v-col>
-          <v-col md="4"></v-col>
+          <v-col></v-col>
+          <v-col md="3"></v-col>
         </v-row>
         <ul>
           <li v-for="(ad, idx) in ads" :key="idx">
@@ -90,9 +92,10 @@
               <v-col>
                 <input v-model="checked" :value="ad" type="checkbox" @change="updateCheckall" />
               </v-col>
-              <v-col md="3">{{ ad.title }}</v-col>
+              <v-col md="4">{{ ad.title }}</v-col>
               <v-col align="center">신규</v-col>
-              <v-col md="2" align="center">{{ ad.startedDate }}</v-col>
+              <v-col md="1" align="center">{{ ad.startedDate }}</v-col>
+              <v-col md="1" align="center">{{ ad.finishedDate }}</v-col>
               <v-col align="center">개월</v-col>
               <v-col align="center">
                 <input type="button" value="상세정보" style="font-weight: bold;" />

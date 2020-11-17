@@ -24,8 +24,8 @@
             광고 신청
           </button>
         </nuxt-link>
-        <button class="menu">광고 조회</button>
-        <button class="menu">문의하기</button>
+        <button class="menu text-light2">광고 조회</button>
+        <button class="menu text-light2">문의하기</button>
       </v-row>
     </div>
   </v-container>

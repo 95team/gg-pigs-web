@@ -1,105 +1,176 @@
 <template>
-  <v-container fluid pa-0 class="text">
-    <!-- 진행상황 -->
-    <v-layout class="content process" align-center>
-      <v-flex>
-        <div class="text52">광고 신청하기</div>
-      </v-flex>
-      <v-flex class="text-light2" d-flex justify-end>
-        <span class="text20">&#9312; 시점/지점 선택</span>
-        <span class="margin16">···</span>
-        <span class="text20 text-primary3">&#9313; 광고정보입력</span>
-        <span class="margin16">···</span>
-        <span class="text20">&#9314; 신청 완료</span>
-      </v-flex>
-    </v-layout>
+  <v-container fluid pa-0 class="notoSansFont">
+    <div class="content">
+      <!-- 진행상황 -->
+      <v-row no-gutters align="center" style="margin: 129px 0 96px 0; font-size: 20px;">
+        <div style="font-size: 52px;">
+          광고 신청하기
+        </div>
+        <v-spacer></v-spacer>
+        <span>&#9312; 시점/지점 선택</span>
+        <span style="margin: 0 var(--spacing-md)">···</span>
+        <span class="text-primary3">&#9313; 광고정보입력</span>
+        <span style="margin: 0 var(--spacing-md)">···</span>
+        <span>&#9314; 신청 완료</span>
+      </v-row>
 
-    <!-- 컨텐츠 -->
-    <v-layout class="content">
-      <v-flex md2>
-        <div class="imgFileAdd">
-          <!-- <v-btn class="imageBtn">이미지 첨부</v-btn> -->
-          <label for="imgFile">이미지 첨부</label>
-          <input id="imgFile" type="file" />
+      <!-- 컨텐츠 -->
+      <v-row class="category" no-gutters align="center" style="height: 80px;">
+        <v-col md="2">
+          <div class="imgFileAdd">
+            <label for="imgFile">이미지 첨부</label>
+            <input id="imgFile" type="file" />
+          </div>
+        </v-col>
+
+        <v-col class="text-light2" style="font-size: 20px;">
+          <v-row no-gutters align="center">
+            <v-img :src="warning" class="warningIcon"></v-img>
+            <div style="margin-left: 23px;">
+              Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,
+            </div>
+          </v-row>
+          <v-row no-gutters align="center">
+            <v-img :src="warning" class="warningIcon"></v-img>
+            <div style="margin-left: 23px;">
+              Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,
+            </div>
+          </v-row>
+        </v-col>
+      </v-row>
+
+      <div class="category">
+        <div class="categoryTitle">
+          제목
         </div>
-      </v-flex>
-      <v-flex>
-        <div class="text20 text-light2 height80">
-          <v-img :src="warning" class="warningIcon"></v-img>
-          <div>Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,</div>
-          <v-img :src="warning" class="warningIcon"></v-img>
-          <div>Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,</div>
-        </div>
-      </v-flex>
-    </v-layout>
-    <v-layout class="content">
-      <v-flex>
-        <div class="margin34 text24">
-          <div>제목</div>
-          <v-textarea auto-grow outlined rows="1" row-height="62px"></v-textarea>
-        </div>
-        <div class="margin34 text24">
-          <div>상제 정보</div>
-          <v-textarea
-            auto-grow
+        <v-row no-gutters>
+          <v-text-field
+            v-model="title"
+            :rules="titleRules"
+            counter="25"
+            placeholder="제목을 입력하세요."
             outlined
-            rows="1"
-            row-height="194px"
+          ></v-text-field>
+        </v-row>
+      </div>
+
+      <div class="category">
+        <div class="categoryTitle">
+          상제 정보
+        </div>
+        <v-row no-gutters>
+          <v-textarea
+            v-model="detailDescription"
+            height="204px"
             placeholder="상세 정보는 검색을 통해 광고가 노출되는데 중요한 역할을 합니다.
 관련된 키워드나 문장을 자세히 써주세요."
+            outlined
+            hide-details
+            auto-grow
           ></v-textarea>
+        </v-row>
+      </div>
+
+      <div class="category">
+        <div>
+          태그
         </div>
-        <div class="margin34 text24">
-          <div>태그</div>
-          <v-textarea auto-grow outlined rows="1" row-height="62px"></v-textarea>
+        <v-row no-gutters>
+          <v-text-field v-model="tag" placeholder="" outlined hide-details></v-text-field>
+        </v-row>
+      </div>
+
+      <div class="category">
+        <div class="categoryTitle">
+          랜딩 페이지 URL
         </div>
-        <div class="margin34 text24">
-          <div>랜딩 페이지 URL</div>
-          <v-textarea auto-grow outlined rows="1" row-height="62px"></v-textarea>
+        <v-row no-gutters>
+          <v-text-field v-model="siteUrl" placeholder="" outlined hide-details></v-text-field>
+        </v-row>
+      </div>
+
+      <div class="category">
+        <div class="categoryTitle">
+          이메일
         </div>
-        <div class="text20 text-light2">
-          <label class="checkbox-wrap"
-            ><input type="checkbox" name="transportation[]" value="check1" /><i
-              class="check-icon"
-            ></i
-            >Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,</label
-          ><br />
-          <label class="checkbox-wrap"
-            ><input type="checkbox" name="transportation[]" value="check1" /><i
-              class="check-icon"
-            ></i
-            >Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,</label
-          ><br />
-          <label class="checkbox-wrap"
-            ><input type="checkbox" name="transportation[]" value="check1" /><i
-              class="check-icon"
-            ></i
-            >Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,</label
-          >
-          <!-- <input id="check1" type="checkbox" name="check1" />
-          <label for="check1"
-            >Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,</label
-          ><br />
-          <input id="check2" type="checkbox" name="check2" />
-          <label for="check2"
-            >Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,</label
-          ><br />
-          <input id="check3" type="checkbox" name="check3" />
-          <label for="check3"
-            >Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,</label
-          > -->
+        <v-row no-gutters align="center" style="margin-bottom: var(--spacing-md)">
+          <v-text-field
+            v-model="certifiedEmail"
+            placeholder=""
+            outlined
+            hide-details
+          ></v-text-field>
+          <div class="emailBtn">
+            <input type="button" value="인증메일 전송" />
+          </div>
+        </v-row>
+        <v-row no-gutters>
+          <v-col md="3">
+            <v-text-field
+              v-model="certifiedCode"
+              placeholder="인증코드를 입력해주세요."
+              outlined
+            ></v-text-field>
+          </v-col>
+          <div class="emailBtn">
+            <input type="button" value="인증코드 확인" />
+          </div>
+        </v-row>
+      </div>
+
+      <div class="category">
+        <div class="categoryTitle">
+          비밀번호
         </div>
-      </v-flex>
-    </v-layout>
+        <v-row no-gutters style="margin-bottom: var(--spacing-md)">
+          <v-text-field
+            v-model="password"
+            placeholder="비밀번호를 입력해주세요."
+            outlined
+            hide-details
+          ></v-text-field>
+        </v-row>
+        <v-row no-gutters>
+          <v-text-field
+            v-model="password"
+            placeholder="비밀번호를 한 번 더 입력해주세요."
+            outlined
+            hide-details
+          ></v-text-field>
+        </v-row>
+      </div>
+
+      <div class="text-light2" style="font-size: 20px;">
+        <v-row no-gutters>
+          <label class="checkArea">
+            <input type="checkbox" name="" value="" />
+            <i class="checkIcon"></i>
+            Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,
+          </label>
+        </v-row>
+        <v-row no-gutters>
+          <label class="checkArea">
+            <input type="checkbox" name="" value="" />
+            <i class="checkIcon"></i>
+            Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,
+          </label>
+        </v-row>
+        <v-row no-gutters>
+          <label class="checkArea">
+            <input type="checkbox" name="" value="" />
+            <i class="checkIcon"></i>
+            Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,
+          </label>
+        </v-row>
+      </div>
+    </div>
 
     <!-- 신청하기 -->
-    <v-layout>
-      <v-btn class="applyBtn" block text>
-        <nuxt-link to="/ownerApply1">
-          <v-img :src="apply"></v-img>
-        </nuxt-link>
-      </v-btn>
-    </v-layout>
+    <v-row no-gutters style="margin: 96px 0 128px 0;">
+      <nuxt-link to="/ownerApply1">
+        <v-img :src="apply"></v-img>
+      </nuxt-link>
+    </v-row>
   </v-container>
 </template>
 
@@ -108,111 +179,84 @@ export default {
   layout: 'ownerDefault',
   data() {
     return {
-      apply: require('~/static/icon/apply.svg'),
       warning: require('~/static/icon/warning.svg'),
+      apply: require('~/static/icon/apply.svg'),
+      title: [],
+      titleRules: [v => v.length <= 25 || '최대 25자까지 가능합니다.'],
+      detailDescription: [],
+      tag: [],
+      siteUrl: [],
+      certifiedEmail: [],
+      certifiedCode: [],
+      password: [],
     };
   },
 };
 </script>
 
 <style scoped>
-.container {
-  max-width: 1920px;
-}
-.content {
-  margin-left: 352px;
-  margin-right: 352px;
-}
-.process {
-  margin-top: 129px;
-  margin-bottom: 96px;
-}
-.text {
+.notoSansFont {
   font-family: 'Noto Sans KR', sans-serif;
 }
-.text52 {
-  font-size: 52px;
-}
-.text24 {
-  font-size: 24px;
-}
-.text20 {
-  font-size: 20px;
-}
-.imageBtn {
-  font-size: 24px;
-  width: 168px !important;
-  height: 80px !important;
-  padding: 0px !important;
-}
-.margin16 {
-  margin-left: 16px;
-  margin-right: 16px;
-}
-.applyBtn {
-  height: 176px !important;
-  padding: 0px !important;
-  margin-top: 96px;
-  margin-bottom: 128px;
-}
-.imgFileAdd {
-  margin: 22px 0 86px 0;
-}
-.margin34 {
-  margin-bottom: 34px;
-}
-.v-textarea {
-  margin-top: 16px;
-}
-/* #check2 {
-  margin: 16px 29px 16px 0;
-} */
 .imgFileAdd input[type='file'] {
-  /* 파일 필드 숨기기 */
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
+  width: 0;
 }
 .imgFileAdd label {
   font-size: 24px;
-  vertical-align: middle;
-  background-color: #fafbfc;
-  cursor: pointer;
   border: solid 1px var(--light2);
   border-radius: 14px;
+  background-color: #fafbfc;
   padding: 22px 26px;
-}
-.warningIcon {
-  width: 17px;
-  height: 15px;
-  float: left;
-  margin-top: 7.5px;
-  margin-right: 7.7px;
-}
-.height80 {
-  height: 80px;
-  padding-top: 10px;
-}
-.checkbox-wrap {
   cursor: pointer;
 }
-.checkbox-wrap .check-icon {
+.checkArea {
+  cursor: pointer;
+}
+.checkArea input[type='checkbox'] {
+  display: none;
+}
+.checkArea .checkIcon {
   display: inline-block;
   width: 29px;
   height: 29px;
   background: url(~static/icon/unCheckedBox.svg) left center no-repeat;
+  text-align: center;
   vertical-align: middle;
-  margin: 9px 20px 11px 0;
+  margin: 4px 16px 4px 0;
 }
-.checkbox-wrap input[type='checkbox'] {
-  display: none;
-}
-.checkbox-wrap input[type='checkbox']:checked + .check-icon {
+.checkArea input[type='checkbox']:checked + .checkIcon {
   background-image: url(~static/icon/checkedBox.svg);
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1920px;
+}
+.content {
+  margin: 0 18.3%;
+}
+.category {
+  margin-bottom: var(--spacing-xl);
+}
+.categoryTitle {
+  margin-bottom: var(--spacing-md);
+  font-size: 24px;
+}
+.warningIcon {
+  position: absolute;
+  width: 17px;
+  height: 15px;
+}
+.emailBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 168px;
+  height: 72px;
+  border: solid 1px var(--light2);
+  border-radius: 14px;
+  background-color: #fafbfc;
+  margin-left: 12px;
+  font-size: 20px;
 }
 </style>

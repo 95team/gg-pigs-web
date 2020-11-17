@@ -1,21 +1,19 @@
 <template>
-  <v-container fluid pa-0>
-    <!-- 분할선 -->
-    <v-layout>
-      <v-divider class="border-light3"></v-divider>
-    </v-layout>
-
-    <!-- footer -->
-    <v-layout class="content">
-      <v-flex d-flex justify-end class="text-light2">
-        <span class="text rigthMargin32">
-          &copy; {{ new Date().getFullYear() }} PangGo, Inc. All rights reserved
-        </span>
-        <span class="text rigthMargin32">개인정보 처리방침</span>
-        <span class="text rigthMargin32">이용 약관</span>
-        <span class="text">사이트맵</span>
-      </v-flex>
-    </v-layout>
+  <v-container fluid pa-0 class="notoSansFont text-light2">
+    <div class="content">
+      <span style="margin-right: var(--spacing-lg)">
+        &copy; {{ new Date().getFullYear() }} PangGo, Inc. All rights reserved
+      </span>
+      <span style="margin-right: var(--spacing-lg)">
+        개인정보 처리방침
+      </span>
+      <span style="margin-right: var(--spacing-lg)">
+        이용 약관
+      </span>
+      <span>
+        사이트맵
+      </span>
+    </div>
   </v-container>
 </template>
 
@@ -24,20 +22,18 @@ export default {};
 </script>
 
 <style scoped>
+.notoSansFont {
+  font-family: 'Noto Sans KR', sans-serif;
+}
 .container {
   max-width: 1920px;
-  height: 108px;
+  border-top: solid 1px var(--light3);
 }
 .content {
-  margin-top: 32px;
-  margin-left: 352px;
-  margin-right: 352px;
-}
-.text {
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 18px;
-}
-.rigthMargin32 {
-  margin-right: 32px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 108px;
+  margin: 0 18.3%;
 }
 </style>

@@ -1,31 +1,33 @@
 <template>
-  <v-container fluid pa-0>
-    <!-- 로고 -->
-    <v-layout class="logoLayout" align-center>
-      <v-flex>
-        <v-img :src="pangoLogoDay" class="logoArea"></v-img>
-      </v-flex>
-      <v-flex d-flex justify-end>
-        <v-btn id="btn1" text><v-img :src="day" class="iconArea"></v-img></v-btn>
-        <v-btn id="btn2" text><v-img :src="close" class="iconArea"></v-img></v-btn>
-      </v-flex>
-    </v-layout>
-
-    <!-- 분할선 -->
-    <v-layout>
-      <v-divider class="border-light3"></v-divider>
-    </v-layout>
-
-    <!-- 메뉴 -->
-    <v-layout class="menuLayout" align-center>
-      <div id="menu1" class="menu">
-        <div class="menuMargin">
-          광고 신청하기
+  <v-container fluid pa-0 class="notoSansFont">
+    <div class="logoArea">
+      <v-row no-gutters align="center">
+        <div>
+          <img src="../static/image/pangoLogoDay.png" alt="광고돼지" width="200px" height="66px" />
         </div>
-        <v-divider class="menuSelected"></v-divider>
-      </div>
-      <div id="menu2" class="menu text-light2">문의하기</div>
-    </v-layout>
+        <v-spacer></v-spacer>
+        <div>
+          <button type="button" class="clickArea" style="float: left; margin-right: 32px">
+            <v-img :src="day" class="iconArea"></v-img>
+          </button>
+          <button type="button" class="clickArea">
+            <v-img :src="close" class="iconArea"></v-img>
+          </button>
+        </div>
+      </v-row>
+    </div>
+
+    <div class="menuArea">
+      <v-row no-gutters align="end">
+        <nuxt-link to="/ownerApply1">
+          <button class="menu selected">
+            광고 신청
+          </button>
+        </nuxt-link>
+        <button class="menu">광고 조회</button>
+        <button class="menu">문의하기</button>
+      </v-row>
+    </div>
   </v-container>
 </template>
 
@@ -35,6 +37,7 @@ export default {
     return {
       pangoLogoDay: require('../static/image/pangoLogoDay.png'),
       day: require('../static/icon/day.svg'),
+      night: require('../static/icon/night.svg'),
       close: require('../static/icon/close.svg'),
     };
   },
@@ -42,62 +45,52 @@ export default {
 </script>
 
 <style scoped>
+a {
+  color: black;
+  text-decoration: none;
+}
+.notoSansFont {
+  font-family: 'Noto Sans KR', sans-serif;
+}
 .container {
+  display: flex;
+  flex-direction: column;
   max-width: 1920px;
   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.1);
 }
-.layout {
-  margin-left: 336px;
-  margin-right: 336px;
-}
-.logoLayout {
+.logoArea {
+  display: flex;
   height: 130px;
-  padding-left: 16px;
+  border-bottom: solid 1px var(--light3);
+  margin: 0 18.3%;
 }
-.menuLayout {
-  height: 100px;
+.menuArea {
+  display: flex;
+  min-height: 100px;
+  margin: 0 18.3%;
 }
-.menu {
-  width: 176px;
-  height: 68px;
-  margin-top: 32px;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 24px;
-  text-align: center;
-}
-#menu1 {
-  margin-left: 16px;
-}
-#menu2 {
-  margin-left: 32px;
+.clickArea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
 }
 .iconArea {
   width: 36px;
   height: 36px;
   position: absolute;
 }
-.v-btn {
-  height: 48px !important;
-  min-width: 48px !important;
-  padding: 0px !important;
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 176px;
+  height: 100px;
+  font-size: 24px;
+  margin-right: 1.7%;
 }
-#btn1 {
-  margin-right: 32px;
-}
-#btn2 {
-  margin-right: 16px;
-}
-.logoArea {
-  width: 200px;
-  height: 66px;
-}
-.v-divider {
-  border: solid 1px;
-}
-.menuMargin {
-  margin-bottom: 28px;
-}
-.menuSelected {
-  border: solid 2px;
+.selected {
+  border-bottom: solid 4px var(--light1);
 }
 </style>

@@ -19,7 +19,7 @@
         <v-col md="2">
           <div class="imgFileAdd">
             <label for="imgFile">이미지 첨부</label>
-            <input id="imgFile" type="file" />
+            <input id="imgFile" type="file" accept="image/x-png,image/gif,image/jpeg" />
           </div>
         </v-col>
 
@@ -72,7 +72,7 @@
       </div>
 
       <div class="category">
-        <div>
+        <div class="categoryTitle">
           태그
         </div>
         <v-row no-gutters>
@@ -100,21 +100,18 @@
             outlined
             hide-details
           ></v-text-field>
-          <div class="emailBtn">
-            <input type="button" value="인증메일 전송" />
-          </div>
+          <input class="emailBtn" type="button" value="인증메일 전송" />
         </v-row>
-        <v-row no-gutters>
+        <v-row no-gutters align="center">
           <v-col md="3">
             <v-text-field
               v-model="certifiedCode"
               placeholder="인증코드를 입력해주세요."
               outlined
+              hide-details
             ></v-text-field>
           </v-col>
-          <div class="emailBtn">
-            <input type="button" value="인증코드 확인" />
-          </div>
+          <input class="emailBtn" type="button" value="인증코드 확인" />
         </v-row>
       </div>
 

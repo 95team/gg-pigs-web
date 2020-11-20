@@ -20,8 +20,8 @@
         <v-row no-gutters align="center">
           <v-col md="2">
             <v-menu
-              ref="menu"
-              v-model="menu"
+              ref="isSelectedDate"
+              v-model="isSelectedDate"
               :close-on-content-click="false"
               :return-value.sync="date"
               transition="scale-transition"
@@ -39,10 +39,10 @@
               </template>
               <v-date-picker v-model="date" no-title scrollable>
                 <v-spacer></v-spacer>
-                <v-btn text color="primary" @click="menu = false">
+                <v-btn text color="primary" @click="isSelectedDate = false">
                   Cancel
                 </v-btn>
-                <v-btn text color="primary" @click="$refs.menu.save(date)">
+                <v-btn text color="primary" @click="$refs.isSelectedDate.save(date)">
                   OK
                 </v-btn>
               </v-date-picker>
@@ -113,7 +113,7 @@ export default {
   data() {
     return {
       date: new Date().toISOString().substr(0, 10),
-      menu: false,
+      isSelectedDate: false,
       pages: ['1', '2', '3', '4', '5'],
       select: '제목',
       titles: ['제목', '시작 날짜', '기간'],

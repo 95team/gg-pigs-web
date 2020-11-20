@@ -1,83 +1,125 @@
 <template>
-  <v-container fluid pa-0 class="text">
-    <!-- 진행상황 -->
-    <v-layout class="content process" align-center>
-      <v-flex>
-        <div class="text52">광고 신청하기</div>
-      </v-flex>
-      <v-flex class="text20 text-light2" d-flex justify-end>
-        <span class="text-primary3">&#9312; 시점/지점 선택</span>
-        <span class="margin16">···</span>
-        <span>&#9313; 광고정보입력</span>
-        <span class="margin16">···</span>
-        <span>&#9314; 신청 완료</span>
-      </v-flex>
-    </v-layout>
-
-    <!-- 컨텐츠 -->
-    <v-layout class="content">
-      <v-flex class="leftContent">
-        <div class="text24">광고 크기</div>
-        <v-card outlined class="text20 adSize" width="520px" height="183px">
-          <!-- <input id="size1" type="checkbox" name="1x1" />
-          <label for="size1">1x1 (300*250)</label><br />
-          <input id="size2" type="checkbox" name="1x2" />
-          <label for="size2">1x2 (300*250)</label><br />
-          <input id="size3" type="checkbox" name="1x3" />
-          <label for="size3">1x3 (300*250)</label><br /> -->
-          <label class="checkbox-wrap"
-            ><input type="checkbox" name="transportation[]" value="1x1" /><i class="check-icon"></i
-            >1x1 (300*250)</label
-          ><br />
-          <label class="checkbox-wrap"
-            ><input type="checkbox" name="transportation[]" value="1x2" /><i class="check-icon"></i
-            >1x2 (300*250)</label
-          ><br />
-          <label class="checkbox-wrap"
-            ><input type="checkbox" name="transportation[]" value="1x3" /><i class="check-icon"></i
-            >1x3 (300*250)</label
-          >
-        </v-card>
-        <div class="text24">게시 기간</div>
-        <v-card outlined width="520px" height="342px">
-          <v-date-picker
-            v-model="dates"
-            elevation="1"
-            range
-            color="background-primary2"
-            full-width
-            no-title
-          ></v-date-picker>
-          <v-text-field
-            v-model="dateRangeText"
-            label="Date range"
-            prepend-icon="mdi-calendar"
-            readonly
-          ></v-text-field>
-        </v-card>
-        <div class="text20 text-light2">
-          <v-img :src="warning" class="warningIcon"></v-img>
-          <div>시작날짜를 선택해주세요.</div>
-          <v-img :src="warning" class="warningIcon"></v-img>
-          <div>현재 게시기간은 한 달 입니다.</div>
+  <v-container fluid pa-0 class="notoSansFont">
+    <div class="content">
+      <!-- 진행상황 -->
+      <v-row no-gutters align="center" style="margin: 129px 0 96px 0; font-size: 20px;">
+        <div style="font-size: 52px;">
+          광고 신청하기
         </div>
-      </v-flex>
-      <v-flex>
-        <div class="text24">광고 위치</div>
-        <v-card outlined class="text20 adPosition" width="624px" height="610px">
-          광고의 크기와 게시기간을 선택해주세요.
-        </v-card>
-      </v-flex>
-    </v-layout>
+        <v-spacer></v-spacer>
+        <span class="text-primary3">&#9312; 시점/지점 선택</span>
+        <span style="margin: 0 var(--spacing-md)">···</span>
+        <span>&#9313; 광고정보입력</span>
+        <span style="margin: 0 var(--spacing-md)">···</span>
+        <span>&#9314; 신청 완료</span>
+      </v-row>
+
+      <!-- 선택 -->
+      <v-row no-gutters>
+        <v-col>
+          <div class="cardTitle">
+            광고 크기
+          </div>
+          <v-card outlined width="520px" height="183px" style="margin-bottom: 32px;">
+            <label class="checkArea">
+              <input type="checkbox" name="1x1" value="300*250" />
+              <i class="checkIcon"></i>1x1 (300*250)
+            </label>
+            <label class="checkArea">
+              <input type="checkbox" name="1x2" value="300*516" />
+              <i class="checkIcon"></i>1x2 (300*516)
+            </label>
+            <label class="checkArea">
+              <input type="checkbox" name="1x3" value="300*782" />
+              <i class="checkIcon"></i>1x3 (300*782)
+            </label>
+          </v-card>
+
+          <div class="cardTitle">
+            시작 날짜
+          </div>
+          <v-card
+            outlined
+            width="520px"
+            height="93px"
+            style="padding: 10px 52px; margin-bottom: 32px;"
+          >
+            <v-menu
+              ref="menu"
+              v-model="menu"
+              :close-on-content-click="false"
+              :return-value.sync="date"
+              transition="scale-transition"
+              offset-y
+              min-width="290px"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-text-field
+                  v-model="date"
+                  prepend-icon="mdi-calendar"
+                  readonly
+                  v-bind="attrs"
+                  v-on="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker v-model="date" no-title scrollable>
+                <v-spacer></v-spacer>
+                <v-btn text color="primary" @click="menu = false">
+                  Cancel
+                </v-btn>
+                <v-btn text color="primary" @click="$refs.menu.save(date)">
+                  OK
+                </v-btn>
+              </v-date-picker>
+            </v-menu>
+          </v-card>
+
+          <div class="cardTitle">
+            게시 기간
+          </div>
+          <v-card
+            outlined
+            width="520px"
+            height="85px"
+            style="padding: 10px 52px; margin-bottom: 12px;"
+          >
+            <v-select
+              v-model="selectPeriod"
+              :items="period"
+              label="SelectPeriod"
+              single-line
+            ></v-select>
+          </v-card>
+          <div
+            class="text-light2"
+            style="display: flex; align-items: center; padding-left: 12px; font-size: 20px;"
+          >
+            <v-img :src="warning" class="warningIcon"></v-img>
+            <div style="margin-left: 23px;">
+              현재 게시기간은 1개월만 가능합니다.
+            </div>
+          </div>
+        </v-col>
+
+        <v-col>
+          <div class="cardTitle">
+            광고 위치
+          </div>
+          <v-card class="advertPosition" outlined width="624px" height="570px">
+            <div style="font-size: 20px;">
+              광고의 크기와 게시기간을 선택해주세요.
+            </div>
+          </v-card>
+        </v-col>
+      </v-row>
+    </div>
 
     <!-- 다음 -->
-    <v-layout>
-      <v-btn block text>
-        <nuxt-link to="/ownerApply2">
-          <v-img :src="nextStep"></v-img>
-        </nuxt-link>
-      </v-btn>
-    </v-layout>
+    <v-row no-gutters style="margin: 96px 0 128px 0;">
+      <nuxt-link to="/ownerApply2">
+        <v-img :src="nextStep"></v-img>
+      </nuxt-link>
+    </v-row>
   </v-container>
 </template>
 
@@ -86,91 +128,62 @@ export default {
   layout: 'ownerDefault',
   data() {
     return {
-      nextStep: require('~/static/icon/nextStep.svg'),
+      date: new Date().toISOString().substr(0, 10),
+      menu: false,
+      period: ['1개월', '2개월', '3개월'],
+      selectPeriod: '1개월',
       warning: require('~/static/icon/warning.svg'),
-      picker: null,
-      dates: [],
+      nextStep: require('~/static/icon/nextStep.svg'),
     };
-  },
-  computed: {
-    dateRangeText() {
-      return this.dates.join(' ~ ');
-    },
   },
 };
 </script>
 
 <style scoped>
+.notoSansFont {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.checkArea {
+  cursor: pointer;
+}
+.checkArea input[type='checkbox'] {
+  display: none;
+}
+.checkArea .checkIcon {
+  display: inline-block;
+  width: 29px;
+  height: 29px;
+  background: url(~static/icon/unCheckedBox.svg) left center no-repeat;
+  text-align: center;
+  vertical-align: middle;
+  margin: 4px 16px 4px 52px;
+}
+.checkArea input[type='checkbox']:checked + .checkIcon {
+  background-image: url(~static/icon/checkedBox.svg);
+}
 .container {
+  display: flex;
+  flex-direction: column;
   max-width: 1920px;
 }
 .content {
-  margin-left: 352px;
-  margin-right: 352px;
+  margin: 0 18.3%;
 }
-.process {
-  margin-top: 129px;
-  margin-bottom: 96px;
+.v-card {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
-.v-btn {
-  height: 176px !important;
-  padding: 0px !important;
-  margin-bottom: 128px;
+.advertPosition {
+  align-items: center;
 }
-.text {
-  font-family: 'Noto Sans KR', sans-serif;
-}
-.text52 {
-  font-size: 52px;
-}
-.text20 {
-  font-size: 20px;
-}
-.text24 {
+.cardTitle {
+  margin-bottom: 16px;
   font-size: 24px;
 }
-.margin16 {
-  margin-left: 16px;
-  margin-right: 16px;
-}
-.adSize {
-  padding: 24px 56px;
-  margin-top: 16px;
-  margin-bottom: 32px;
-}
-/* #size2 {
-  margin: 16px 16px 16px 0;
-} */
-.adPosition {
-  padding: 290px 142px;
-  margin-top: 16px;
-  margin-bottom: 168px;
-}
-.leftContent {
-  margin-right: 72px;
-}
 .warningIcon {
+  position: absolute;
   width: 17px;
   height: 15px;
-  float: left;
-  margin-top: 7.5px;
-  margin-right: 7.7px;
-}
-.checkbox-wrap {
-  cursor: pointer;
-}
-.checkbox-wrap .check-icon {
-  display: inline-block;
-  width: 28.5px;
-  height: 28.5px;
-  background: url(~static/icon/unCheckedBox.svg) left center no-repeat;
-  vertical-align: middle;
-  margin: 8px 10px 8px 0;
-}
-.checkbox-wrap input[type='checkbox'] {
-  display: none;
-}
-.checkbox-wrap input[type='checkbox']:checked + .check-icon {
-  background-image: url(~static/icon/checkedBox.svg);
 }
 </style>

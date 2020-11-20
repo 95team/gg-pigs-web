@@ -66,8 +66,7 @@
           </v-col>
           <span>
             <button type="button">
-              <!-- <img src="../static/image/pangoLogoDay.png" alt="검색 버튼" /> -->
-              검색
+              <v-img :src="searchIcon" style="width: 30px; heigth: 30px;"></v-img>
             </button>
           </span>
         </v-row>
@@ -141,6 +140,7 @@ export default {
       ads: [],
       isCheckAll: false,
       checked: [],
+      searchIcon: require('../static/icon/search.svg'),
     };
   },
   created() {

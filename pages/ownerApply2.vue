@@ -180,11 +180,11 @@
       <div class="text-center">{{ messageOnSnackBar }}</div>
     </v-snackbar>
 
-    <v-dialog v-model="isShowingUpProgressBar" hide-overlay persistent width="300">
-      <v-card color="primary" dark>
-        <v-card-text>
+    <v-dialog v-model="isShowingUpProgressBar" width="400">
+      <v-card color="blue-grey lighten-1" dark>
+        <v-card-text class="font-weight-bold text-center pt-3">
           {{ messageOnProgressBar }}
-          <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
+          <v-progress-linear indeterminate color="white" class="mt-3 mb-1"></v-progress-linear>
         </v-card-text>
       </v-card>
     </v-dialog>

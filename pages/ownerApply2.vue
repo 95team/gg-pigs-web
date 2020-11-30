@@ -174,9 +174,10 @@
       :color="colorOfSnackBar"
       :timeout="3000"
       :value="true"
+      text
       top
     >
-      {{ messageOnSnackBar }}
+      <div class="text-center">{{ messageOnSnackBar }}</div>
     </v-snackbar>
 
     <v-dialog v-model="isShowingUpProgressBar" hide-overlay persistent width="300">
@@ -259,6 +260,9 @@ export default {
 </script>
 
 <style scoped>
+.text-center {
+  text-align: center !important;
+}
 .notoSansFont {
   font-family: 'Noto Sans KR', sans-serif;
 }

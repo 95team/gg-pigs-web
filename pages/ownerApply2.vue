@@ -232,10 +232,10 @@ export default {
             response.data.data.receiver === vm.verifiedEmail
           ) {
             vm.verificationCode = response.data.data.verificationCode;
-            vm.colorOfSnackBar = 'success';
 
-            vm.isShowingUpProgressBar = false;
+            vm.colorOfSnackBar = 'success';
             vm.isShowingUpSnackBar = true;
+            vm.isShowingUpProgressBar = false;
 
             vm.messageOnProgressBar = null;
             vm.messageOnSnackBar = '인증 메일 발송에 성공했습니다.';
@@ -245,10 +245,10 @@ export default {
         })
         .catch(error => {
           if (error.message) console.log(error.message);
-          vm.colorOfSnackBar = 'error';
 
-          vm.isShowingUpProgressBar = false;
+          vm.colorOfSnackBar = 'error';
           vm.isShowingUpSnackBar = true;
+          vm.isShowingUpProgressBar = false;
 
           vm.messageOnProgressBar = null;
           vm.messageOnSnackBar = '인증 메일 발송에 실패했습니다.';

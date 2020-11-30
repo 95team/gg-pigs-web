@@ -94,18 +94,18 @@
           이메일
         </div>
         <v-row no-gutters align="center" style="margin-bottom: var(--spacing-md)">
-          <v-text-field
-            v-model="certifiedEmail"
-            placeholder=""
-            outlined
-            hide-details
-          ></v-text-field>
-          <input class="emailBtn" type="button" value="인증메일 전송" />
+          <v-text-field v-model="verifiedEmail" placeholder="" outlined hide-details></v-text-field>
+          <input
+            class="emailBtn"
+            type="button"
+            value="인증메일 전송"
+            @click="requestVerificationMail"
+          />
         </v-row>
         <v-row no-gutters align="center">
           <v-col md="3">
             <v-text-field
-              v-model="certifiedCode"
+              v-model="verifiedCode"
               placeholder="인증코드를 입력해주세요."
               outlined
               hide-details
@@ -168,10 +168,31 @@
         <v-img :src="apply"></v-img>
       </nuxt-link>
     </v-row>
+
+    <v-snackbar
+      v-model="isShowingUpSnackBar"
+      :color="colorOfSnackBar"
+      :timeout="3000"
+      :value="true"
+      top
+    >
+      {{ messageOnSnackBar }}
+    </v-snackbar>
+
+    <v-dialog v-model="isShowingUpProgressBar" hide-overlay persistent width="300">
+      <v-card color="primary" dark>
+        <v-card-text>
+          {{ messageOnProgressBar }}
+          <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
 <script>
+import { requestVerificationMail } from '~/api/verificationMail';
+
 export default {
   layout: 'ownerDefault',
   data() {
@@ -183,10 +204,56 @@ export default {
       detailDescription: [],
       tag: [],
       siteUrl: [],
-      certifiedEmail: [],
-      certifiedCode: [],
       password: [],
+      verifiedEmail: [],
+      verifiedCode: [],
+      isVerifiedEmail: false,
+      isShowingUpSnackBar: false,
+      isShowingUpProgressBar: false,
+      messageOnSnackBar: null,
+      messageOnProgressBar: null,
+      colorOfSnackBar: 'success',
     };
+  },
+  methods: {
+    requestVerificationMail() {
+      const vm = this;
+      const payload = {
+        receiver: this.verifiedEmail,
+      };
+
+      this.isShowingUpProgressBar = true;
+      this.messageOnProgressBar = '인증 메일을 발송 중 입니다.';
+
+      requestVerificationMail(payload)
+        .then(response => {
+          if (
+            response.data.data.status === true &&
+            response.data.data.receiver === vm.verifiedEmail
+          ) {
+            vm.verificationCode = response.data.data.verificationCode;
+            vm.colorOfSnackBar = 'success';
+
+            vm.isShowingUpProgressBar = false;
+            vm.isShowingUpSnackBar = true;
+
+            vm.messageOnProgressBar = null;
+            vm.messageOnSnackBar = '인증 메일 발송에 성공했습니다.';
+          } else {
+            throw new Error('인증 메일 발송에 실패했습니다.');
+          }
+        })
+        .catch(error => {
+          if (error.message) console.log(error.message);
+          vm.colorOfSnackBar = 'error';
+
+          vm.isShowingUpProgressBar = false;
+          vm.isShowingUpSnackBar = true;
+
+          vm.messageOnProgressBar = null;
+          vm.messageOnSnackBar = '인증 메일 발송에 실패했습니다.';
+        });
+    },
   },
 };
 </script>

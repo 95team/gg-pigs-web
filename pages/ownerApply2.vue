@@ -94,7 +94,12 @@
           이메일
         </div>
         <v-row no-gutters align="center" style="margin-bottom: var(--spacing-md)">
-          <v-text-field v-model="verifiedEmail" placeholder="" outlined hide-details></v-text-field>
+          <v-text-field
+            v-model="verifiedEmail"
+            placeholder="이메일을 입력해주세요."
+            outlined
+            hide-details
+          ></v-text-field>
           <input
             class="emailBtn"
             type="button"

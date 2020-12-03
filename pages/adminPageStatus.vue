@@ -247,6 +247,8 @@
 
 <script>
 import axios from 'axios';
+import { baseApiUrl } from '../api/index.js';
+
 export default {
   layout: 'adminDefault',
   data() {
@@ -267,8 +269,9 @@ export default {
   created() {
     const vm = this;
     axios
-      .get('http://hj2server.ddns.net:8484/api/v1/advertisements')
+      .get(`${baseApiUrl}/advertisements`)
       .then(function(response) {
+        console.log(response.data);
         vm.adverts = response.data.data;
       })
       .catch(function(error) {

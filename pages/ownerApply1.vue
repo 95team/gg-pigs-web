@@ -22,15 +22,30 @@
           </div>
           <v-card outlined width="520px" height="183px" style="margin-bottom: 32px;">
             <label class="checkArea">
-              <input type="checkbox" name="1x1" value="300*250" />
+              <input
+                type="checkbox"
+                name="advertisementType"
+                value="R1"
+                @click="[checkedValue(), oneCheckbox(0)]"
+              />
               <i class="checkIcon"></i>1x1 (300*250)
             </label>
             <label class="checkArea">
-              <input type="checkbox" name="1x2" value="300*516" />
+              <input
+                type="checkbox"
+                name="advertisementType"
+                value="R2"
+                @click="[checkedValue(), oneCheckbox(1)]"
+              />
               <i class="checkIcon"></i>1x2 (300*516)
             </label>
             <label class="checkArea">
-              <input type="checkbox" name="1x3" value="300*782" />
+              <input
+                type="checkbox"
+                name="advertisementType"
+                value="R3"
+                @click="[checkedValue(), oneCheckbox(2)]"
+              />
               <i class="checkIcon"></i>1x3 (300*782)
             </label>
           </v-card>
@@ -86,8 +101,11 @@
             <v-select
               v-model="selectPeriod"
               :items="period"
-              label="SelectPeriod"
+              item-text="text"
+              item-value="value"
+              label="게시 기간을 선택해주세요."
               single-line
+              @change="addMonth(date, selectPeriod)"
             ></v-select>
           </v-card>
           <div
@@ -116,7 +134,12 @@
 
     <!-- 다음 -->
     <v-row no-gutters style="margin: 96px 0 128px 0;">
-      <nuxt-link to="/ownerApply2">
+      <nuxt-link
+        :to="{
+          name: 'ownerApply2',
+          query: { date, finishedDate, advertisementType, advertisementWidth, advertisementHeight },
+        }"
+      >
         <v-img :src="nextStep"></v-img>
       </nuxt-link>
     </v-row>
@@ -130,11 +153,59 @@ export default {
     return {
       date: new Date().toISOString().substr(0, 10),
       menu: false,
-      period: ['1개월', '2개월', '3개월'],
-      selectPeriod: '1개월',
+      period: [
+        { text: '1개월', value: 1 },
+        { text: '2개월', value: 2 },
+        { text: '3개월', value: 3 },
+      ],
+      selectPeriod: { text: '개월', value: 0 },
       warning: require('~/static/icon/warning.svg'),
       nextStep: require('~/static/icon/nextStep.svg'),
+      advertisementType: '',
+      advertisementWidth: '',
+      advertisementHeight: '',
+      finishedDate: '',
     };
+  },
+  methods: {
+    checkedValue() {
+      const checkBox = document.getElementsByName('advertisementType');
+      for (let i = 0; i < checkBox.length; i++) {
+        if (checkBox[i].checked) {
+          this.advertisementType = checkBox[i].value;
+          this.advertisementWidth = 300;
+          if (this.advertisementType === 'R1') this.advertisementHeight = 250;
+          else if (this.advertisementType === 'R2') this.advertisementHeight = 516;
+          else this.advertisementHeight = 782;
+        }
+      }
+    },
+    oneCheckbox(advertType) {
+      const checkBox = document.getElementsByName('advertisementType');
+      for (let i = 0; i < checkBox.length; i++) {
+        if (checkBox[i] !== checkBox[advertType]) {
+          checkBox[i].checked = false;
+        }
+      }
+    },
+    addMonth(selectedDate, selectedPeriod) {
+      const date = new Date(selectedDate);
+      const addMonthFirstDate = new Date(date.getFullYear(), date.getMonth() + selectedPeriod, 1);
+      const addMonthLastDate = new Date(
+        addMonthFirstDate.getFullYear(),
+        addMonthFirstDate.getMonth() + 1,
+        0,
+      );
+      const result = addMonthFirstDate;
+
+      if (date.getDate() > addMonthLastDate.getDate()) {
+        result.setDate(addMonthLastDate.getDate() + 1);
+      } else {
+        result.setDate(date.getDate() + 1);
+      }
+
+      this.finishedDate = result.toISOString().substr(0, 10);
+    },
   },
 };
 </script>

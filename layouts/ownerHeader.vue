@@ -24,7 +24,11 @@
             광고 신청
           </button>
         </nuxt-link>
-        <button class="menu text-light2">광고 조회</button>
+        <button class="menu text-light2">
+          <nuxt-link to="/owner/login">
+            광고 조회
+          </nuxt-link>
+        </button>
         <button class="menu text-light2">문의하기</button>
       </v-row>
     </div>

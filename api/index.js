@@ -1,6 +1,5 @@
 const baseHost = 'http://hj2server.ddns.net';
 const basePort = '8484';
-const basePath = 'api/v1';
-const baseApiUrl = baseHost + ':' + basePort + '/' + basePath;
+const baseApiUrl = baseHost + ':' + basePort;
 
-export { baseHost, basePort, basePath, baseApiUrl };
+export { baseHost, basePort, baseApiUrl };

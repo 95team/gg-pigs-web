@@ -1,36 +1,28 @@
 <template>
   <v-container fluid pa-0 class="notoSansFont">
-    <div class="logoArea">
+    <div class="logo-area">
       <v-row no-gutters align="center">
         <div>
           <img src="../static/image/pangoLogoDay.png" alt="광고돼지" width="200px" height="66px" />
         </div>
         <v-spacer></v-spacer>
         <div>
-          <button type="button" class="clickArea" style="float: left; margin-right: 32px">
-            <v-img :src="day" class="iconArea"></v-img>
+          <button type="button" class="click-area" style="float: left; margin-right: 32px">
+            <v-img :src="day" class="icon-area"></v-img>
           </button>
-          <button type="button" class="clickArea">
-            <v-img :src="close" class="iconArea"></v-img>
+          <button type="button" class="click-area">
+            <v-img :src="close" class="icon-area"></v-img>
           </button>
         </div>
       </v-row>
     </div>
 
-    <div class="menuArea">
-      <v-row no-gutters align="end">
-        <nuxt-link to="/ownerApply1">
-          <button class="menu selected">
-            광고 신청
-          </button>
-        </nuxt-link>
-        <button class="menu text-light2">
-          <nuxt-link to="/owner/login">
-            광고 조회
-          </nuxt-link>
-        </button>
-        <button class="menu text-light2">문의하기</button>
-      </v-row>
+    <div class="menu-area">
+      <v-tabs height="100px" color="black" slider-color="black" align-with-title>
+        <v-tab class="tab-item" :ripple="false" replace to="/ownerApply1">광고 신청</v-tab>
+        <v-tab class="tab-item" :ripple="false" replace to="/owner/login">광고 조회</v-tab>
+        <v-tab class="tab-item" disabled>문의하기</v-tab>
+      </v-tabs>
     </div>
   </v-container>
 </template>
@@ -39,6 +31,7 @@
 export default {
   data() {
     return {
+      menus: [{ title: '광고 신청' }, { title: '광고 조회' }, { title: '문의하기' }],
       pangoLogoDay: require('../static/image/pangoLogoDay.png'),
       day: require('../static/icon/day.svg'),
       night: require('../static/icon/night.svg'),
@@ -62,39 +55,38 @@ a {
   max-width: 1920px;
   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.1);
 }
-.logoArea {
+.logo-area {
   display: flex;
   height: 130px;
   border-bottom: solid 1px var(--light3);
   margin: 0 18.3%;
 }
-.menuArea {
+.menu-area {
   display: flex;
   min-height: 100px;
   margin: 0 18.3%;
 }
-.clickArea {
+.click-area {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 48px;
   height: 48px;
 }
-.iconArea {
+.icon-area {
   width: 36px;
   height: 36px;
   position: absolute;
 }
-.menu {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.tab-item {
+  margin-right: 1.7%;
+
   width: 176px;
   height: 100px;
-  font-size: 24px;
-  margin-right: 1.7%;
-}
-.selected {
-  border-bottom: solid 4px var(--light1);
+
+  font: normal normal normal 24px NotoSansCJKkr;
+
+  letter-spacing: normal;
+  color: var(--black);
 }
 </style>

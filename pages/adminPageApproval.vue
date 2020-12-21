@@ -162,8 +162,14 @@ export default {
   },
   created() {
     const vm = this;
-    axios
-      .get(`${baseApiUrl}/advertisements?page=-1`)
+    axios({
+      mehtod: 'get',
+      url: '/advertisements',
+      baseURL: `${baseApiUrl}`,
+      params: {
+        page: -1,
+      },
+    })
       .then(function(response) {
         vm.adverts = response.data.data;
       })

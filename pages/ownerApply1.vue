@@ -190,21 +190,8 @@ export default {
     },
     addMonth(selectedDate, selectedPeriod) {
       const date = new Date(selectedDate);
-      const addMonthFirstDate = new Date(date.getFullYear(), date.getMonth() + selectedPeriod, 1);
-      const addMonthLastDate = new Date(
-        addMonthFirstDate.getFullYear(),
-        addMonthFirstDate.getMonth() + 1,
-        0,
-      );
-      const result = addMonthFirstDate;
-
-      if (date.getDate() > addMonthLastDate.getDate()) {
-        result.setDate(addMonthLastDate.getDate() + 1);
-      } else {
-        result.setDate(date.getDate() + 1);
-      }
-
-      this.finishedDate = result.toISOString().substr(0, 10);
+      date.setDate(date.getDate() + 30 * selectedPeriod);
+      this.finishedDate = date.toISOString().substr(0, 10);
     },
   },
 };

@@ -1,4 +1,4 @@
-const baseHost = 'http://hj2server.ddns.net';
+const baseHost = 'https://gg-pigs.com';
 const basePort = '8484';
 const baseApiUrl = baseHost + ':' + basePort;
 

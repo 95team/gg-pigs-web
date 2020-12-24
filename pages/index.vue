@@ -9,32 +9,32 @@
       <v-layout class="contents" row wrap>
         <!-- flex1 -->
         <v-flex xs4 md4 lg2>
-          <ad-box v-for="poster in postersFirstColumn" :key="poster.id" :poster="poster" />
+          <poster-box v-for="poster in postersFirstColumn" :key="poster.id" :poster="poster" />
         </v-flex>
 
         <!-- flex2 -->
         <v-flex xs4 md4 lg2>
-          <ad-box v-for="poster in postersSecondColumn" :key="poster.id" :poster="poster" />
+          <poster-box v-for="poster in postersSecondColumn" :key="poster.id" :poster="poster" />
         </v-flex>
 
         <!-- flex3 -->
         <v-flex xs4 md4 lg2>
-          <ad-box v-for="poster in postersThirdColumn" :key="poster.id" :poster="poster" />
+          <poster-box v-for="poster in postersThirdColumn" :key="poster.id" :poster="poster" />
         </v-flex>
 
         <!-- flex4 -->
         <v-flex xs4 md4 lg2>
-          <ad-box v-for="poster in postersFourthColumn" :key="poster.id" :poster="poster" />
+          <poster-box v-for="poster in postersFourthColumn" :key="poster.id" :poster="poster" />
         </v-flex>
 
         <!-- flex5 -->
         <v-flex xs4 md4 lg2>
-          <ad-box v-for="poster in postersFifthColumn" :key="poster.id" :poster="poster" />
+          <poster-box v-for="poster in postersFifthColumn" :key="poster.id" :poster="poster" />
         </v-flex>
 
         <!-- flex6 -->
         <v-flex xs4 md4 lg2>
-          <ad-box v-for="poster in postersSixthColumn" :key="poster.id" :poster="poster" />
+          <poster-box v-for="poster in postersSixthColumn" :key="poster.id" :poster="poster" />
         </v-flex>
       </v-layout>
       <v-layout class="pages centerAlign">
@@ -67,13 +67,13 @@
 import { mapGetters } from 'vuex';
 import HeaderLayout from '~/layouts/header.vue';
 import FooterLayout from '~/layouts/footer.vue';
-import AdBox from '~/components/AdBox.vue';
+import PosterBox from '~/components/PosterBox.vue';
 
 export default {
   components: {
     HeaderLayout,
     FooterLayout,
-    AdBox,
+    PosterBox,
   },
   data() {
     return {
@@ -94,12 +94,12 @@ export default {
   },
   watch: {
     posters() {
-      this.postersFirstColumn = this.makeFilledAdvertsTargetColumn('1');
-      this.postersSecondColumn = this.makeFilledAdvertsTargetColumn('2');
-      this.postersThirdColumn = this.makeFilledAdvertsTargetColumn('3');
-      this.postersFourthColumn = this.makeFilledAdvertsTargetColumn('4');
-      this.postersFifthColumn = this.makeFilledAdvertsTargetColumn('5');
-      this.postersSixthColumn = this.makeFilledAdvertsTargetColumn('6');
+      this.postersFirstColumn = this.makeFilledPostersTargetColumn('1');
+      this.postersSecondColumn = this.makeFilledPostersTargetColumn('2');
+      this.postersThirdColumn = this.makeFilledPostersTargetColumn('3');
+      this.postersFourthColumn = this.makeFilledPostersTargetColumn('4');
+      this.postersFifthColumn = this.makeFilledPostersTargetColumn('5');
+      this.postersSixthColumn = this.makeFilledPostersTargetColumn('6');
     },
   },
   created() {
@@ -112,25 +112,25 @@ export default {
       vm.$store.dispatch('poster/FETCH_LIST');
     },
 
-    getAdvertsFromColumn(targetColumn) {
-      const filteredAdverts = this.posters.filter(poster => poster.columnPosition === targetColumn);
-      filteredAdverts.sort((poster1, poster2) =>
+    getPostersFromColumn(targetColumn) {
+      const filteredPosters = this.posters.filter(poster => poster.columnPosition === targetColumn);
+      filteredPosters.sort((poster1, poster2) =>
         poster1.rowPosition > poster2.rowPosition ? 1 : -1,
       );
 
-      return filteredAdverts;
+      return filteredPosters;
     },
 
-    getAdvertsLocations(filteredAdverts) {
+    getPostersLocations(filteredPosters) {
       const EMPTY = 0;
       const FILLED = 1;
       const postersLocations = Array.from({ length: this.posterLayoutSize + 2 }, () => EMPTY);
       postersLocations[0] = FILLED;
       postersLocations[this.posterLayoutSize + 1] = FILLED;
 
-      for (let i = 0; i < filteredAdverts.length; i++) {
-        const posterType = filteredAdverts[i].posterType;
-        const posterRowPosition = Number(filteredAdverts[i].rowPosition);
+      for (let i = 0; i < filteredPosters.length; i++) {
+        const posterType = filteredPosters[i].posterType;
+        const posterRowPosition = Number(filteredPosters[i].rowPosition);
 
         for (let j = 0; j < Number(posterType.charAt(1)); j++) {
           postersLocations[posterRowPosition + j] = FILLED;
@@ -140,55 +140,55 @@ export default {
       return postersLocations;
     },
 
-    makeEmptyAdvert(targetRow, targetColumn, emptyAdvertSize) {
+    makeEmptyPoster(targetRow, targetColumn, emptyPosterSize) {
       const randomSeed = 10000;
       const id = randomSeed + (Date.now() % randomSeed) * Math.floor(Math.random() * randomSeed);
       targetRow = targetRow.toString();
       targetColumn = targetColumn.toString();
-      emptyAdvertSize = emptyAdvertSize.toString();
+      emptyPosterSize = emptyPosterSize.toString();
 
-      const emptyAdvert = {
+      const emptyPoster = {
         id,
         type: 'EXAMPLE',
-        size: emptyAdvertSize,
+        size: emptyPosterSize,
         rowPosition: targetRow,
         columnPosition: targetColumn,
       };
 
-      return emptyAdvert;
+      return emptyPoster;
     },
 
-    makeFilledAdvertsTargetColumn(targetColumn) {
-      // 한 '열'에 대해서, (광고가 없는) 빈 '행'의 위치에 샘플 광고를 삽입하여 모든 '행'을 채우는 함수
+    makeFilledPostersTargetColumn(targetColumn) {
+      // 한 '열'에 대해서, ('포스터'가 없는) 빈 '행'의 위치에 '샘플 포스터'를 삽입하여 모든 '행'을 채우는 함수
       const EMPTY = 0;
       const FILLED = 1;
-      const filledAdverts = this.getAdvertsFromColumn(targetColumn);
-      const postersLocations = this.getAdvertsLocations(filledAdverts);
+      const filledPosters = this.getPostersFromColumn(targetColumn);
+      const postersLocations = this.getPostersLocations(filledPosters);
 
-      let emptyAdvertSize = 0;
+      let emptyPosterSize = 0;
       for (let i = 1; i <= this.posterLayoutSize + 1; i++) {
         if (postersLocations[i] === EMPTY) {
-          emptyAdvertSize++;
+          emptyPosterSize++;
         }
 
-        if (postersLocations[i] === FILLED && emptyAdvertSize >= 1) {
-          const targetRow = i - emptyAdvertSize;
-          filledAdverts.push(this.makeEmptyAdvert(targetRow, targetColumn, emptyAdvertSize));
-          emptyAdvertSize = 0;
-        } else if (emptyAdvertSize >= 3) {
-          emptyAdvertSize = 3;
-          const targetRow = i + 1 - emptyAdvertSize;
-          filledAdverts.push(this.makeEmptyAdvert(targetRow, targetColumn, emptyAdvertSize));
-          emptyAdvertSize = 0;
+        if (postersLocations[i] === FILLED && emptyPosterSize >= 1) {
+          const targetRow = i - emptyPosterSize;
+          filledPosters.push(this.makeEmptyPoster(targetRow, targetColumn, emptyPosterSize));
+          emptyPosterSize = 0;
+        } else if (emptyPosterSize >= 3) {
+          emptyPosterSize = 3;
+          const targetRow = i + 1 - emptyPosterSize;
+          filledPosters.push(this.makeEmptyPoster(targetRow, targetColumn, emptyPosterSize));
+          emptyPosterSize = 0;
         }
         postersLocations[i] = FILLED;
       }
 
-      filledAdverts.sort((poster1, poster2) =>
+      filledPosters.sort((poster1, poster2) =>
         poster1.rowPosition > poster2.rowPosition ? 1 : -1,
       );
 
-      return filledAdverts;
+      return filledPosters;
     },
     nightDayUpdate() {
       if (this.dayMode) {

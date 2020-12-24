@@ -3,8 +3,8 @@
     <img
       :src="adBox.imagePath"
       :title="adBox.title"
-      :alt="adBox.detailDescription"
-      :class="adBox.advertisementType"
+      :alt="adBox.description"
+      :class="adBox.posterType"
     />
   </div>
 </template>
@@ -12,7 +12,7 @@
 <script>
 export default {
   props: {
-    advert: {
+    poster: {
       type: Object,
       required: true,
     },
@@ -23,42 +23,45 @@ export default {
       emptyAdvertType1: {
         id: 0,
         title: '광고를 신청해주세요!',
-        detailDescription: '광고를 신청해주세요!',
+        description: '광고를 신청해주세요!',
+        keywords: '광고를 신청해주세요!',
         imagePath: 'image/empty_type1.png',
         siteUrl: 'www.example.com',
         rowPosition: '-',
         columnPosition: '-',
-        advertisementType: ['R1', 'example-image'],
-        advertisementWidth: '300',
-        advertisementHeight: '250',
+        posterType: ['R1', 'example-image'],
+        posterWidth: '300',
+        posterHeight: '250',
         startedDate: '2020-01-01',
         finishedDate: '2030-01-01',
       },
       emptyAdvertType2: {
         id: 0,
         title: '광고를 신청해주세요!',
-        detailDescription: '광고를 신청해주세요!',
+        description: '광고를 신청해주세요!',
+        keywords: '광고를 신청해주세요!',
         imagePath: 'image/empty_type2.png',
         siteUrl: 'www.example.com',
         rowPosition: '-',
         columnPosition: '-',
-        advertisementType: ['R2', 'example-image'],
-        advertisementWidth: '300',
-        advertisementHeight: '516',
+        posterType: ['R2', 'example-image'],
+        posterWidth: '300',
+        posterHeight: '516',
         startedDate: '2020-01-01',
         finishedDate: '2030-01-01',
       },
       emptyAdvertType3: {
         id: 0,
         title: '광고를 신청해주세요!',
-        detailDescription: '광고를 신청해주세요!',
+        description: '광고를 신청해주세요!',
+        keywords: '광고를 신청해주세요!',
         imagePath: 'image/empty_type3.png',
         siteUrl: 'www.example.com',
         rowPosition: '-',
         columnPosition: '-',
-        advertisementType: ['R3', 'example-image'],
-        advertisementWidth: '300',
-        advertisementHeight: '782',
+        posterType: ['R3', 'example-image'],
+        posterWidth: '300',
+        posterHeight: '782',
         startedDate: '2020-01-01',
         finishedDate: '2030-01-01',
       },
@@ -70,17 +73,17 @@ export default {
   },
   methods: {
     init() {
-      if (this.advert.type !== undefined && this.advert.type === 'EXAMPLE') {
+      if (this.poster.type !== undefined && this.poster.type === 'EXAMPLE') {
         this.adBox = this.emptyAdvertType1;
-        if (this.advert.size === '1') {
+        if (this.poster.size === '1') {
           this.adBox = this.emptyAdvertType1;
-        } else if (this.advert.size === '2') {
+        } else if (this.poster.size === '2') {
           this.adBox = this.emptyAdvertType2;
-        } else if (this.advert.size === '3') {
+        } else if (this.poster.size === '3') {
           this.adBox = this.emptyAdvertType3;
         }
       } else {
-        this.adBox = this.advert;
+        this.adBox = this.poster;
       }
     },
   },

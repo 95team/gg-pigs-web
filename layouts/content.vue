@@ -5,32 +5,32 @@
       <v-layout class="contents" row wrap>
         <!-- flex1 -->
         <v-flex xs4 md4 lg2>
-          <ad-box v-for="advert in advertsFirstColumn" :key="advert.id" :advert="advert" />
+          <ad-box v-for="poster in postersFirstColumn" :key="poster.id" :poster="poster" />
         </v-flex>
 
         <!-- flex2 -->
         <v-flex xs4 md4 lg2>
-          <ad-box v-for="advert in advertsSecondColumn" :key="advert.id" :advert="advert" />
+          <ad-box v-for="poster in postersSecondColumn" :key="poster.id" :poster="poster" />
         </v-flex>
 
         <!-- flex3 -->
         <v-flex xs4 md4 lg2>
-          <ad-box v-for="advert in advertsThirdColumn" :key="advert.id" :advert="advert" />
+          <ad-box v-for="poster in postersThirdColumn" :key="poster.id" :poster="poster" />
         </v-flex>
 
         <!-- flex4 -->
         <v-flex xs4 md4 lg2>
-          <ad-box v-for="advert in advertsFourthColumn" :key="advert.id" :advert="advert" />
+          <ad-box v-for="poster in postersFourthColumn" :key="poster.id" :poster="poster" />
         </v-flex>
 
         <!-- flex5 -->
         <v-flex xs4 md4 lg2>
-          <ad-box v-for="advert in advertsFifthColumn" :key="advert.id" :advert="advert" />
+          <ad-box v-for="poster in postersFifthColumn" :key="poster.id" :poster="poster" />
         </v-flex>
 
         <!-- flex6 -->
         <v-flex xs4 md4 lg2>
-          <ad-box v-for="advert in advertsSixthColumn" :key="advert.id" :advert="advert" />
+          <ad-box v-for="poster in postersSixthColumn" :key="poster.id" :poster="poster" />
         </v-flex>
       </v-layout>
       <v-layout class="pages centerAlign">
@@ -67,28 +67,28 @@ export default {
   },
   data() {
     return {
-      advertLayoutSize: 6,
-      advertsFirstColumn: [],
-      advertsSecondColumn: [],
-      advertsThirdColumn: [],
-      advertsFourthColumn: [],
-      advertsFifthColumn: [],
-      advertsSixthColumn: [],
+      posterLayoutSize: 6,
+      postersFirstColumn: [],
+      postersSecondColumn: [],
+      postersThirdColumn: [],
+      postersFourthColumn: [],
+      postersFifthColumn: [],
+      postersSixthColumn: [],
     };
   },
   computed: {
     ...mapGetters({
-      adverts: 'advertisements/fetchAdvertisements',
+      posters: 'poster/fetchPosters',
     }),
   },
   watch: {
-    adverts() {
-      this.advertsFirstColumn = this.makeFilledAdvertsTargetColumn('1');
-      this.advertsSecondColumn = this.makeFilledAdvertsTargetColumn('2');
-      this.advertsThirdColumn = this.makeFilledAdvertsTargetColumn('3');
-      this.advertsFourthColumn = this.makeFilledAdvertsTargetColumn('4');
-      this.advertsFifthColumn = this.makeFilledAdvertsTargetColumn('5');
-      this.advertsSixthColumn = this.makeFilledAdvertsTargetColumn('6');
+    posters() {
+      this.postersFirstColumn = this.makeFilledAdvertsTargetColumn('1');
+      this.postersSecondColumn = this.makeFilledAdvertsTargetColumn('2');
+      this.postersThirdColumn = this.makeFilledAdvertsTargetColumn('3');
+      this.postersFourthColumn = this.makeFilledAdvertsTargetColumn('4');
+      this.postersFifthColumn = this.makeFilledAdvertsTargetColumn('5');
+      this.postersSixthColumn = this.makeFilledAdvertsTargetColumn('6');
     },
   },
   created() {
@@ -98,13 +98,13 @@ export default {
   methods: {
     init() {
       const vm = this;
-      vm.$store.dispatch('advertisements/FETCH_LIST');
+      vm.$store.dispatch('poster/FETCH_LIST');
     },
 
     getAdvertsFromColumn(targetColumn) {
-      const filteredAdverts = this.adverts.filter(advert => advert.columnPosition === targetColumn);
-      filteredAdverts.sort((advert1, advert2) =>
-        advert1.rowPosition > advert2.rowPosition ? 1 : -1,
+      const filteredAdverts = this.posters.filter(poster => poster.columnPosition === targetColumn);
+      filteredAdverts.sort((poster1, poster2) =>
+        poster1.rowPosition > poster2.rowPosition ? 1 : -1,
       );
 
       return filteredAdverts;
@@ -113,20 +113,20 @@ export default {
     getAdvertsLocations(filteredAdverts) {
       const EMPTY = 0;
       const FILLED = 1;
-      const advertsLocations = Array.from({ length: this.advertLayoutSize + 2 }, () => EMPTY);
-      advertsLocations[0] = FILLED;
-      advertsLocations[this.advertLayoutSize + 1] = FILLED;
+      const postersLocations = Array.from({ length: this.posterLayoutSize + 2 }, () => EMPTY);
+      postersLocations[0] = FILLED;
+      postersLocations[this.posterLayoutSize + 1] = FILLED;
 
       for (let i = 0; i < filteredAdverts.length; i++) {
-        const advertType = filteredAdverts[i].advertisementType;
-        const advertRowPosition = Number(filteredAdverts[i].rowPosition);
+        const posterType = filteredAdverts[i].posterType;
+        const posterRowPosition = Number(filteredAdverts[i].rowPosition);
 
-        for (let j = 0; j < Number(advertType.charAt(1)); j++) {
-          advertsLocations[advertRowPosition + j] = FILLED;
+        for (let j = 0; j < Number(posterType.charAt(1)); j++) {
+          postersLocations[posterRowPosition + j] = FILLED;
         }
       }
 
-      return advertsLocations;
+      return postersLocations;
     },
 
     makeEmptyAdvert(targetRow, targetColumn, emptyAdvertSize) {
@@ -152,15 +152,15 @@ export default {
       const EMPTY = 0;
       const FILLED = 1;
       const filledAdverts = this.getAdvertsFromColumn(targetColumn);
-      const advertsLocations = this.getAdvertsLocations(filledAdverts);
+      const postersLocations = this.getAdvertsLocations(filledAdverts);
 
       let emptyAdvertSize = 0;
-      for (let i = 1; i <= this.advertLayoutSize + 1; i++) {
-        if (advertsLocations[i] === EMPTY) {
+      for (let i = 1; i <= this.posterLayoutSize + 1; i++) {
+        if (postersLocations[i] === EMPTY) {
           emptyAdvertSize++;
         }
 
-        if (advertsLocations[i] === FILLED && emptyAdvertSize >= 1) {
+        if (postersLocations[i] === FILLED && emptyAdvertSize >= 1) {
           const targetRow = i - emptyAdvertSize;
           filledAdverts.push(this.makeEmptyAdvert(targetRow, targetColumn, emptyAdvertSize));
           emptyAdvertSize = 0;
@@ -170,11 +170,11 @@ export default {
           filledAdverts.push(this.makeEmptyAdvert(targetRow, targetColumn, emptyAdvertSize));
           emptyAdvertSize = 0;
         }
-        advertsLocations[i] = FILLED;
+        postersLocations[i] = FILLED;
       }
 
-      filledAdverts.sort((advert1, advert2) =>
-        advert1.rowPosition > advert2.rowPosition ? 1 : -1,
+      filledAdverts.sort((poster1, poster2) =>
+        poster1.rowPosition > poster2.rowPosition ? 1 : -1,
       );
 
       return filledAdverts;

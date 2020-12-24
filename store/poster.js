@@ -14,7 +14,7 @@ export const mutations = {
 
 export const actions = {
   async FETCH_LIST(context) {
-    const response = await poster.getAPosterList();
+    const response = await poster.getPosterList();
     context.commit('SET_LIST', response.data.data);
   },
   async FETCH_LIST_V2(context, payload) {

@@ -98,9 +98,7 @@ export default {
     },
     loginSuccess() {
       const vm = this;
-      vm.snackBarColor = 'success';
-      vm.snackBarShowingUp = true;
-      vm.snackBarMessage = '로그인에 성공했습니다.';
+      vm.$router.push({ name: 'owner' });
     },
     loginFailure() {
       const vm = this;

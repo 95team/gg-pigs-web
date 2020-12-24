@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-main>
     <!-- content layout -->
     <v-container fluid pa-0>
       <v-layout class="contents" row wrap>
@@ -53,7 +53,7 @@
         </div>
       </v-layout>
     </v-container>
-  </v-content>
+  </v-main>
 </template>
 
 <script>

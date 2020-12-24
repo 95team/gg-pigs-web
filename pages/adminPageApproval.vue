@@ -146,7 +146,7 @@ export default {
   created() {
     const vm = this;
     axios
-      .get('http://hj2server.ddns.net:8484/api/v1/advertisements')
+      .get('https://gg-pigs.com:8484/api/v1/advertisements')
       .then(function(response) {
         vm.ads = response.data.data;
       })

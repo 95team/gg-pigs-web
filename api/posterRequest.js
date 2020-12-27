@@ -6,7 +6,14 @@ export default class {
     return axios.get(`${baseApiUrl}/api/v1/poster-requests`);
   }
 
-  getPosterRequestListV2(payload) {
-    return axios.get(`${baseApiUrl}/api/v2/poster-requests`, { params: payload });
+  getPosterRequestListV2(params) {
+    return axios.get(`${baseApiUrl}/api/v2/poster-requests`, { params });
+  }
+
+  updatePosterRequest(itemId, payload, params) {
+    return axios.put(`${baseApiUrl}/api/v1/poster-requests/${itemId}`, payload, {
+      params,
+      withCredentials: true,
+    });
   }
 }

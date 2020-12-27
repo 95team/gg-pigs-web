@@ -35,6 +35,7 @@
       :loading="loading"
       :loading-text="lodingText"
       item-key="id"
+      show-select
     >
       <template v-slot:[`item.reviewStatus`]="{ item }">
         <div :class="`${getColorByReviewStatus(item.reviewStatus)}--text`">
@@ -127,7 +128,7 @@ export default {
         { label: '전체', value: 'all' },
         { label: '신규', value: 'new' },
         { label: '보류', value: 'pending' },
-        { label: '거절', value: 'deny' },
+        { label: '미승인', value: 'deny' },
       ],
       headers: [
         {
@@ -176,26 +177,65 @@ export default {
   },
   methods: {
     init() {
+      const vm = this;
+      vm.read();
+    },
+    read() {
       this.loading = true;
       const vm = this;
-      const payload = {
+      const params = {
         page: '-1',
         userEmail: null,
         isFilteredDate: false,
       };
       vm.$store
-        .dispatch('posterRequest/FETCH_LIST_V2', payload)
+        .dispatch('posterRequest/FETCH_LIST_V2', params)
         .then(() => (this.loading = false))
         .catch(() => (this.loading = false));
     },
-    accept(item) {
-      // todo (api)
+    update(itemId, payload, params) {
+      const vm = this;
+      return vm.$store
+        .dispatch('posterRequest/UPDATE_ITEM', {
+          itemId,
+          payload,
+          params,
+        })
+        .then(response => vm.read())
+        .catch(error => console.log(error));
     },
-    pend(item) {
-      // todo (api)
+    async accept(itemId) {
+      const reviewStatus = 'APPROVAL';
+      const payload = {
+        reviewStatus,
+      };
+      const params = {
+        work: 'review',
+      };
+      await this.update(itemId, payload, params);
+      this.clearDialog();
     },
-    reject(item) {
-      // todo (api)
+    async pend(itemId) {
+      const reviewStatus = 'PENDING';
+      const payload = {
+        reviewStatus,
+      };
+      const params = {
+        work: 'review',
+      };
+      await this.update(itemId, payload, params);
+      this.clearDialog();
+    },
+    async reject(itemId) {
+      const reviewStatus = 'NON_APPROVAL';
+      const payload = {
+        reviewStatus,
+      };
+      const params = {
+        work: 'review',
+      };
+      await this.update(itemId, payload, params);
+      this.clearDialog();
     },
     confirmDialog() {
       if (this.dialog.item === null || this.dialog.item === undefined) {
@@ -203,22 +243,24 @@ export default {
       }
 
       if (this.dialog.type === 'accept') {
-        console.log('Accept' + this.dialog.item);
+        this.accept(this.dialog.item.id);
       } else if (this.dialog.type === 'pend') {
-        console.log('Pend' + this.dialog.item);
+        this.pend(this.dialog.item.id);
       } else if (this.dialog.type === 'reject') {
-        console.log('Reject' + this.dialog.item);
+        this.reject(this.dialog.item.id);
       } else {
-        this.dialog.type = null;
-        this.dialog.showingUp = false;
+        this.clearDialog();
       }
     },
-    cancleDialog() {
+    clearDialog() {
       this.dialog.title = null;
       this.dialog.message = null;
       this.dialog.type = null;
       this.dialog.item = null;
       this.dialog.showingUp = false;
+    },
+    cancleDialog() {
+      this.clearDialog();
     },
     showUpDialog(type, item) {
       this.dialog.item = item;
@@ -233,13 +275,14 @@ export default {
         this.dialog.message = '해당 광고를 보류하시겠습니까?';
       } else if (type === 'reject') {
         this.dialog.type = 'reject';
-        this.dialog.title = '광고 거절 처리';
-        this.dialog.message = '해당 광고를 보류하시겠습니까?';
+        this.dialog.title = '광고 미승인 처리';
+        this.dialog.message = '해당 광고를 미승인하시겠습니까?';
       } else {
-        this.cancleDialog();
+        this.clearDialog();
       }
     },
     showUpDetail(item) {
+      // To do
       console.log(item);
     },
     calculatePeriod(startedDate, finishedDate) {
@@ -258,9 +301,9 @@ export default {
       }
     },
     getColorByReviewStatus(reviewStatus) {
-      if (reviewStatus === 'APPROVAL') {
+      if (reviewStatus === 'APPROVAL' || reviewStatus === '승인') {
         return 'blue';
-      } else if (reviewStatus === 'PENDING') {
+      } else if (reviewStatus === 'PENDING' || reviewStatus === '보류') {
         return 'green';
       } else {
         return 'red';

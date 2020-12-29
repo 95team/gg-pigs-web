@@ -56,7 +56,7 @@
 
       <div class="category">
         <div class="categoryTitle">
-          상제 정보
+          상세 정보
         </div>
         <v-row no-gutters>
           <v-textarea
@@ -169,9 +169,12 @@
 
     <!-- 신청하기 -->
     <v-row no-gutters style="margin: 96px 0 128px 0;">
-      <nuxt-link to="/ownerApply1">
+      <!-- <nuxt-link to="/ownerApply1">
         <v-img :src="apply"></v-img>
-      </nuxt-link>
+      </nuxt-link> -->
+      <button @click="submitForm">
+        <v-img :src="apply"></v-img>
+      </button>
     </v-row>
 
     <v-snackbar
@@ -197,9 +200,12 @@
 </template>
 
 <script>
+import axios from 'axios';
+import { baseApiUrl } from '../api/index.js';
 import { requestVerificationMail } from '~/api/verificationMail';
 
 export default {
+  name: 'OwnerApply2',
   layout: 'ownerDefault',
   data() {
     return {
@@ -222,6 +228,21 @@ export default {
     };
   },
   methods: {
+    submitForm() {
+      axios.post(`${baseApiUrl}/advertisements`, {
+        userEmail: this.certifiedEmail,
+        title: this.title,
+        detailDescription: this.detailDescription,
+        advertisementType: this.$route.query.advertisementType,
+        advertisementWidth: this.$route.query.advertisementWidth,
+        advertisementHeight: this.$route.query.advertisementHeight,
+        imagePath: 'http://hj2server.ddns.net:8383/images/type2.png',
+        siteUrl: this.siteUrl,
+        rowPosition: '5',
+        columnPosition: '14',
+        startedDate: this.$route.query.date,
+        finishedDate: this.$route.query.finishedDate,
+      });
     requestVerificationMail() {
       const vm = this;
       const payload = {

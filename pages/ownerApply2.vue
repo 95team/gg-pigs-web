@@ -243,6 +243,7 @@ export default {
         startedDate: this.$route.query.date,
         finishedDate: this.$route.query.finishedDate,
       });
+    },
     requestVerificationMail() {
       const vm = this;
       const payload = {

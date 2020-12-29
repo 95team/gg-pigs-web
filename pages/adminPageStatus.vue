@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid pa-0 class="font">
+  <v-container fluid pa-0 class="notoSansFont">
     <div class="navigation" style="font-size: 20px;">
       <div style="font-weight: bold; margin-bottom: 25px; border-right: 5px solid #797991">
         광고 현황&nbsp;&nbsp;
@@ -12,6 +12,145 @@
     </div>
 
     <div class="contents">
+      <v-dialog v-model="dialog" persistent max-width="1240px">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn text v-bind="attrs" v-on="on">
+            상세정보
+          </v-btn>
+        </template>
+        <v-card style="padding: 4% 7%;">
+          <v-card-title style="margin-bottom: 5%;">
+            <v-row class="notoSansFont">
+              <v-col style="font-size: 32px; font-weight: 900;">
+                광고 제목
+              </v-col>
+              <v-col align="end">
+                <v-btn text>
+                  <v-img
+                    :src="closeIcon"
+                    style="width: 24px; height: 24px;"
+                    @click="dialog = false"
+                  ></v-img>
+                </v-btn>
+              </v-col>
+            </v-row>
+          </v-card-title>
+          <v-card-text class="notoSansFont" style="font-size: 16px; color: #000000;">
+            <v-row>
+              <v-col md="7">
+                <v-row no-gutters style="margin-bottom: 8px;">
+                  <v-btn depressed style="margin-right: 20px;">
+                    수정
+                  </v-btn>
+                  <v-btn depressed>
+                    삭제
+                  </v-btn>
+                </v-row>
+                <v-row
+                  no-gutters
+                  align="center"
+                  style="border-bottom: solid 1px #707070; height: 70px; "
+                >
+                  <v-col md="3" style="font-weight: bold;">
+                    상태
+                  </v-col>
+                  <v-col>
+                    신규
+                  </v-col>
+                </v-row>
+                <v-row
+                  no-gutters
+                  align="center"
+                  style="border-bottom: solid 1px #707070; height: 110px;"
+                >
+                  <v-col md="3" style="font-weight: bold;">
+                    <v-row no-gutters style="margin-bottom: 12px;">
+                      시작 날짜
+                    </v-row>
+                    <v-row no-gutters>
+                      종료 날짜
+                    </v-row>
+                  </v-col>
+                  <v-col>
+                    <v-row no-gutters style="margin-bottom: 12px;">
+                      2020.20.20
+                    </v-row>
+                    <v-row no-gutters>
+                      2020.20.20
+                    </v-row>
+                  </v-col>
+                </v-row>
+                <v-row
+                  no-gutters
+                  align="center"
+                  style="border-bottom: solid 1px #707070; height: 70px;"
+                >
+                  <v-col md="3" style="font-weight: bold;">
+                    기간
+                  </v-col>
+                  <v-col>
+                    1개월
+                  </v-col>
+                </v-row>
+                <v-row
+                  no-gutters
+                  align="center"
+                  style="border-bottom: solid 1px #707070; height: 170px;"
+                >
+                  <v-col md="3" style="font-weight: bold;">
+                    상세정보
+                  </v-col>
+                  <v-col>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                    tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+                    vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+                    no
+                  </v-col>
+                </v-row>
+                <v-row
+                  no-gutters
+                  align="center"
+                  style="border-bottom: solid 1px #707070; height: 110px;"
+                >
+                  <v-col md="3" style="font-weight: bold;">
+                    태그
+                  </v-col>
+                  <v-col>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                    tempor
+                  </v-col>
+                </v-row>
+                <v-row
+                  no-gutters
+                  align="center"
+                  style="border-bottom: solid 1px #707070; height: 110px;"
+                >
+                  <v-col md="3" style="font-weight: bold;">
+                    <v-row no-gutters style="margin-bottom: 12px;">
+                      랜딩 페이지
+                    </v-row>
+                    <v-row no-gutters>
+                      검사 여부
+                    </v-row>
+                  </v-col>
+                  <v-col>
+                    <v-row no-gutters style="margin-bottom: 12px;">
+                      www.dankook.ac.kr
+                    </v-row>
+                    <v-row no-gutters>
+                      완료
+                    </v-row>
+                  </v-col>
+                </v-row>
+              </v-col>
+              <v-spacer></v-spacer>
+              <v-col md="4" align="end">
+                <img src="../static/image/type3.png" alt="광고 이미지" />
+              </v-col>
+            </v-row>
+          </v-card-text>
+        </v-card>
+      </v-dialog>
       <div style="font-size: 32px; font-weight: bold; margin-bottom: 48px;">
         광고 현황
       </div>
@@ -73,9 +212,19 @@
           </v-col>
           <v-col md="4" align="center">
             광고 제목
+            <span v-if="titleFlag" @click="titleSort">내</span>
+            <span v-else @click="titleSort">오</span>
           </v-col>
-          <v-col md="1" align="center">시작 날짜</v-col>
-          <v-col md="1" align="center">종료 날짜</v-col>
+          <v-col md="1" align="center">
+            시작 날짜
+            <span v-if="startedDateFlag" @click="startDateSort">내</span>
+            <span v-else @click="startDateSort">오</span>
+          </v-col>
+          <v-col md="1" align="center">
+            종료 날짜
+            <span v-if="finishedDateFlag" @click="finishDateSort">내</span>
+            <span v-else @click="finishDateSort">오</span>
+          </v-col>
           <v-col align="center">기간</v-col>
           <v-col md="3"></v-col>
         </v-row>
@@ -108,6 +257,8 @@
 
 <script>
 import axios from 'axios';
+import { baseApiUrl } from '../api/index.js';
+
 export default {
   layout: 'adminDefault',
   data() {
@@ -116,17 +267,28 @@ export default {
       isSelectedDate: false,
       pages: ['1', '2', '3', '4', '5'],
       select: '제목',
-      titles: ['제목', '시작 날짜', '기간'],
+      titles: ['제목', '시작 날짜', '종료 날짜', '기간'],
       adverts: [],
       isCheckAll: false,
       checked: [],
       searchIcon: require('../static/icon/search.svg'),
+      dialog: false,
+      closeIcon: require('../static/icon/close.svg'),
+      titleFlag: false,
+      startedDateFlag: false,
+      finishedDateFlag: false,
     };
   },
   created() {
     const vm = this;
-    axios
-      .get('http://hj2server.ddns.net:8484/api/v1/advertisements')
+    axios({
+      mehtod: 'get',
+      url: '/advertisements',
+      baseURL: `${baseApiUrl}`,
+      params: {
+        page: -1,
+      },
+    })
       .then(function(response) {
         vm.adverts = response.data.data;
       })
@@ -149,6 +311,53 @@ export default {
         this.isCheckAll = true;
       } else {
         this.isCheckAll = false;
+      }
+    },
+    titleSort() {
+      if (this.titleFlag) {
+        this.titleFlag = !this.titleFlag;
+        this.adverts.sort(function(a, b) {
+          return a.title > b.title ? 1 : -1;
+        });
+      } else {
+        this.titleFlag = !this.titleFlag;
+        this.adverts.sort(function(a, b) {
+          return a.title < b.title ? 1 : -1;
+        });
+      }
+    },
+    startDateSort() {
+      if (this.startedDateFlag) {
+        this.startedDateFlag = !this.startedDateFlag;
+        this.adverts.sort(function(a, b) {
+          const dateA = new Date(a.startedDate).getTime();
+          const dateB = new Date(b.startedDate).getTime();
+          return dateA > dateB ? 1 : -1;
+        });
+      } else {
+        this.startedDateFlag = !this.startedDateFlag;
+        this.adverts.sort(function(a, b) {
+          const dateA = new Date(a.startedDate).getTime();
+          const dateB = new Date(b.startedDate).getTime();
+          return dateA < dateB ? 1 : -1;
+        });
+      }
+    },
+    finishDateSort() {
+      if (this.finishedDateFlag) {
+        this.finishedDateFlag = !this.finishedDateFlag;
+        this.adverts.sort(function(a, b) {
+          const dateA = new Date(a.finishedDate).getTime();
+          const dateB = new Date(b.finishedDate).getTime();
+          return dateA > dateB ? 1 : -1;
+        });
+      } else {
+        this.finishedDateFlag = !this.finishedDateFlag;
+        this.adverts.sort(function(a, b) {
+          const dateA = new Date(a.finishedDate).getTime();
+          const dateB = new Date(b.finishedDate).getTime();
+          return dateA < dateB ? 1 : -1;
+        });
       }
     },
   },
@@ -199,7 +408,7 @@ input[type='checkbox'] {
   align-items: center;
   padding: 0 25px;
 }
-.font {
+.notoSansFont {
   font-family: 'Noto Sans KR', sans-serif;
 }
 .statusBtn {

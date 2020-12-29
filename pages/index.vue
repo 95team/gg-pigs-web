@@ -1,72 +1,272 @@
 <template>
-  <v-layout column justify-center align-center>
-    <v-flex xs12 sm8 md6>
-      <div class="text-center">
-        <logo />
-        <vuetify-logo />
-      </div>
-      <v-card>
-        <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
-        </v-card-title>
-        <v-card-text>
-          <p>
-            Vuetify is a progressive Material Design component framework for Vue.js. It was designed
-            to empower developers to create amazing applications.
-          </p>
-          <p>
-            For more information on Vuetify, check out the
-            <a href="https://vuetifyjs.com" target="_blank"> documentation </a>.
-          </p>
-          <p>
-            If you have questions, please join the official
-            <a href="https://chat.vuetifyjs.com/" target="_blank" title="chat"> discord </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github
-            <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              title="contribute"
-            >
-              issue board </a
-            >.
-          </p>
-          <p>
-            Thank you for developing with Vuetify and I look forward to bringing more exciting
-            features in the future.
-          </p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3" />
-          <a href="https://nuxtjs.org/" target="_blank">
-            Nuxt Documentation
-          </a>
-          <br />
-          <a href="https://github.com/nuxt/nuxt.js" target="_blank">
-            Nuxt GitHub
-          </a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn color="primary" nuxt to="/inspire">
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-flex>
-  </v-layout>
+  <!-- dayMode -->
+  <v-app :class="[dayMode ? 'background-light5' : 'background-dark1']">
+    <!-- Header -->
+    <header-layout :day-mode="dayMode" @update="nightDayUpdate" />
+
+    <!-- Content -->
+    <v-container fluid pa-0>
+      <v-layout class="contents" row wrap>
+        <!-- flex1 -->
+        <v-flex xs4 md4 lg2>
+          <poster-box v-for="poster in postersFirstColumn" :key="poster.id" :poster="poster" />
+        </v-flex>
+
+        <!-- flex2 -->
+        <v-flex xs4 md4 lg2>
+          <poster-box v-for="poster in postersSecondColumn" :key="poster.id" :poster="poster" />
+        </v-flex>
+
+        <!-- flex3 -->
+        <v-flex xs4 md4 lg2>
+          <poster-box v-for="poster in postersThirdColumn" :key="poster.id" :poster="poster" />
+        </v-flex>
+
+        <!-- flex4 -->
+        <v-flex xs4 md4 lg2>
+          <poster-box v-for="poster in postersFourthColumn" :key="poster.id" :poster="poster" />
+        </v-flex>
+
+        <!-- flex5 -->
+        <v-flex xs4 md4 lg2>
+          <poster-box v-for="poster in postersFifthColumn" :key="poster.id" :poster="poster" />
+        </v-flex>
+
+        <!-- flex6 -->
+        <v-flex xs4 md4 lg2>
+          <poster-box v-for="poster in postersSixthColumn" :key="poster.id" :poster="poster" />
+        </v-flex>
+      </v-layout>
+      <v-layout class="pages centerAlign">
+        <div class="page centerAlign">
+          <button class="clickArea centerAlign">
+            <img
+              :src="[dayMode ? 'icon/prePageDay.svg' : 'icon/prePageNight.svg']"
+              class="pageIcon"
+            />
+          </button>
+          <v-spacer></v-spacer>
+          <div class="pageNum" :class="[dayMode ? 'text-light1' : 'text-light5']">1</div>
+          <v-spacer></v-spacer>
+          <button class="clickArea centerAlign">
+            <img
+              :src="[dayMode ? 'icon/nextPageDay.svg' : 'icon/nextPageNight.svg']"
+              class="pageIcon"
+            />
+          </button>
+        </div>
+      </v-layout>
+    </v-container>
+
+    <!-- Footer -->
+    <footer-layout :day-mode="dayMode" />
+  </v-app>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue';
-import VuetifyLogo from '~/components/VuetifyLogo.vue';
+import { mapGetters } from 'vuex';
+import HeaderLayout from '~/layouts/header.vue';
+import FooterLayout from '~/layouts/footer.vue';
+import PosterBox from '~/components/PosterBox.vue';
 
 export default {
   components: {
-    Logo,
-    VuetifyLogo,
+    HeaderLayout,
+    FooterLayout,
+    PosterBox,
+  },
+  data() {
+    return {
+      posterLayoutSize: 6,
+      postersFirstColumn: [],
+      postersSecondColumn: [],
+      postersThirdColumn: [],
+      postersFourthColumn: [],
+      postersFifthColumn: [],
+      postersSixthColumn: [],
+      dayMode: true,
+    };
+  },
+  computed: {
+    ...mapGetters({
+      posters: 'poster/fetchPosters',
+    }),
+  },
+  watch: {
+    posters() {
+      this.postersFirstColumn = this.makeFullPosters('1');
+      this.postersSecondColumn = this.makeFullPosters('2');
+      this.postersThirdColumn = this.makeFullPosters('3');
+      this.postersFourthColumn = this.makeFullPosters('4');
+      this.postersFifthColumn = this.makeFullPosters('5');
+      this.postersSixthColumn = this.makeFullPosters('6');
+    },
+  },
+  created() {
+    const vm = this;
+    vm.init();
+  },
+  methods: {
+    init() {
+      const vm = this;
+      vm.$store.dispatch('poster/FETCH_LIST');
+    },
+
+    getPostersFromColumn(targetColumn) {
+      const filteredPosters = this.posters.filter(poster => poster.columnPosition === targetColumn);
+
+      filteredPosters.sort((poster1, poster2) =>
+        poster1.rowPosition > poster2.rowPosition ? 1 : -1,
+      );
+
+      return filteredPosters;
+    },
+
+    getPostersLocations(filteredPosters) {
+      /**
+       * 한 '열'에 대해서, 어떤 '행'에 '포스터'가 존재하는지 배열 생성하는 함수입니다. (존재: 1, 미존재: 0)
+       * 양쪽의 끝 인덱스(0, layout + 1)는 사용하지 않습니다.
+       * Ex1. 모든 행이 비었을 때 : [1, 0, 0, 0, 0, 0, 0, 1]
+       * Ex2. 1, 2 행이 존재할 때 : [1, 1, 1, 0, 0, 0, 0, 1]
+       */
+
+      const EMPTY = 0;
+      const FILLED = 1;
+      const locations = Array.from({ length: this.posterLayoutSize + 2 }, () => EMPTY);
+
+      locations[0] = FILLED;
+      locations[this.posterLayoutSize + 1] = FILLED;
+
+      for (let i = 0; i < filteredPosters.length; i++) {
+        const posterType = filteredPosters[i].posterType;
+        const posterRowPosition = Number(filteredPosters[i].rowPosition);
+
+        for (let j = 0; j < Number(posterType.charAt(1)); j++) {
+          locations[posterRowPosition + j] = FILLED;
+        }
+      }
+
+      return locations;
+    },
+
+    makeFullPosters(targetColumn) {
+      /**
+       * 한 '열'에 대해서, ('포스터'가 없는) 빈 '행'의 위치에 '샘플 포스터'를 삽입하여 모든 '행'을 채우는 함수입니다.
+       */
+      const EMPTY = 0;
+      const FILLED = 1;
+      const posters = this.getPostersFromColumn(targetColumn);
+      const postersLocations = this.getPostersLocations(posters);
+
+      const fullPosters = posters;
+
+      let emptyPosterSize = 0;
+      for (let i = 1; i <= this.posterLayoutSize + 1; i++) {
+        if (postersLocations[i] === EMPTY) {
+          emptyPosterSize++;
+        }
+
+        if (postersLocations[i] === FILLED && emptyPosterSize >= 1) {
+          const targetRow = i - emptyPosterSize;
+          fullPosters.push(this.makeEmptyPoster(targetRow, targetColumn, emptyPosterSize));
+          emptyPosterSize = 0;
+        } else if (emptyPosterSize >= 3) {
+          emptyPosterSize = 3;
+          const targetRow = i + 1 - emptyPosterSize;
+          fullPosters.push(this.makeEmptyPoster(targetRow, targetColumn, emptyPosterSize));
+          emptyPosterSize = 0;
+        }
+        postersLocations[i] = FILLED;
+      }
+
+      fullPosters.sort((poster1, poster2) => (poster1.rowPosition > poster2.rowPosition ? 1 : -1));
+
+      return fullPosters;
+    },
+
+    makeEmptyPoster(targetRow, targetColumn, emptyPosterSize) {
+      const randomSeed = 10000;
+      const id = randomSeed + (Date.now() % randomSeed) * Math.floor(Math.random() * randomSeed);
+      targetRow = targetRow.toString();
+      targetColumn = targetColumn.toString();
+      emptyPosterSize = emptyPosterSize.toString();
+
+      const emptyPoster = {
+        id,
+        type: 'EXAMPLE',
+        size: emptyPosterSize,
+        rowPosition: targetRow,
+        columnPosition: targetColumn,
+      };
+
+      return emptyPoster;
+    },
+
+    nightDayUpdate() {
+      if (this.dayMode) {
+        this.dayMode = false;
+      } else {
+        this.dayMode = true;
+      }
+    },
   },
 };
 </script>
+
+<style scoped>
+.contents {
+  margin-top: 28px;
+  margin-bottom: 28px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.pages {
+  margin-bottom: 64px;
+}
+
+.page {
+  width: 250px;
+  height: 48px;
+}
+
+.clickArea {
+  width: 48px;
+  height: 48px;
+  outline: none;
+}
+
+.pageNum {
+  width: 14px;
+  height: 36px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 24px;
+}
+
+.pageIcon {
+  width: 18px;
+  height: 36px;
+}
+
+.centerAlign {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media all and (max-width: 959px) {
+  .container {
+    max-width: 932px !important;
+  }
+}
+@media all and (min-width: 960px) and (max-width: 1263px) {
+  .container {
+    max-width: 932px !important;
+  }
+}
+@media all and (min-width: 1264px) {
+  .container {
+    max-width: 1880px !important;
+  }
+}
+</style>

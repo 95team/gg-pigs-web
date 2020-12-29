@@ -112,3 +112,22 @@
 .Ml5        {   margin-left: 5%;      }
 .Ml5-5      {   margin-left: 5.5%;    }
 
+.mt32       {   margin-top: 32px;     }
+.mt64       {   margin-top: 64px;     }
+.mt96       {   margin-top: 96px;     }
+.mt128      {   margin-top: 128px;    }
+
+.mb32       {   margin-bottom: 32px;  }
+.mb64       {   margin-bottom: 64px;  }
+.mb96       {   margin-bottom: 96px;  }
+.mb128      {   margin-bottom: 128px; }
+
+.mr32       {   margin-right: 32px;   }
+.mr64       {   margin-right: 64px;   }
+.mr96       {   margin-right: 96px;   }
+.mr128      {   margin-right: 128px;  }
+
+.ml32       {   margin-left: 32px;    }
+.ml64       {   margin-left: 64px;    }
+.ml96       {   margin-left: 96px;    }
+.ml128      {   margin-left: 128px;   }

@@ -77,16 +77,28 @@
           <v-col>
             <input v-model="isCheckAll" type="checkbox" @click="checkAll" />
           </v-col>
-          <v-col md="4" align="center">광고 제목</v-col>
+          <v-col md="4" align="center">
+            광고 제목
+            <span v-if="titleFlag" @click="titleSort">내</span>
+            <span v-else @click="titleSort">오</span>
+          </v-col>
           <v-col align="center">상태</v-col>
-          <v-col md="1" align="center">시작 날짜</v-col>
-          <v-col md="1" align="center">종료 날짜</v-col>
+          <v-col md="1" align="center">
+            시작 날짜
+            <span v-if="startedDateFlag" @click="startDateSort">내</span>
+            <span v-else @click="startDateSort">오</span>
+          </v-col>
+          <v-col md="1" align="center">
+            종료 날짜
+            <span v-if="finishedDateFlag" @click="finishDateSort">내</span>
+            <span v-else @click="finishDateSort">오</span>
+          </v-col>
           <v-col align="center">기간</v-col>
           <v-col></v-col>
           <v-col md="3"></v-col>
         </v-row>
         <ul>
-          <li v-for="(ad, idx) in ads" :key="idx">
+          <li v-for="(ad, idx) in adverts" :key="idx">
             <v-row no-gutters style="height: 84px;" align="center">
               <v-col>
                 <input v-model="checked" :value="ad" type="checkbox" @change="updateCheckall" />
@@ -128,6 +140,8 @@
 
 <script>
 import axios from 'axios';
+import { baseApiUrl } from '../api/index.js';
+
 export default {
   layout: 'adminDefault',
   data() {
@@ -136,19 +150,28 @@ export default {
       menu: false,
       pages: ['1', '2', '3', '4', '5'],
       select: '제목',
-      titles: ['제목', '상태', '시작 날짜', '기간'],
-      ads: [],
+      titles: ['제목', '상태', '시작 날짜', '종료 날짜', '기간'],
+      adverts: [],
       isCheckAll: false,
       checked: [],
       searchIcon: require('../static/icon/search.svg'),
+      titleFlag: false,
+      startedDateFlag: false,
+      finishedDateFlag: false,
     };
   },
   created() {
     const vm = this;
-    axios
-      .get('https://gg-pigs.com:8484/api/v1/advertisements')
+    axios({
+      mehtod: 'get',
+      url: '/advertisements',
+      baseURL: `${baseApiUrl}`,
+      params: {
+        page: -1,
+      },
+    })
       .then(function(response) {
-        vm.ads = response.data.data;
+        vm.adverts = response.data.data;
       })
       .catch(function(error) {
         console.log(error);
@@ -159,16 +182,63 @@ export default {
       this.isCheckAll = !this.isCheckAll;
       this.checked = [];
       if (this.isCheckAll) {
-        for (const key in this.ads) {
-          this.checked.push(this.ads[key]);
+        for (const key in this.adverts) {
+          this.checked.push(this.adverts[key]);
         }
       }
     },
     updateCheckall() {
-      if (this.checked.length === this.ads.length) {
+      if (this.checked.length === this.adverts.length) {
         this.isCheckAll = true;
       } else {
         this.isCheckAll = false;
+      }
+    },
+    titleSort() {
+      if (this.titleFlag) {
+        this.titleFlag = !this.titleFlag;
+        this.adverts.sort(function(a, b) {
+          return a.title > b.title ? 1 : -1;
+        });
+      } else {
+        this.titleFlag = !this.titleFlag;
+        this.adverts.sort(function(a, b) {
+          return a.title < b.title ? 1 : -1;
+        });
+      }
+    },
+    startDateSort() {
+      if (this.startedDateFlag) {
+        this.startedDateFlag = !this.startedDateFlag;
+        this.adverts.sort(function(a, b) {
+          const dateA = new Date(a.startedDate).getTime();
+          const dateB = new Date(b.startedDate).getTime();
+          return dateA > dateB ? 1 : -1;
+        });
+      } else {
+        this.startedDateFlag = !this.startedDateFlag;
+        this.adverts.sort(function(a, b) {
+          const dateA = new Date(a.startedDate).getTime();
+          const dateB = new Date(b.startedDate).getTime();
+          return dateA < dateB ? 1 : -1;
+        });
+      }
+    },
+    finishDateSort() {
+      if (this.finishedDateFlag) {
+        this.finishedDateFlag = !this.finishedDateFlag;
+        this.adverts.sort(function(a, b) {
+          const dateA = new Date(a.finishedDate).getTime();
+          const dateB = new Date(b.finishedDate).getTime();
+          return dateA > dateB ? 1 : -1;
+        });
+      } else {
+        this.finishedDateFlag = !this.finishedDateFlag;
+        this.adverts.sort(function(a, b) {
+          const dateA = new Date(a.finishedDate).getTime();
+          const dateB = new Date(b.finishedDate).getTime();
+          return dateA < dateB ? 1 : -1;
+        });
       }
     },
   },

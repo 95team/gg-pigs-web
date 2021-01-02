@@ -134,7 +134,7 @@
         </v-row>
         <v-row no-gutters>
           <v-text-field
-            v-model="password"
+            v-model="rePassword"
             placeholder="비밀번호를 한 번 더 입력해주세요."
             outlined
             hide-details
@@ -147,14 +147,14 @@
           <label class="checkArea">
             <input type="checkbox" name="" value="" />
             <i class="checkIcon"></i>
-            Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,
+            내용 수정은 승인 후 가능합니다.
           </label>
         </v-row>
         <v-row no-gutters>
           <label class="checkArea">
             <input type="checkbox" name="" value="" />
             <i class="checkIcon"></i>
-            Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,
+            이메일, 비밀번호는 수정이 불가능합니다.
           </label>
         </v-row>
         <v-row no-gutters>
@@ -169,12 +169,21 @@
 
     <!-- 신청하기 -->
     <v-row no-gutters style="margin: 96px 0 128px 0;">
-      <!-- <nuxt-link to="/ownerApply1">
-        <v-img :src="apply"></v-img>
-      </nuxt-link> -->
-      <button @click="submitForm">
-        <v-img :src="apply"></v-img>
-      </button>
+      <v-btn v-if="!isApply" block disabled depressed height="176px" style="font-size: 52px">
+        신청하기
+      </v-btn>
+      <v-btn
+        v-else
+        block
+        depressed
+        to="ownerApply2"
+        height="176px"
+        style="font-size: 52px; color: var(--light5);"
+        color="var(--primary1)"
+        @click="submitForm"
+      >
+        신청하기
+      </v-btn>
     </v-row>
 
     <v-snackbar
@@ -217,6 +226,7 @@ export default {
       tag: [],
       siteUrl: [],
       password: [],
+      rePassword: [],
       verifiedEmail: [],
       verifiedCode: [],
       isVerifiedEmail: false,
@@ -225,6 +235,7 @@ export default {
       messageOnSnackBar: null,
       messageOnProgressBar: null,
       colorOfSnackBar: 'success',
+      isApply: false,
     };
   },
   methods: {
@@ -243,6 +254,7 @@ export default {
         startedDate: this.$route.query.date,
         finishedDate: this.$route.query.finishedDate,
       });
+    },
     requestVerificationMail() {
       const vm = this;
       const payload = {

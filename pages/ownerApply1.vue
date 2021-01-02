@@ -124,9 +124,142 @@
             광고 위치
           </div>
           <v-card class="advertPosition" outlined width="624px" height="570px">
-            <div style="font-size: 20px;">
+            <div v-if="!isAdvertType || !isSelectPeriod" style="font-size: 20px;">
               광고의 크기와 게시기간을 선택해주세요.
             </div>
+            <template v-else>
+              <div style="height: 36px;"></div>
+              <v-item-group>
+                <v-row no-gutters>
+                  <v-col v-for="n in 6" :key="n">
+                    <v-item v-slot="{ active, toggle }">
+                      <v-card
+                        :color="active ? 'background-primary2' : 'background-light4'"
+                        flat
+                        tile
+                        style="margin: 4px;"
+                        @click="toggle"
+                        @mouseup="nextStepToggle()"
+                      >
+                        <v-scroll-y-transition>
+                          <div style="width: 84px; height: 64px;"></div>
+                        </v-scroll-y-transition>
+                      </v-card>
+                    </v-item>
+                  </v-col>
+                </v-row>
+                <v-row no-gutters>
+                  <v-col v-for="n in 6" :key="n">
+                    <v-item v-slot="{ active, toggle }">
+                      <v-card
+                        :color="active ? 'background-primary2' : 'background-light4'"
+                        flat
+                        tile
+                        style="margin: 4px;"
+                        @click="toggle"
+                        @mouseup="nextStepToggle()"
+                      >
+                        <v-scroll-y-transition>
+                          <div style="width: 84px; height: 64px;"></div>
+                        </v-scroll-y-transition>
+                      </v-card>
+                    </v-item>
+                  </v-col>
+                </v-row>
+                <v-row no-gutters>
+                  <v-col v-for="n in 6" :key="n">
+                    <v-item v-slot="{ active, toggle }">
+                      <v-card
+                        :color="active ? 'background-primary2' : 'background-light4'"
+                        flat
+                        tile
+                        style="margin: 4px;"
+                        @click="toggle"
+                        @mouseup="nextStepToggle()"
+                      >
+                        <v-scroll-y-transition>
+                          <div style="width: 84px; height: 64px;"></div>
+                        </v-scroll-y-transition>
+                      </v-card>
+                    </v-item>
+                  </v-col>
+                </v-row>
+                <v-row no-gutters>
+                  <v-col v-for="n in 6" :key="n">
+                    <v-item v-slot="{ active, toggle }">
+                      <v-card
+                        :color="active ? 'background-primary2' : 'background-light4'"
+                        flat
+                        tile
+                        style="margin: 4px;"
+                        @click="toggle"
+                        @mouseup="nextStepToggle()"
+                      >
+                        <v-scroll-y-transition>
+                          <div style="width: 84px; height: 64px;"></div>
+                        </v-scroll-y-transition>
+                      </v-card>
+                    </v-item>
+                  </v-col>
+                </v-row>
+                <v-row no-gutters>
+                  <v-col v-for="n in 6" :key="n">
+                    <v-item v-slot="{ active, toggle }">
+                      <v-card
+                        :color="active ? 'background-primary2' : 'background-light4'"
+                        flat
+                        tile
+                        style="margin: 4px;"
+                        @click="toggle"
+                        @mouseup="nextStepToggle()"
+                      >
+                        <v-scroll-y-transition>
+                          <div style="width: 84px; height: 64px;"></div>
+                        </v-scroll-y-transition>
+                      </v-card>
+                    </v-item>
+                  </v-col>
+                </v-row>
+                <v-row no-gutters>
+                  <v-col v-for="n in 6" :key="n">
+                    <v-item v-slot="{ active, toggle }">
+                      <v-card
+                        :color="active ? 'background-primary3' : 'background-light4'"
+                        flat
+                        tile
+                        style="margin: 4px;"
+                        @click="toggle"
+                        @mouseup="nextStepToggle()"
+                      >
+                        <v-scroll-y-transition>
+                          <div style="width: 84px; height: 64px;"></div>
+                        </v-scroll-y-transition>
+                      </v-card>
+                    </v-item>
+                  </v-col>
+                </v-row>
+              </v-item-group>
+              <v-row no-gutters align="center">
+                <div
+                  style="width: 24px; height: 24px; background-color: var(--light4); margin-right: 15px;"
+                ></div>
+                <div style="margin-right: 30px; font-size: 20px;">
+                  예약가능
+                </div>
+                <div
+                  style="width: 24px; height: 24px; background-color: var(--light2); margin-right: 15px;"
+                ></div>
+                <div style="margin-right: 30px; font-size: 20px;">
+                  예약불가
+                </div>
+                <div
+                  style="width: 24px; height: 24px; background-color: var(--primary3); margin-right: 15px;"
+                ></div>
+                <div style="font-size: 20px;">
+                  선택됨
+                </div>
+              </v-row>
+            </template>
           </v-card>
         </v-col>
       </v-row>
@@ -134,14 +267,20 @@
 
     <!-- 다음 -->
     <v-row no-gutters style="margin: 96px 0 128px 0;">
-      <nuxt-link
-        :to="{
-          name: 'ownerApply2',
-          query: { date, finishedDate, advertisementType, advertisementWidth, advertisementHeight },
-        }"
+      <v-btn v-if="!isNextStep" block disabled depressed height="176px" style="font-size: 52px">
+        다음
+      </v-btn>
+      <v-btn
+        v-else
+        block
+        depressed
+        to="ownerApply2"
+        height="176px"
+        style="font-size: 52px; color: var(--light5);"
+        color="var(--primary1)"
       >
-        <v-img :src="nextStep"></v-img>
-      </nuxt-link>
+        다음
+      </v-btn>
     </v-row>
   </v-container>
 </template>
@@ -154,17 +293,19 @@ export default {
       date: new Date().toISOString().substr(0, 10),
       menu: false,
       period: [
-        { text: '1개월', value: 1 },
-        { text: '2개월', value: 2 },
-        { text: '3개월', value: 3 },
+        { text: '30일', value: 1 },
+        { text: '60일', value: 2 },
+        { text: '90일', value: 3 },
       ],
       selectPeriod: { text: '개월', value: 0 },
       warning: require('~/static/icon/warning.svg'),
-      nextStep: require('~/static/icon/nextStep.svg'),
       advertisementType: '',
       advertisementWidth: '',
       advertisementHeight: '',
       finishedDate: '',
+      isAdvertType: false,
+      isSelectPeriod: false,
+      isNextStep: false,
     };
   },
   methods: {
@@ -179,19 +320,24 @@ export default {
           else this.advertisementHeight = 782;
         }
       }
+      this.isAdvertType = true;
     },
     oneCheckbox(advertType) {
       const checkBox = document.getElementsByName('advertisementType');
       for (let i = 0; i < checkBox.length; i++) {
         if (checkBox[i] !== checkBox[advertType]) {
           checkBox[i].checked = false;
-        }
+        } else checkBox[i].checked = true;
       }
     },
     addMonth(selectedDate, selectedPeriod) {
       const date = new Date(selectedDate);
       date.setDate(date.getDate() + 30 * selectedPeriod);
       this.finishedDate = date.toISOString().substr(0, 10);
+      this.isSelectPeriod = true;
+    },
+    nextStepToggle() {
+      this.isNextStep = !this.isNextStep;
     },
   },
 };

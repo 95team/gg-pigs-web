@@ -111,6 +111,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import { getUser } from '~/api/user';
 
 export default {
   layout: 'admin/default',
@@ -176,9 +177,25 @@ export default {
     vm.init();
   },
   methods: {
-    init() {
+    async init() {
       const vm = this;
-      vm.read();
+      await vm.checkAdminUser();
+      await vm.read();
+    },
+    checkAdminUser() {
+      const vm = this;
+      const admin = 'ROLE_ADMIN';
+      return getUser()
+        .then(response => {
+          vm.email = response.data.data.email;
+          if (response.data.data.role !== admin) {
+            vm.$router.push({ name: 'owner-login' });
+          }
+          console.log(response.data.data);
+        })
+        .catch(() => {
+          vm.$router.push({ name: 'owner-login' });
+        });
     },
     read() {
       this.loading = true;
@@ -188,7 +205,7 @@ export default {
         userEmail: null,
         isFilteredDate: false,
       };
-      vm.$store
+      return vm.$store
         .dispatch('posterRequest/FETCH_LIST_V2', params)
         .then(() => (this.loading = false))
         .catch(() => (this.loading = false));

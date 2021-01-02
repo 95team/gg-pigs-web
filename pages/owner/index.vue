@@ -267,6 +267,7 @@ export default {
         page: '-1',
         userEmail: this.email,
         isFilteredDate: 'false',
+        isActivated: '-1',
       };
       vm.$store.dispatch('poster/FETCH_LIST_V2', payload);
     },

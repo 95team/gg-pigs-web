@@ -127,7 +127,15 @@
                 이미지
               </div>
               <span class="text-light2">
-                {{ imagePath }}
+                <span
+                  style="cursor:pointer"
+                  @click="
+                    imageDialog.showingUp = true;
+                    imageDialog.imagePath = imagePath;
+                  "
+                >
+                  {{ imagePath }}
+                </span>
               </span>
             </v-row>
             <v-row style="margin-top:3.3%; margin-left:0px">
@@ -158,6 +166,20 @@
         </v-col>
       </v-row>
     </div>
+
+    <!-- Dialog: '이미지(프리뷰)' 버튼에 사용되는 dialog 입니다. -->
+    <v-dialog v-model="imageDialog.showingUp" width="400">
+      <v-card>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" text @click="imageDialog.showingUp = false">
+            X
+          </v-btn>
+        </v-card-actions>
+
+        <v-img :src="imageDialog.imagePath" />
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -174,6 +196,10 @@ export default {
       stringOfPosterType1: '1x1 (300 x 250)',
       stringOfPosterType2: '2x1 (300 x 516)',
       stringOfPosterType3: '3x1 (300 x 782)',
+      imageDialog: {
+        imagePath: null,
+        showingUp: false,
+      },
     };
   },
   computed: {

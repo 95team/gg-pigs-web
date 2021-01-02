@@ -95,6 +95,7 @@
       </v-row>
     </div>
 
+    <!-- Dialog: '처리(승인/보류/미승인)' 버튼에 사용되는 dialog 입니다. -->
     <v-dialog v-model="dialog.showingUp" max-width="350">
       <v-card>
         <v-card-title class="headline">{{ dialog.title }}</v-card-title>
@@ -185,13 +186,13 @@ export default {
     checkAdminUser() {
       const vm = this;
       const admin = 'ROLE_ADMIN';
+
       return getUser()
         .then(response => {
           vm.email = response.data.data.email;
           if (response.data.data.role !== admin) {
             vm.$router.push({ name: 'owner-login' });
           }
-          console.log(response.data.data);
         })
         .catch(() => {
           vm.$router.push({ name: 'owner-login' });
@@ -300,7 +301,6 @@ export default {
     },
     showUpDetail(item) {
       // To do
-      console.log(item);
     },
     calculatePeriod(startedDate, finishedDate) {
       const sDate = new Date(startedDate);

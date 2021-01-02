@@ -161,7 +161,10 @@ export default {
   },
   watch: {
     fetchPosterRequests() {
-      this.posters = this.fetchPosterRequests.map(fetchPosterRequest => ({
+      this.posters = this.fetchPosterRequests.filter(
+        fetchPosterRequest => fetchPosterRequest.reviewStatus !== 'APPROVAL',
+      );
+      this.posters = this.posters.map(fetchPosterRequest => ({
         ...fetchPosterRequest,
         reviewStatus: this.showUpReviewStatus(fetchPosterRequest.reviewStatus),
         period: this.calculatePeriod(
@@ -292,8 +295,8 @@ export default {
       return parseInt(days / 30) + ' 개월 ' + (days % 30) + ' 일';
     },
     showUpReviewStatus(reviewStatus) {
-      if (reviewStatus === 'APPROVAL') {
-        return '승인';
+      if (reviewStatus === 'NEW') {
+        return '신규';
       } else if (reviewStatus === 'PENDING') {
         return '보류';
       } else {
@@ -301,7 +304,7 @@ export default {
       }
     },
     getColorByReviewStatus(reviewStatus) {
-      if (reviewStatus === 'APPROVAL' || reviewStatus === '승인') {
+      if (reviewStatus === 'NEW' || reviewStatus === '신규') {
         return 'blue';
       } else if (reviewStatus === 'PENDING' || reviewStatus === '보류') {
         return 'green';

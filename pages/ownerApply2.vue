@@ -229,19 +229,24 @@ export default {
   },
   methods: {
     submitForm() {
-      axios.post(`${baseApiUrl}/advertisements`, {
-        userEmail: this.certifiedEmail,
-        title: this.title,
-        detailDescription: this.detailDescription,
-        advertisementType: this.$route.query.advertisementType,
-        advertisementWidth: this.$route.query.advertisementWidth,
-        advertisementHeight: this.$route.query.advertisementHeight,
-        imagePath: 'http://hj2server.ddns.net:8383/images/type2.png',
-        siteUrl: this.siteUrl,
-        rowPosition: '5',
-        columnPosition: '14',
-        startedDate: this.$route.query.date,
-        finishedDate: this.$route.query.finishedDate,
+      axios({
+        method: 'post',
+        url: '/api/v1/advertisements',
+        baseURL: `${baseApiUrl}`,
+        data: {
+          userEmail: this.certifiedEmail,
+          title: this.title,
+          detailDescription: this.detailDescription,
+          posterType: this.$route.query.posterType,
+          posterWidth: this.$route.query.posterWidth,
+          posterHeight: this.$route.query.posterHeight,
+          imagePath: 'http://hj2server.ddns.net:8383/images/type2.png',
+          siteUrl: this.siteUrl,
+          rowPosition: '5',
+          columnPosition: '14',
+          startedDate: this.$route.query.date,
+          finishedDate: this.$route.query.finishedDate,
+        },
       });
     },
     requestVerificationMail() {

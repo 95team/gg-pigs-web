@@ -2,21 +2,30 @@
   <v-container fluid pa-0 class="notoSansFont">
     <div class="content">
       <!-- 진행상황 -->
-      <v-row no-gutters align="center" style="margin: 129px 0 96px 0; font-size: 20px;">
-        <div style="font-size: 52px;">
-          광고 신청하기
-        </div>
+      <v-row
+        no-gutters
+        align="center"
+        style="margin: 129px 0 96px 0; font-size: 20px;"
+        space-between
+      >
+        <v-col cols="auto">
+          <div style="font-size: 52px;">
+            광고 신청하기
+          </div>
+        </v-col>
         <v-spacer></v-spacer>
-        <span class="text-primary3">&#9312; 시점/지점 선택</span>
-        <span style="margin: 0 var(--spacing-md)">···</span>
-        <span>&#9313; 광고정보입력</span>
-        <span style="margin: 0 var(--spacing-md)">···</span>
-        <span>&#9314; 신청 완료</span>
+        <v-col cols="auto">
+          <span class="text-primary3">&#9312; 시점/지점 선택</span>
+          <span style="margin: 0 var(--spacing-md)">···</span>
+          <span>&#9313; 광고정보입력</span>
+          <span style="margin: 0 var(--spacing-md)">···</span>
+          <span>&#9314; 신청 완료</span>
+        </v-col>
       </v-row>
 
       <!-- 선택 -->
-      <v-row no-gutters>
-        <v-col>
+      <v-row no-gutters space-between>
+        <v-col cols="auto">
           <div class="cardTitle">
             광고 크기
           </div>
@@ -118,8 +127,8 @@
             </div>
           </div>
         </v-col>
-
-        <v-col>
+        <v-spacer></v-spacer>
+        <v-col cols="auto">
           <div class="cardTitle">
             광고 위치
           </div>
@@ -222,7 +231,6 @@ export default {
 .container {
   display: flex;
   flex-direction: column;
-  max-width: 1920px;
 }
 .content {
   margin: 0 18.3%;

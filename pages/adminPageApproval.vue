@@ -164,7 +164,7 @@ export default {
     const vm = this;
     axios({
       mehtod: 'get',
-      url: '/api/v1/advertisements',
+      url: '/api/v1/posters',
       baseURL: `${baseApiUrl}`,
       params: {
         page: -1,

@@ -231,7 +231,7 @@ export default {
     submitForm() {
       axios({
         method: 'post',
-        url: '/api/v1/advertisements',
+        url: '/api/v1/poster-requests',
         baseURL: `${baseApiUrl}`,
         data: {
           userEmail: this.certifiedEmail,

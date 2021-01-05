@@ -109,7 +109,12 @@ export default {
   methods: {
     init() {
       const vm = this;
-      vm.$store.dispatch('poster/FETCH_LIST');
+      const params = {
+        page: '-1',
+        isFilteredDate: true,
+        isActivated: true,
+      };
+      vm.$store.dispatch('poster/FETCH_LIST_V2', params);
     },
 
     getPostersFromColumn(targetColumn) {

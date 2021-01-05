@@ -1,11 +1,11 @@
 <template>
   <v-app>
-    <v-container>
-      <v-row>
+    <v-container fluid pa-0>
+      <v-row no-gutters>
         <admin-header></admin-header>
       </v-row>
 
-      <v-row>
+      <v-row no-gutters>
         <v-col cols="2">
           <admin-sidebar></admin-sidebar>
         </v-col>

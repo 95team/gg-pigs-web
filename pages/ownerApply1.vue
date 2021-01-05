@@ -2,21 +2,30 @@
   <v-container fluid pa-0 class="notoSansFont">
     <div class="content">
       <!-- 진행상황 -->
-      <v-row no-gutters align="center" style="margin: 129px 0 96px 0; font-size: 20px;">
-        <div style="font-size: 52px;">
-          광고 신청하기
-        </div>
+      <v-row
+        no-gutters
+        align="center"
+        style="margin: 129px 0 96px 0; font-size: 20px;"
+        space-between
+      >
+        <v-col cols="auto">
+          <div style="font-size: 52px;">
+            광고 신청하기
+          </div>
+        </v-col>
         <v-spacer></v-spacer>
-        <span class="text-primary3">&#9312; 시점/지점 선택</span>
-        <span style="margin: 0 var(--spacing-md)">···</span>
-        <span>&#9313; 광고정보입력</span>
-        <span style="margin: 0 var(--spacing-md)">···</span>
-        <span>&#9314; 신청 완료</span>
+        <v-col cols="auto">
+          <span class="text-primary3">&#9312; 시점/지점 선택</span>
+          <span style="margin: 0 var(--spacing-md)">···</span>
+          <span>&#9313; 광고정보입력</span>
+          <span style="margin: 0 var(--spacing-md)">···</span>
+          <span>&#9314; 신청 완료</span>
+        </v-col>
       </v-row>
 
       <!-- 선택 -->
-      <v-row no-gutters>
-        <v-col>
+      <v-row no-gutters space-between>
+        <v-col cols="auto">
           <div class="cardTitle">
             광고 크기
           </div>
@@ -24,7 +33,7 @@
             <label class="checkArea">
               <input
                 type="checkbox"
-                name="advertisementType"
+                name="posterType"
                 value="R1"
                 @click="[checkedValue(), oneCheckbox(0)]"
               />
@@ -33,7 +42,7 @@
             <label class="checkArea">
               <input
                 type="checkbox"
-                name="advertisementType"
+                name="posterType"
                 value="R2"
                 @click="[checkedValue(), oneCheckbox(1)]"
               />
@@ -42,7 +51,7 @@
             <label class="checkArea">
               <input
                 type="checkbox"
-                name="advertisementType"
+                name="posterType"
                 value="R3"
                 @click="[checkedValue(), oneCheckbox(2)]"
               />
@@ -118,13 +127,13 @@
             </div>
           </div>
         </v-col>
-
-        <v-col>
+        <v-spacer></v-spacer>
+        <v-col cols="auto">
           <div class="cardTitle">
             광고 위치
           </div>
-          <v-card class="advertPosition" outlined width="624px" height="570px">
-            <div v-if="!isAdvertType || !isSelectPeriod" style="font-size: 20px;">
+          <v-card class="posterPosition" outlined width="624px" height="570px">
+            <div style="font-size: 20px;">
               광고의 크기와 게시기간을 선택해주세요.
             </div>
             <template v-else>
@@ -299,9 +308,10 @@ export default {
       ],
       selectPeriod: { text: '개월', value: 0 },
       warning: require('~/static/icon/warning.svg'),
-      advertisementType: '',
-      advertisementWidth: '',
-      advertisementHeight: '',
+      nextStep: require('~/static/icon/nextStep.svg'),
+      posterType: '',
+      posterWidth: '',
+      posterHeight: '',
       finishedDate: '',
       isAdvertType: false,
       isSelectPeriod: false,
@@ -310,22 +320,22 @@ export default {
   },
   methods: {
     checkedValue() {
-      const checkBox = document.getElementsByName('advertisementType');
+      const checkBox = document.getElementsByName('posterType');
       for (let i = 0; i < checkBox.length; i++) {
         if (checkBox[i].checked) {
-          this.advertisementType = checkBox[i].value;
-          this.advertisementWidth = 300;
-          if (this.advertisementType === 'R1') this.advertisementHeight = 250;
-          else if (this.advertisementType === 'R2') this.advertisementHeight = 516;
-          else this.advertisementHeight = 782;
+          this.posterType = checkBox[i].value;
+          this.posterWidth = 300;
+          if (this.posterType === 'R1') this.posterHeight = 250;
+          else if (this.posterType === 'R2') this.posterHeight = 516;
+          else this.posterHeight = 782;
         }
       }
       this.isAdvertType = true;
     },
-    oneCheckbox(advertType) {
-      const checkBox = document.getElementsByName('advertisementType');
+    oneCheckbox(posterType) {
+      const checkBox = document.getElementsByName('posterType');
       for (let i = 0; i < checkBox.length; i++) {
-        if (checkBox[i] !== checkBox[advertType]) {
+        if (checkBox[i] !== checkBox[posterType]) {
           checkBox[i].checked = false;
         } else checkBox[i].checked = true;
       }
@@ -368,7 +378,6 @@ export default {
 .container {
   display: flex;
   flex-direction: column;
-  max-width: 1920px;
 }
 .content {
   margin: 0 18.3%;
@@ -378,7 +387,7 @@ export default {
   justify-content: center;
   flex-direction: column;
 }
-.advertPosition {
+.posterPosition {
   align-items: center;
 }
 .cardTitle {

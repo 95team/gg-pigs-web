@@ -24,7 +24,7 @@
             <label class="checkArea">
               <input
                 type="checkbox"
-                name="advertisementType"
+                name="posterType"
                 value="R1"
                 @click="[checkedValue(), oneCheckbox(0)]"
               />
@@ -33,7 +33,7 @@
             <label class="checkArea">
               <input
                 type="checkbox"
-                name="advertisementType"
+                name="posterType"
                 value="R2"
                 @click="[checkedValue(), oneCheckbox(1)]"
               />
@@ -42,7 +42,7 @@
             <label class="checkArea">
               <input
                 type="checkbox"
-                name="advertisementType"
+                name="posterType"
                 value="R3"
                 @click="[checkedValue(), oneCheckbox(2)]"
               />
@@ -123,7 +123,7 @@
           <div class="cardTitle">
             광고 위치
           </div>
-          <v-card class="advertPosition" outlined width="624px" height="570px">
+          <v-card class="posterPosition" outlined width="624px" height="570px">
             <div style="font-size: 20px;">
               광고의 크기와 게시기간을 선택해주세요.
             </div>
@@ -137,7 +137,7 @@
       <nuxt-link
         :to="{
           name: 'ownerApply2',
-          query: { date, finishedDate, advertisementType, advertisementWidth, advertisementHeight },
+          query: { date, finishedDate, posterType, posterWidth, posterHeight },
         }"
       >
         <v-img :src="nextStep"></v-img>
@@ -161,29 +161,29 @@ export default {
       selectPeriod: { text: '개월', value: 0 },
       warning: require('~/static/icon/warning.svg'),
       nextStep: require('~/static/icon/nextStep.svg'),
-      advertisementType: '',
-      advertisementWidth: '',
-      advertisementHeight: '',
+      posterType: '',
+      posterWidth: '',
+      posterHeight: '',
       finishedDate: '',
     };
   },
   methods: {
     checkedValue() {
-      const checkBox = document.getElementsByName('advertisementType');
+      const checkBox = document.getElementsByName('posterType');
       for (let i = 0; i < checkBox.length; i++) {
         if (checkBox[i].checked) {
-          this.advertisementType = checkBox[i].value;
-          this.advertisementWidth = 300;
-          if (this.advertisementType === 'R1') this.advertisementHeight = 250;
-          else if (this.advertisementType === 'R2') this.advertisementHeight = 516;
-          else this.advertisementHeight = 782;
+          this.posterType = checkBox[i].value;
+          this.posterWidth = 300;
+          if (this.posterType === 'R1') this.posterHeight = 250;
+          else if (this.posterType === 'R2') this.posterHeight = 516;
+          else this.posterHeight = 782;
         }
       }
     },
-    oneCheckbox(advertType) {
-      const checkBox = document.getElementsByName('advertisementType');
+    oneCheckbox(posterType) {
+      const checkBox = document.getElementsByName('posterType');
       for (let i = 0; i < checkBox.length; i++) {
-        if (checkBox[i] !== checkBox[advertType]) {
+        if (checkBox[i] !== checkBox[posterType]) {
           checkBox[i].checked = false;
         }
       }
@@ -232,7 +232,7 @@ export default {
   justify-content: center;
   flex-direction: column;
 }
-.advertPosition {
+.posterPosition {
   align-items: center;
 }
 .cardTitle {

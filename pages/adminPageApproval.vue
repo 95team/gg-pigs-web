@@ -98,7 +98,7 @@
           <v-col md="3"></v-col>
         </v-row>
         <ul>
-          <li v-for="(ad, idx) in adverts" :key="idx">
+          <li v-for="(ad, idx) in posters" :key="idx">
             <v-row no-gutters style="height: 84px;" align="center">
               <v-col>
                 <input v-model="checked" :value="ad" type="checkbox" @change="updateCheckall" />
@@ -151,7 +151,7 @@ export default {
       pages: ['1', '2', '3', '4', '5'],
       select: '제목',
       titles: ['제목', '상태', '시작 날짜', '종료 날짜', '기간'],
-      adverts: [],
+      posters: [],
       isCheckAll: false,
       checked: [],
       searchIcon: require('../static/icon/search.svg'),
@@ -164,14 +164,14 @@ export default {
     const vm = this;
     axios({
       mehtod: 'get',
-      url: '/advertisements',
+      url: '/api/v1/posters',
       baseURL: `${baseApiUrl}`,
       params: {
         page: -1,
       },
     })
       .then(function(response) {
-        vm.adverts = response.data.data;
+        vm.posters = response.data.data;
       })
       .catch(function(error) {
         console.log(error);
@@ -182,13 +182,13 @@ export default {
       this.isCheckAll = !this.isCheckAll;
       this.checked = [];
       if (this.isCheckAll) {
-        for (const key in this.adverts) {
-          this.checked.push(this.adverts[key]);
+        for (const key in this.posters) {
+          this.checked.push(this.posters[key]);
         }
       }
     },
     updateCheckall() {
-      if (this.checked.length === this.adverts.length) {
+      if (this.checked.length === this.posters.length) {
         this.isCheckAll = true;
       } else {
         this.isCheckAll = false;
@@ -197,12 +197,12 @@ export default {
     titleSort() {
       if (this.titleFlag) {
         this.titleFlag = !this.titleFlag;
-        this.adverts.sort(function(a, b) {
+        this.posters.sort(function(a, b) {
           return a.title > b.title ? 1 : -1;
         });
       } else {
         this.titleFlag = !this.titleFlag;
-        this.adverts.sort(function(a, b) {
+        this.posters.sort(function(a, b) {
           return a.title < b.title ? 1 : -1;
         });
       }
@@ -210,14 +210,14 @@ export default {
     startDateSort() {
       if (this.startedDateFlag) {
         this.startedDateFlag = !this.startedDateFlag;
-        this.adverts.sort(function(a, b) {
+        this.posters.sort(function(a, b) {
           const dateA = new Date(a.startedDate).getTime();
           const dateB = new Date(b.startedDate).getTime();
           return dateA > dateB ? 1 : -1;
         });
       } else {
         this.startedDateFlag = !this.startedDateFlag;
-        this.adverts.sort(function(a, b) {
+        this.posters.sort(function(a, b) {
           const dateA = new Date(a.startedDate).getTime();
           const dateB = new Date(b.startedDate).getTime();
           return dateA < dateB ? 1 : -1;
@@ -227,14 +227,14 @@ export default {
     finishDateSort() {
       if (this.finishedDateFlag) {
         this.finishedDateFlag = !this.finishedDateFlag;
-        this.adverts.sort(function(a, b) {
+        this.posters.sort(function(a, b) {
           const dateA = new Date(a.finishedDate).getTime();
           const dateB = new Date(b.finishedDate).getTime();
           return dateA > dateB ? 1 : -1;
         });
       } else {
         this.finishedDateFlag = !this.finishedDateFlag;
-        this.adverts.sort(function(a, b) {
+        this.posters.sort(function(a, b) {
           const dateA = new Date(a.finishedDate).getTime();
           const dateB = new Date(b.finishedDate).getTime();
           return dateA < dateB ? 1 : -1;

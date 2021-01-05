@@ -133,7 +133,7 @@
             광고 위치
           </div>
           <v-card class="posterPosition" outlined width="624px" height="570px">
-            <div style="font-size: 20px;">
+            <div v-if="!isAdvertType || !isSelectPeriod" style="font-size: 20px;">
               광고의 크기와 게시기간을 선택해주세요.
             </div>
             <template v-else>

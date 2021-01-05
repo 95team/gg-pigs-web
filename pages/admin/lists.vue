@@ -1,16 +1,5 @@
 <template>
   <v-container fluid pa-0 class="font">
-    <div class="navigation" style="font-size: 20px;">
-      <div style="font-weight: bold; margin-bottom: 25px; border-right: 5px solid #797991">
-        광고 현황&nbsp;&nbsp;
-      </div>
-      <div>
-        <nuxt-link to="/adminPageApproval">
-          승인 대기
-        </nuxt-link>
-      </div>
-    </div>
-
     <div class="contents">
       <div style="font-size: 32px; font-weight: bold; margin-bottom: 48px;">
         광고 현황
@@ -109,7 +98,7 @@
 <script>
 import axios from 'axios';
 export default {
-  layout: 'adminDefault',
+  layout: 'admin/default',
   data() {
     return {
       date: new Date().toISOString().substr(0, 10),
@@ -165,7 +154,6 @@ ul {
   padding-left: 0;
 }
 li {
-  width: 1335px;
   height: 84px;
   border-radius: 12px;
   border: solid 1px #707070;
@@ -176,22 +164,14 @@ input[type='checkbox'] {
   margin: 0 40px;
 }
 .container {
-  max-width: 1920px;
   display: flex;
-}
-.navigation {
-  width: 340px;
-  display: flex;
-  padding: 66px 0;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
 }
 .contents {
-  border-left: solid 1px #707070;
+  width: 100%;
   padding: 66px 5%;
 }
 .search {
-  width: 1335px;
   height: 84px;
   border-radius: 12px;
   background-color: #f0f0f0;

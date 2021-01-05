@@ -26,7 +26,6 @@ export default {};
   font-family: 'Noto Sans KR', sans-serif;
 }
 .container {
-  max-width: 1920px;
   border-top: solid 1px var(--light3);
 }
 .content {

@@ -52,7 +52,6 @@ a {
 .container {
   display: flex;
   flex-direction: column;
-  max-width: 1920px;
   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.1);
 }
 .logo-area {

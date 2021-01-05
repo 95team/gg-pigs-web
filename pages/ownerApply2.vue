@@ -330,7 +330,6 @@ export default {
 .container {
   display: flex;
   flex-direction: column;
-  max-width: 1920px;
 }
 .content {
   margin: 0 18.3%;

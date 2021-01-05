@@ -1,6 +1,6 @@
 <template>
   <v-container fluid class="font">
-    <v-row>
+    <v-row no-gutters>
       <div style="font-size: 32px; font-weight: bold; margin-bottom: 48px;">
         승인 대기
       </div>
@@ -316,8 +316,7 @@ export default {
 <style scoped>
 .container {
   max-width: 100%;
-  padding-top: 66px;
-  padding-left: 4.6%;
+  padding: 66px 5%;
 }
 .search {
   width: 100%;

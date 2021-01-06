@@ -5,7 +5,7 @@
         <div style="font-size: 52px; margin-right: var(--spacing-lg)">
           광고 조회하기
         </div>
-        <span class="text-primary3">{{ email }}</span>
+        <span class="text-primary1">{{ email }}</span>
         <span class="text-light2">&nbsp;님의 광고</span>
       </v-row>
 
@@ -49,13 +49,13 @@
                 </span>
                 <v-spacer />
                 <span
-                  class="text-primary3"
+                  class="text-primary2"
                   style="font: normal normal normal 14px NotoSansCJKkr; margin-bottom: 8px"
                   >수정</span
                 >
                 &nbsp;
                 <span
-                  class="text-primary3"
+                  class="text-primary2"
                   style="font: normal normal normal 14px NotoSansCJKkr; margin-bottom: 8px"
                   >삭제</span
                 >

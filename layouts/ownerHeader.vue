@@ -20,7 +20,7 @@
     <div class="menu-area">
       <v-tabs height="100px" color="black" slider-color="black" align-with-title>
         <v-tab class="tab-item" :ripple="false" replace to="/ownerApply1">광고 신청</v-tab>
-        <v-tab class="tab-item" :ripple="false" replace to="/owner/login">광고 조회</v-tab>
+        <v-tab class="tab-item" :ripple="false" replace :to="ownerPath">광고 조회</v-tab>
         <v-tab class="tab-item" disabled>문의하기</v-tab>
       </v-tabs>
     </div>
@@ -28,6 +28,9 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import { getLoginUser } from '~/api/user.js';
+
 export default {
   data() {
     return {
@@ -37,6 +40,48 @@ export default {
       night: require('../static/icon/night.svg'),
       close: require('../static/icon/close.svg'),
     };
+  },
+  computed: {
+    ...mapGetters({
+      isLogin: 'isLogin',
+      loginUser: 'loginUser',
+    }),
+    ownerPath() {
+      return this.isLogin && this.loginUser ? '/owner' : '/owner/login';
+    },
+  },
+  created() {
+    const vm = this;
+    vm.init();
+  },
+  methods: {
+    init() {
+      const vm = this;
+      vm.checkLogin();
+    },
+    checkLogin() {
+      /**
+       * [Note]
+       * 1. '로그인 상태((isLogin)', '로그인 한 사용자 정보(loginUser)' 를 기준으로 로그인 상태를 체크합니다.
+       * 2. 로그인이 되어 있지 않다면, 로그인 상태를 판별할 수 있는 API를 호출하여 로그인 상태를 갱신합니다.
+       */
+
+      const vm = this;
+
+      if (!vm.isLogin || vm.loginUser) {
+        getLoginUser()
+          .then(response => {
+            if (response.data.data) {
+              const payload = {
+                isLogin: true,
+                loginUser: response.data.data,
+              };
+              vm.$store.commit('LOGIN_SUCCESS', payload);
+            }
+          })
+          .catch(() => {});
+      }
+    },
   },
 };
 </script>

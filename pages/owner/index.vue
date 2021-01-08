@@ -166,7 +166,7 @@ import { mapGetters } from 'vuex';
 import { getLoginUser } from '~/api/user';
 
 export default {
-  layout: 'ownerDefault',
+  layout: 'owner/default',
   data() {
     return {
       email: null,

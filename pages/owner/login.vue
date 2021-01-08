@@ -58,7 +58,7 @@ import { loginApi } from '~/api/login';
 import { getLoginUser } from '~/api/user';
 
 export default {
-  layout: 'ownerDefault',
+  layout: 'owner/default',
   data() {
     return {
       email: '',

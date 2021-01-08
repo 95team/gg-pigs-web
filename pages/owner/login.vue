@@ -55,7 +55,7 @@
 
 <script>
 import { loginApi } from '~/api/login';
-import { getUser } from '~/api/user';
+import { getLoginUser } from '~/api/user';
 
 export default {
   layout: 'ownerDefault',
@@ -100,7 +100,7 @@ export default {
     loginSuccess() {
       const vm = this;
       const admin = 'ROLE_ADMIN';
-      getUser()
+      getLoginUser()
         .then(response => {
           if (response.data.data.role === admin) {
             vm.$router.push({ name: 'admin-lists' });

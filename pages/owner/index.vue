@@ -163,7 +163,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { getUser } from '~/api/user';
+import { getLoginUser } from '~/api/user';
 
 export default {
   layout: 'ownerDefault',
@@ -279,7 +279,7 @@ export default {
     init() {
       const vm = this;
       if (this.email === null) {
-        getUser()
+        getLoginUser()
           .then(response => {
             this.email = response.data.data.email;
           })

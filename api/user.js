@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { baseApiUrl } from './index.js';
 
-function getUser() {
+function getLoginUser() {
   return axios.get(`${baseApiUrl}/api/v1/login-users`, { withCredentials: true });
 }
 
-export { getUser };
+export { getLoginUser };

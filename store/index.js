@@ -1,7 +1,11 @@
 export const state = function() {
-  return {};
+  return { user: null };
 };
 
-export const muations = {};
+export const mutations = {
+  SET_USER(state, payload) {
+    state.user = payload;
+  },
+};
 
 export const actions = {};

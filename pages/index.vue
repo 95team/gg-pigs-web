@@ -1,80 +1,67 @@
 <template>
-  <!-- dayMode -->
-  <v-app :class="[dayMode ? 'background-light5' : 'background-dark1']">
-    <!-- Header -->
-    <header-layout :day-mode="dayMode" @update="nightDayUpdate" />
+  <v-container fluid pa-0>
+    <v-layout class="contents" row wrap>
+      <!-- flex1 -->
+      <v-flex xs4 md4 lg2>
+        <poster-box v-for="poster in postersFirstColumn" :key="poster.id" :poster="poster" />
+      </v-flex>
 
-    <!-- Content -->
-    <v-container fluid pa-0>
-      <v-layout class="contents" row wrap>
-        <!-- flex1 -->
-        <v-flex xs4 md4 lg2>
-          <poster-box v-for="poster in postersFirstColumn" :key="poster.id" :poster="poster" />
-        </v-flex>
+      <!-- flex2 -->
+      <v-flex xs4 md4 lg2>
+        <poster-box v-for="poster in postersSecondColumn" :key="poster.id" :poster="poster" />
+      </v-flex>
 
-        <!-- flex2 -->
-        <v-flex xs4 md4 lg2>
-          <poster-box v-for="poster in postersSecondColumn" :key="poster.id" :poster="poster" />
-        </v-flex>
+      <!-- flex3 -->
+      <v-flex xs4 md4 lg2>
+        <poster-box v-for="poster in postersThirdColumn" :key="poster.id" :poster="poster" />
+      </v-flex>
 
-        <!-- flex3 -->
-        <v-flex xs4 md4 lg2>
-          <poster-box v-for="poster in postersThirdColumn" :key="poster.id" :poster="poster" />
-        </v-flex>
+      <!-- flex4 -->
+      <v-flex xs4 md4 lg2>
+        <poster-box v-for="poster in postersFourthColumn" :key="poster.id" :poster="poster" />
+      </v-flex>
 
-        <!-- flex4 -->
-        <v-flex xs4 md4 lg2>
-          <poster-box v-for="poster in postersFourthColumn" :key="poster.id" :poster="poster" />
-        </v-flex>
+      <!-- flex5 -->
+      <v-flex xs4 md4 lg2>
+        <poster-box v-for="poster in postersFifthColumn" :key="poster.id" :poster="poster" />
+      </v-flex>
 
-        <!-- flex5 -->
-        <v-flex xs4 md4 lg2>
-          <poster-box v-for="poster in postersFifthColumn" :key="poster.id" :poster="poster" />
-        </v-flex>
-
-        <!-- flex6 -->
-        <v-flex xs4 md4 lg2>
-          <poster-box v-for="poster in postersSixthColumn" :key="poster.id" :poster="poster" />
-        </v-flex>
-      </v-layout>
-      <v-layout class="pages centerAlign">
-        <div class="page centerAlign">
-          <button class="clickArea centerAlign">
-            <img
-              :src="[dayMode ? 'icon/prePageDay.svg' : 'icon/prePageNight.svg']"
-              class="pageIcon"
-            />
-          </button>
-          <v-spacer></v-spacer>
-          <div class="pageNum" :class="[dayMode ? 'text-light1' : 'text-light5']">1</div>
-          <v-spacer></v-spacer>
-          <button class="clickArea centerAlign">
-            <img
-              :src="[dayMode ? 'icon/nextPageDay.svg' : 'icon/nextPageNight.svg']"
-              class="pageIcon"
-            />
-          </button>
-        </div>
-      </v-layout>
-    </v-container>
-
-    <!-- Footer -->
-    <footer-layout :day-mode="dayMode" />
-  </v-app>
+      <!-- flex6 -->
+      <v-flex xs4 md4 lg2>
+        <poster-box v-for="poster in postersSixthColumn" :key="poster.id" :poster="poster" />
+      </v-flex>
+    </v-layout>
+    <v-layout class="pages centerAlign">
+      <div class="page centerAlign">
+        <button class="clickArea centerAlign">
+          <img
+            :src="[dayMode ? 'icon/prePageDay.svg' : 'icon/prePageNight.svg']"
+            class="pageIcon"
+          />
+        </button>
+        <v-spacer></v-spacer>
+        <div class="pageNum" :class="[dayMode ? 'text-light1' : 'text-light5']">1</div>
+        <v-spacer></v-spacer>
+        <button class="clickArea centerAlign">
+          <img
+            :src="[dayMode ? 'icon/nextPageDay.svg' : 'icon/nextPageNight.svg']"
+            class="pageIcon"
+          />
+        </button>
+      </div>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import HeaderLayout from '~/layouts/header.vue';
-import FooterLayout from '~/layouts/footer.vue';
 import PosterBox from '~/components/PosterBox.vue';
 
 export default {
   components: {
-    HeaderLayout,
-    FooterLayout,
     PosterBox,
   },
+  layout: 'main/default',
   data() {
     return {
       posterLayoutSize: 6,
@@ -84,11 +71,11 @@ export default {
       postersFourthColumn: [],
       postersFifthColumn: [],
       postersSixthColumn: [],
-      dayMode: true,
     };
   },
   computed: {
     ...mapGetters({
+      dayMode: 'dayMode',
       posters: 'poster/fetchPosters',
     }),
   },
@@ -205,14 +192,6 @@ export default {
       };
 
       return emptyPoster;
-    },
-
-    nightDayUpdate() {
-      if (this.dayMode) {
-        this.dayMode = false;
-      } else {
-        this.dayMode = true;
-      }
     },
   },
 };

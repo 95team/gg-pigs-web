@@ -7,9 +7,8 @@
 
 /*  CSS pseudo-class */
 :root {
-  --primary1: #9e1e65;
-  --primary2: #c95a97;
-  --primary3: #d671a9;
+  --primary1: #f06574;
+  --primary2: #fe7583;
   --light1: #222222;
   --light2: #b6b6b6;
   --light3: #dddddd;
@@ -27,9 +26,8 @@
 
 
 /* Color */
-.text-primary1      { color: #9e1e65 !important; }
-.text-primary2      { color: #c95a97 !important; }
-.text-primary3      { color: #d671a9 !important; }
+.text-primary1      { color: #f06574 !important; }
+.text-primary2      { color: #fe7583 !important; }
 .text-light1        { color: #222222 !important; }
 .text-light2        { color: #b6b6b6 !important; }
 .text-light3        { color: #dddddd !important; }
@@ -41,9 +39,8 @@
 
 
 /* Background Color */
-.background-primary1      { background-color: #9e1e65 !important; }
-.background-primary2      { background-color: #c95a97 !important; }
-.background-primary3      { background-color: #d671a9 !important; }
+.background-primary1      { background-color: #f06574 !important; }
+.background-primary2      { background-color: #fe7583 !important; }
 .background-light1        { background-color: #222222 !important; }
 .background-light2        { background-color: #b6b6b6 !important; }
 .background-light3        { background-color: #dddddd !important; }
@@ -54,9 +51,8 @@
 .background-dark3         { background-color: #a1a1a1 !important; }
 
 /* Border Color */
-.border-primary1      { border-color: #9e1e65 !important; }
-.border-primary2      { border-color: #c95a97 !important; }
-.border-primary3      { border-color: #d671a9 !important; }
+.border-primary1      { border-color: #f06574 !important; }
+.border-primary2      { border-color: #fe7583 !important; }
 .border-light1        { border-color: #222222 !important; }
 .border-light2        { border-color: #b6b6b6 !important; }
 .border-light3        { border-color: #dddddd !important; }

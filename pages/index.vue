@@ -37,18 +37,22 @@
           <poster-box v-for="poster in postersSixthColumn" :key="poster.id" :poster="poster" />
         </v-flex>
       </v-layout>
-      <v-layout class="pages centerAlign">
-        <div class="page centerAlign">
-          <button class="clickArea centerAlign">
+
+      <!-- Pagination -->
+      <v-layout class="mb64 centerAlign">
+        <div class="pagination centerAlign">
+          <button class="clickArea centerAlign" @click="prevPage()">
             <img
               :src="[dayMode ? 'icon/prePageDay.svg' : 'icon/prePageNight.svg']"
               class="pageIcon"
             />
           </button>
+
           <v-spacer></v-spacer>
-          <div class="pageNum" :class="[dayMode ? 'text-light1' : 'text-light5']">1</div>
+          <div class="pageNum" :class="[dayMode ? 'text-light1' : 'text-light5']">{{ page }}</div>
           <v-spacer></v-spacer>
-          <button class="clickArea centerAlign">
+
+          <button class="clickArea centerAlign" @click="nextPage()">
             <img
               :src="[dayMode ? 'icon/nextPageDay.svg' : 'icon/nextPageNight.svg']"
               class="pageIcon"
@@ -77,6 +81,7 @@ export default {
   },
   data() {
     return {
+      page: 1,
       posterLayoutSize: 6,
       postersFirstColumn: [],
       postersSecondColumn: [],
@@ -91,15 +96,36 @@ export default {
     ...mapGetters({
       posters: 'poster/fetchPosters',
     }),
+    firstColumn() {
+      return String((this.page - 1) * this.posterLayoutSize + 1);
+    },
+    secondColumn() {
+      return String((this.page - 1) * this.posterLayoutSize + 2);
+    },
+    thirdColumn() {
+      return String((this.page - 1) * this.posterLayoutSize + 3);
+    },
+    fourthColumn() {
+      return String((this.page - 1) * this.posterLayoutSize + 4);
+    },
+    fifthColumn() {
+      return String((this.page - 1) * this.posterLayoutSize + 5);
+    },
+    sixthColumn() {
+      return String((this.page - 1) * this.posterLayoutSize + 6);
+    },
   },
   watch: {
     posters() {
-      this.postersFirstColumn = this.makeFullPosters('1');
-      this.postersSecondColumn = this.makeFullPosters('2');
-      this.postersThirdColumn = this.makeFullPosters('3');
-      this.postersFourthColumn = this.makeFullPosters('4');
-      this.postersFifthColumn = this.makeFullPosters('5');
-      this.postersSixthColumn = this.makeFullPosters('6');
+      this.postersFirstColumn = this.makeFullPosters(this.firstColumn);
+      this.postersSecondColumn = this.makeFullPosters(this.secondColumn);
+      this.postersThirdColumn = this.makeFullPosters(this.thirdColumn);
+      this.postersFourthColumn = this.makeFullPosters(this.fourthColumn);
+      this.postersFifthColumn = this.makeFullPosters(this.fifthColumn);
+      this.postersSixthColumn = this.makeFullPosters(this.sixthColumn);
+    },
+    page() {
+      this.getPosters();
     },
   },
   created() {
@@ -109,8 +135,14 @@ export default {
   methods: {
     init() {
       const vm = this;
+      vm.getPosters();
+    },
+
+    /** '포스터' 와 관련된 함수들 입니다. */
+    getPosters() {
+      const vm = this;
       const params = {
-        page: '-1',
+        page: vm.page,
         isFilteredDate: true,
         isActivated: true,
       };
@@ -207,12 +239,25 @@ export default {
       return emptyPoster;
     },
 
+    /** '다크모드 조작' 과 관련된 함수들 입니다. */
     nightDayUpdate() {
       if (this.dayMode) {
         this.dayMode = false;
       } else {
         this.dayMode = true;
       }
+    },
+
+    /** '페이지 조작' 과 관련된 함수들 입니다. */
+    prevPage() {
+      const minPage = 1;
+      if (this.page > minPage) this.page -= 1;
+      else this.page = minPage;
+    },
+    nextPage() {
+      const maxPage = 20;
+      if (this.page < maxPage) this.page += 1;
+      else this.page = maxPage;
     },
   },
 };
@@ -226,11 +271,7 @@ export default {
   margin-right: 0px;
 }
 
-.pages {
-  margin-bottom: 64px;
-}
-
-.page {
+.pagination {
   width: 250px;
   height: 48px;
 }

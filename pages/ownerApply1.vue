@@ -35,7 +35,7 @@
                 type="checkbox"
                 name="posterType"
                 value="R1"
-                @click="[checkedValue(), oneCheckbox(0)]"
+                @click="[oneCheckbox(0), checkedValue()]"
               />
               <i class="checkIcon"></i>1x1 (300*250)
             </label>
@@ -44,7 +44,7 @@
                 type="checkbox"
                 name="posterType"
                 value="R2"
-                @click="[checkedValue(), oneCheckbox(1)]"
+                @click="[oneCheckbox(1), checkedValue()]"
               />
               <i class="checkIcon"></i>1x2 (300*516)
             </label>
@@ -53,7 +53,7 @@
                 type="checkbox"
                 name="posterType"
                 value="R3"
-                @click="[checkedValue(), oneCheckbox(2)]"
+                @click="[oneCheckbox(2), checkedValue()]"
               />
               <i class="checkIcon"></i>1x3 (300*782)
             </label>
@@ -320,10 +320,10 @@ export default {
   },
   methods: {
     checkedValue() {
-      const checkBox = document.getElementsByName('posterType');
-      for (let i = 0; i < checkBox.length; i++) {
-        if (checkBox[i].checked) {
-          this.posterType = checkBox[i].value;
+      const posterType = document.getElementsByName('posterType');
+      for (let i = 0; i < posterType.length; i++) {
+        if (posterType[i].checked) {
+          this.posterType = posterType[i].value;
           this.posterWidth = 300;
           if (this.posterType === 'R1') this.posterHeight = 250;
           else if (this.posterType === 'R2') this.posterHeight = 516;

@@ -9,7 +9,7 @@
         <v-spacer></v-spacer>
         <span>&#9312; 시점/지점 선택</span>
         <span style="margin: 0 var(--spacing-md)">···</span>
-        <span class="text-primary3">&#9313; 광고정보입력</span>
+        <span class="text-primary2">&#9313; 광고정보입력</span>
         <span style="margin: 0 var(--spacing-md)">···</span>
         <span>&#9314; 신청 완료</span>
       </v-row>

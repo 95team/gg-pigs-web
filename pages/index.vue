@@ -33,27 +33,27 @@
     </v-layout>
 
     <!-- Pagination -->
-      <v-layout class="mb64 centerAlign">
-        <div class="pagination centerAlign">
-          <button class="clickArea centerAlign" @click="prevPage()">
-            <img
-              :src="[dayMode ? 'icon/prePageDay.svg' : 'icon/prePageNight.svg']"
-              class="pageIcon"
-            />
-          </button>
+    <v-layout class="mb64 centerAlign">
+      <div class="pagination centerAlign">
+        <button class="clickArea centerAlign" @click="prevPage()">
+          <img
+            :src="[dayMode ? 'icon/prePageDay.svg' : 'icon/prePageNight.svg']"
+            class="pageIcon"
+          />
+        </button>
 
-          <v-spacer></v-spacer>
-          <div class="pageNum" :class="[dayMode ? 'text-light1' : 'text-light5']">{{ page }}</div>
-          <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
+        <div class="pageNum" :class="[dayMode ? 'text-light1' : 'text-light5']">{{ page }}</div>
+        <v-spacer></v-spacer>
 
-          <button class="clickArea centerAlign" @click="nextPage()">
-            <img
-              :src="[dayMode ? 'icon/nextPageDay.svg' : 'icon/nextPageNight.svg']"
-              class="pageIcon"
-            />
-          </button>
-        </div>
-      </v-layout>
+        <button class="clickArea centerAlign" @click="nextPage()">
+          <img
+            :src="[dayMode ? 'icon/nextPageDay.svg' : 'icon/nextPageNight.svg']"
+            class="pageIcon"
+          />
+        </button>
+      </div>
+    </v-layout>
   </v-container>
 </template>
 

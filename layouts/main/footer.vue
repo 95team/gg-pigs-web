@@ -23,9 +23,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-  props: {
-    dayMode: Boolean,
+  computed: {
+    ...mapGetters({
+      dayMode: 'dayMode',
+    }),
   },
 };
 </script>

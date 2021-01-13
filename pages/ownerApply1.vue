@@ -287,6 +287,7 @@
         height="176px"
         style="font-size: 52px; color: var(--light5);"
         color="var(--primary1)"
+        @click="sendApplyInfo"
       >
         다음
       </v-btn>
@@ -348,6 +349,15 @@ export default {
     },
     nextStepToggle() {
       this.isNextStep = !this.isNextStep;
+    },
+    sendApplyInfo() {
+      this.$store.commit('apply/addApplyInfo', {
+        posterType: this.posterType,
+        posterWidth: this.posterWidth,
+        posterHeight: this.posterHeight,
+        startedDate: this.date,
+        finishedDate: this.finishedDate,
+      });
     },
   },
 };

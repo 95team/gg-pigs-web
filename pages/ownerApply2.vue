@@ -169,11 +169,10 @@
 
     <!-- 신청하기 -->
     <v-row no-gutters style="margin: 96px 0 128px 0;">
-      <v-btn v-if="!isApply" block disabled depressed height="176px" style="font-size: 52px">
+      <!-- <v-btn v-if="!isApply" block disabled depressed height="176px" style="font-size: 52px">
         신청하기
-      </v-btn>
+      </v-btn> -->
       <v-btn
-        v-else
         block
         depressed
         to="ownerApply2"
@@ -210,6 +209,7 @@
 
 <script>
 import axios from 'axios';
+import { mapGetters } from 'vuex';
 import { baseApiUrl } from '../api/index.js';
 import { requestVerificationMail } from '~/api/verificationMail';
 
@@ -238,6 +238,15 @@ export default {
       isApply: false,
     };
   },
+  computed: {
+    ...mapGetters({
+      getPosterType: 'apply/getPosterType',
+      getPosterWidth: 'apply/getPosterWidth',
+      getPosterHeight: 'apply/getPosterHeight',
+      getStartedDate: 'apply/getStartedDate',
+      getFinishedDate: 'apply/getFinishedDate',
+    }),
+  },
   methods: {
     submitForm() {
       axios({
@@ -248,15 +257,15 @@ export default {
           userEmail: this.certifiedEmail,
           title: this.title,
           detailDescription: this.detailDescription,
-          posterType: this.$route.query.posterType,
-          posterWidth: this.$route.query.posterWidth,
-          posterHeight: this.$route.query.posterHeight,
-          imagePath: 'http://hj2server.ddns.net:8383/images/type2.png',
+          posterType: this.getPosterType,
+          posterWidth: this.getposterWidth,
+          posterHeight: this.getposterHeight,
+          imagePath: 'https://gg-pigs.com:8383/images/type2.png',
           siteUrl: this.siteUrl,
-          rowPosition: '5',
-          columnPosition: '14',
-          startedDate: this.$route.query.date,
-          finishedDate: this.$route.query.finishedDate,
+          rowPosition: '6',
+          columnPosition: '70',
+          startedDate: this.getStartedDate,
+          finishedDate: this.getFinishedDate,
         },
       });
     },

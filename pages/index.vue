@@ -1,5 +1,4 @@
 <template>
-  <!-- Content -->
   <v-container fluid pa-0>
     <v-layout class="contents" row wrap>
       <!-- flex1 -->

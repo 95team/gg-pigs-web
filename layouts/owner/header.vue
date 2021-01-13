@@ -47,7 +47,12 @@ export default {
       loginUser: 'loginUser',
     }),
     ownerPath() {
-      return this.isLogin && this.loginUser ? '/owner' : '/owner/login';
+      const admin = 'ROLE_ADMIN';
+      return this.isLogin && this.loginUser
+        ? this.loginUser.role === admin
+          ? '/admin/lists'
+          : '/owner'
+        : '/owner/login';
     },
   },
   created() {

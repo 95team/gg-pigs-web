@@ -112,7 +112,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { getUser } from '~/api/user';
+import { getLoginUser } from '~/api/user';
 
 export default {
   layout: 'admin/default',
@@ -190,7 +190,7 @@ export default {
       const vm = this;
       const admin = 'ROLE_ADMIN';
 
-      return getUser()
+      return getLoginUser()
         .then(response => {
           vm.email = response.data.data.email;
           if (response.data.data.role !== admin) {

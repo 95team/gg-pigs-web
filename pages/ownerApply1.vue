@@ -15,7 +15,7 @@
         </v-col>
         <v-spacer></v-spacer>
         <v-col cols="auto">
-          <span class="text-primary3">&#9312; 시점/지점 선택</span>
+          <span class="text-primary2">&#9312; 시점/지점 선택</span>
           <span style="margin: 0 var(--spacing-md)">···</span>
           <span>&#9313; 광고정보입력</span>
           <span style="margin: 0 var(--spacing-md)">···</span>
@@ -233,7 +233,7 @@
                   <v-col v-for="n in 6" :key="n">
                     <v-item v-slot="{ active, toggle }">
                       <v-card
-                        :color="active ? 'background-primary3' : 'background-light4'"
+                        :color="active ? 'background-primary2' : 'background-light4'"
                         flat
                         tile
                         style="margin: 4px;"
@@ -262,7 +262,7 @@
                   예약불가
                 </div>
                 <div
-                  style="width: 24px; height: 24px; background-color: var(--primary3); margin-right: 15px;"
+                  style="width: 24px; height: 24px; background-color: var(--primary2); margin-right: 15px;"
                 ></div>
                 <div style="font-size: 20px;">
                   선택됨

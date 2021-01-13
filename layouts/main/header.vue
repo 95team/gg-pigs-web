@@ -10,7 +10,7 @@
 
       <v-flex d-flex justify-end>
         <div class="clickArea nightDayMargin">
-          <v-btn text block @click="nightDayHandler">
+          <v-btn text block @click="dayModeHandler">
             <v-img v-if="dayMode" :src="day" class="iconArea"></v-img>
             <v-img v-else :src="night" class="iconArea"></v-img>
           </v-btn>
@@ -27,22 +27,26 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-  props: {
-    dayMode: Boolean,
-  },
   data() {
     return {
-      pangoLogoDay: require('../static/image/pangoLogoDay.png'),
-      pangoLogoNight: require('../static/image/pangoLogoNight.png'),
-      day: require('../static/icon/day.svg'),
-      night: require('../static/icon/night.svg'),
-      userInfoDay: require('../static/icon/userInfoDay.svg'),
-      userInfoNight: require('../static/icon/userInfoNight.svg'),
+      pangoLogoDay: require('~/static/image/pangoLogoDay.png'),
+      pangoLogoNight: require('~/static/image/pangoLogoNight.png'),
+      day: require('~/static/icon/day.svg'),
+      night: require('~/static/icon/night.svg'),
+      userInfoDay: require('~/static/icon/userInfoDay.svg'),
+      userInfoNight: require('~/static/icon/userInfoNight.svg'),
     };
   },
+  computed: {
+    ...mapGetters({
+      dayMode: 'dayMode',
+    }),
+  },
   methods: {
-    nightDayHandler() {
+    dayModeHandler() {
       this.$emit('update');
     },
   },

@@ -5,7 +5,7 @@
         <div style="font-size: 52px; margin-right: var(--spacing-lg)">
           광고 조회하기
         </div>
-        <span class="text-primary3">{{ email }}</span>
+        <span class="text-primary1">{{ email }}</span>
         <span class="text-light2">&nbsp;님의 광고</span>
       </v-row>
 
@@ -49,13 +49,13 @@
                 </span>
                 <v-spacer />
                 <span
-                  class="text-primary3"
+                  class="text-primary2"
                   style="font: normal normal normal 14px NotoSansCJKkr; margin-bottom: 8px"
                   >수정</span
                 >
                 &nbsp;
                 <span
-                  class="text-primary3"
+                  class="text-primary2"
                   style="font: normal normal normal 14px NotoSansCJKkr; margin-bottom: 8px"
                   >삭제</span
                 >
@@ -127,7 +127,15 @@
                 이미지
               </div>
               <span class="text-light2">
-                {{ imagePath }}
+                <span
+                  style="cursor:pointer"
+                  @click="
+                    imageDialog.showingUp = true;
+                    imageDialog.imagePath = imagePath;
+                  "
+                >
+                  {{ imagePath }}
+                </span>
               </span>
             </v-row>
             <v-row style="margin-top:3.3%; margin-left:0px">
@@ -158,15 +166,29 @@
         </v-col>
       </v-row>
     </div>
+
+    <!-- Dialog: '이미지(프리뷰)' 버튼에 사용되는 dialog 입니다. -->
+    <v-dialog v-model="imageDialog.showingUp" width="400">
+      <v-card>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" text @click="imageDialog.showingUp = false">
+            X
+          </v-btn>
+        </v-card-actions>
+
+        <v-img :src="imageDialog.imagePath" />
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import { getUser } from '~/api/user';
+import { getLoginUser } from '~/api/user';
 
 export default {
-  layout: 'ownerDefault',
+  layout: 'owner/default',
   data() {
     return {
       email: null,
@@ -174,6 +196,10 @@ export default {
       stringOfPosterType1: '1x1 (300 x 250)',
       stringOfPosterType2: '2x1 (300 x 516)',
       stringOfPosterType3: '3x1 (300 x 782)',
+      imageDialog: {
+        imagePath: null,
+        showingUp: false,
+      },
     };
   },
   computed: {
@@ -267,6 +293,7 @@ export default {
         page: '-1',
         userEmail: this.email,
         isFilteredDate: 'false',
+        isActivated: '-1',
       };
       vm.$store.dispatch('poster/FETCH_LIST_V2', payload);
     },
@@ -279,7 +306,7 @@ export default {
     init() {
       const vm = this;
       if (this.email === null) {
-        getUser()
+        getLoginUser()
           .then(response => {
             this.email = response.data.data.email;
           })

@@ -31,25 +31,29 @@
         <poster-box v-for="poster in postersSixthColumn" :key="poster.id" :poster="poster" />
       </v-flex>
     </v-layout>
-    <v-layout class="pages centerAlign">
-      <div class="page centerAlign">
-        <button class="clickArea centerAlign">
-          <img
-            :src="[dayMode ? 'icon/prePageDay.svg' : 'icon/prePageNight.svg']"
-            class="pageIcon"
-          />
-        </button>
-        <v-spacer></v-spacer>
-        <div class="pageNum" :class="[dayMode ? 'text-light1' : 'text-light5']">1</div>
-        <v-spacer></v-spacer>
-        <button class="clickArea centerAlign">
-          <img
-            :src="[dayMode ? 'icon/nextPageDay.svg' : 'icon/nextPageNight.svg']"
-            class="pageIcon"
-          />
-        </button>
-      </div>
-    </v-layout>
+
+    <!-- Pagination -->
+      <v-layout class="mb64 centerAlign">
+        <div class="pagination centerAlign">
+          <button class="clickArea centerAlign" @click="prevPage()">
+            <img
+              :src="[dayMode ? 'icon/prePageDay.svg' : 'icon/prePageNight.svg']"
+              class="pageIcon"
+            />
+          </button>
+
+          <v-spacer></v-spacer>
+          <div class="pageNum" :class="[dayMode ? 'text-light1' : 'text-light5']">{{ page }}</div>
+          <v-spacer></v-spacer>
+
+          <button class="clickArea centerAlign" @click="nextPage()">
+            <img
+              :src="[dayMode ? 'icon/nextPageDay.svg' : 'icon/nextPageNight.svg']"
+              class="pageIcon"
+            />
+          </button>
+        </div>
+      </v-layout>
   </v-container>
 </template>
 
@@ -220,6 +224,18 @@ export default {
       };
 
       return emptyPoster;
+    },
+
+    /** '페이지 조작' 과 관련된 함수들 입니다. */
+    prevPage() {
+      const minPage = 1;
+      if (this.page > minPage) this.page -= 1;
+      else this.page = minPage;
+    },
+    nextPage() {
+      const maxPage = 20;
+      if (this.page < maxPage) this.page += 1;
+      else this.page = maxPage;
     },
   },
 };

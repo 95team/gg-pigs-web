@@ -3,7 +3,7 @@
     <div class="logo-area">
       <v-row no-gutters align="center">
         <div>
-          <img src="../static/image/pangoLogoDay.png" alt="광고돼지" width="200px" height="66px" />
+          <img src="~/static/image/pangoLogoDay.png" alt="광고돼지" width="200px" height="66px" />
         </div>
         <v-spacer></v-spacer>
         <div>
@@ -35,10 +35,10 @@ export default {
   data() {
     return {
       menus: [{ title: '광고 신청' }, { title: '광고 조회' }, { title: '문의하기' }],
-      pangoLogoDay: require('../static/image/pangoLogoDay.png'),
-      day: require('../static/icon/day.svg'),
-      night: require('../static/icon/night.svg'),
-      close: require('../static/icon/close.svg'),
+      pangoLogoDay: require('~/static/image/pangoLogoDay.png'),
+      day: require('~/static/icon/day.svg'),
+      night: require('~/static/icon/night.svg'),
+      close: require('~/static/icon/close.svg'),
     };
   },
   computed: {
@@ -47,7 +47,12 @@ export default {
       loginUser: 'loginUser',
     }),
     ownerPath() {
-      return this.isLogin && this.loginUser ? '/owner' : '/owner/login';
+      const admin = 'ROLE_ADMIN';
+      return this.isLogin && this.loginUser
+        ? this.loginUser.role === admin
+          ? '/admin/lists'
+          : '/owner'
+        : '/owner/login';
     },
   },
   created() {

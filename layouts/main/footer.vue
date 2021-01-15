@@ -12,11 +12,8 @@
     <v-layout class="content">
       <v-flex :class="[dayMode ? 'text-light2' : ' text-dark3']">
         <span class="text">
-          &copy; {{ new Date().getFullYear() }} PangGo, Inc. All rights reserved
+          &copy; {{ new Date().getFullYear() }} Pigs95team, All rights reserved
         </span>
-        <span class="text">개인정보 처리방침</span>
-        <span class="text">이용 약관</span>
-        <span>사이트맵</span>
       </v-flex>
     </v-layout>
   </v-container>

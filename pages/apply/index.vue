@@ -31,9 +31,6 @@ export default {
 </script>
 
 <style scoped>
-.content {
-  margin: 0 29.2%;
-}
 .notoSansFont {
   font-family: 'Noto Sans KR', sans-serif;
   font-size: 24px;

@@ -1,15 +1,63 @@
 <template>
-  <div class="text-center ma-1">
+  <!-- Poster -->
+  <div class="poster ma-1">
+    <!-- Poster 이미지 -->
     <img
+      class="poster-image"
       :src="posterBox.imagePath"
       :title="posterBox.title"
       :alt="posterBox.description"
       :class="posterBox.posterType"
+      :style="{
+        width: posterBox.posterWidth + 'px !important',
+        height: posterBox.posterHeight + 'px !important',
+      }"
     />
+
+    <!-- Poster 콘텐츠 -->
+    <v-card
+      elevation="0"
+      class="poster-detail"
+      :style="{
+        width: posterBox.posterWidth + 'px !important',
+        height: posterBox.posterHeight + 'px !important',
+      }"
+    >
+      <v-card-text style="height:100%">
+        <div
+          class="bottom-content poster-detail-title"
+          style="height:30%"
+          :style="{ color: color }"
+        >
+          {{ posterBox.title }}
+        </div>
+        <div
+          class="center-content poster-detail-description"
+          style="height:30%"
+          :style="{ color: color }"
+        >
+          {{ posterBox.description }}
+        </div>
+        <div class="bottom-content poster-detail-link" style="height:40%">
+          <v-btn
+            target="_blank"
+            :href="posterBox.siteUrl"
+            block
+            plain
+            outlined
+            :style="{ color: color }"
+          >
+            자세히 보기
+          </v-btn>
+        </div>
+      </v-card-text>
+    </v-card>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   props: {
     poster: {
@@ -67,6 +115,14 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapGetters({
+      dayMode: 'dayMode',
+    }),
+    color() {
+      return this.dayMode === true ? 'black' : 'white';
+    },
+  },
   created() {
     const vm = this;
     vm.init();
@@ -98,5 +154,58 @@ img {
 
 .example-image {
   opacity: 0.1;
+}
+
+.center-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom-content {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.poster {
+  position: relative;
+}
+
+.poster-imgae {
+  opacity: 1;
+}
+
+.poster-detail {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.poster-detail-title {
+  font: normal bold normal 20px NotoSansCJKkr;
+}
+
+.poster-detail-description {
+  font: normal normal normal 14px NotoSansCJKkr;
+
+  text-align: center;
+}
+
+.poster-detail-link {
+  font: normal normal normal 14px NotoSansCJKkr;
+}
+
+.poster:hover .poster-detail {
+  background-color: transparent;
+  opacity: 1;
+  transition: opacity 1.5s;
+}
+
+.poster:hover .poster-image {
+  filter: blur(8px);
+  opacity: 0.25;
+  transition: filter 1.5s;
 }
 </style>

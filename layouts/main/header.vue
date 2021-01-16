@@ -3,8 +3,10 @@
     <v-layout align-center>
       <v-flex>
         <div class="pangoLogo">
-          <v-img v-if="dayMode" :src="pangoLogoDay"></v-img>
-          <v-img v-else :src="pangoLogoNight"></v-img>
+          <nuxt-link to="/">
+            <v-img v-if="dayMode" :src="pangoLogoDay"></v-img>
+            <v-img v-else :src="pangoLogoNight"></v-img>
+          </nuxt-link>
         </div>
       </v-flex>
 
@@ -16,7 +18,7 @@
           </v-btn>
         </div>
         <div class="clickArea userInfoMargin">
-          <v-btn text block target="_blank" :to="{ name: 'ownerApply1' }">
+          <v-btn text block :to="{ name: 'apply' }">
             <v-img v-if="dayMode" :src="userInfoDay" class="iconArea"></v-img>
             <v-img v-else :src="userInfoNight" class="iconArea"></v-img>
           </v-btn>

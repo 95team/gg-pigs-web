@@ -66,6 +66,21 @@ export default {
     PosterBox,
   },
   layout: 'main/default',
+  async fetch() {
+    const params = {
+      page: this.page,
+      isFilteredDate: true,
+      isActivated: true,
+    };
+    await this.$store.dispatch('poster/FETCH_LIST_V2', params);
+
+    this.postersFirstColumn = this.makeFullPosters(this.firstColumn);
+    this.postersSecondColumn = this.makeFullPosters(this.secondColumn);
+    this.postersThirdColumn = this.makeFullPosters(this.thirdColumn);
+    this.postersFourthColumn = this.makeFullPosters(this.fourthColumn);
+    this.postersFifthColumn = this.makeFullPosters(this.fifthColumn);
+    this.postersSixthColumn = this.makeFullPosters(this.sixthColumn);
+  },
   data() {
     return {
       page: 1,
@@ -116,14 +131,10 @@ export default {
     },
   },
   created() {
-    const vm = this;
-    vm.init();
+    this.init();
   },
   methods: {
-    init() {
-      const vm = this;
-      vm.getPosters();
-    },
+    init() {},
 
     /** '포스터' 와 관련된 함수들 입니다. */
     getPosters() {

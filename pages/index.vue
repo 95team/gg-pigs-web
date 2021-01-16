@@ -67,13 +67,12 @@ export default {
   },
   layout: 'main/default',
   async fetch() {
-    const vm = this;
     const params = {
-      page: vm.page,
+      page: this.page,
       isFilteredDate: true,
       isActivated: true,
     };
-    await vm.$store.dispatch('poster/FETCH_LIST_V2', params);
+    await this.$store.dispatch('poster/FETCH_LIST_V2', params);
 
     this.postersFirstColumn = this.makeFullPosters(this.firstColumn);
     this.postersSecondColumn = this.makeFullPosters(this.secondColumn);
@@ -132,8 +131,7 @@ export default {
     },
   },
   created() {
-    const vm = this;
-    vm.init();
+    this.init();
   },
   methods: {
     init() {},

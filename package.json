@@ -1,7 +1,7 @@
 {
-  "name": "pango-web",
+  "name": "이 내용인 것 같은데, 찾으시는 내용.",
   "version": "1.0.0",
-  "description": "This is a Pango web",
+  "description": "자신만의 배너(포스터)를 등록하여 자유롭게 광고 해보세요! 간단하고 쉽고 빠르게, 광고돼지.",
   "author": "pigs-pango-team",
   "private": true,
   "scripts": {

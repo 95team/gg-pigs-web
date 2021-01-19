@@ -244,7 +244,7 @@ export default {
       else this.page = minPage;
     },
     nextPage() {
-      const maxPage = 20;
+      const maxPage = 5;
       if (this.page < maxPage) this.page += 1;
       else this.page = maxPage;
     },

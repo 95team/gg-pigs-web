@@ -3,7 +3,7 @@
     <v-row justify="center" style="height:70%">
       <v-col cols="12" align="center">
         <span class="notoSansFont text-light2">
-          포스터(광고) 등록을 위해서는 아래 메일로 신청해주세요. : )
+          포스터(광고) 등록을 위해서는 아래 메일로 문의해주세요. : )
           <br /><br />
           {{ email }}
         </span>

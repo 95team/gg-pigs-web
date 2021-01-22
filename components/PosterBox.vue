@@ -1,13 +1,13 @@
 <template>
   <!-- Poster -->
-  <div class="poster ma-1">
+  <div class="poster ma-1" :style="{ 'z-index': zIndex }" @click="isClicked = !isClicked">
     <!-- Poster 이미지 -->
     <img
       class="poster-image"
       :src="posterBox.imagePath"
       :title="posterBox.title"
       :alt="posterBox.description"
-      :class="posterBox.posterType"
+      :class="[posterBox.posterType, { 'poster-image-animation': isClicked }]"
       :style="{
         width: posterBox.posterWidth + 'px !important',
         height: posterBox.posterHeight + 'px !important',
@@ -18,6 +18,7 @@
     <v-card
       elevation="0"
       class="poster-detail"
+      :class="{ 'poster-detail-animation': isClicked }"
       :style="{
         width: posterBox.posterWidth + 'px !important',
         height: posterBox.posterHeight + 'px !important',
@@ -113,6 +114,8 @@ export default {
         startedDate: '2020-01-01',
         finishedDate: '2030-01-01',
       },
+      zIndex: 0,
+      isClicked: false,
     };
   },
   computed: {
@@ -172,8 +175,18 @@ img {
   position: relative;
 }
 
+.poster:hover {
+  cursor: pointer;
+}
+
 .poster-imgae {
   opacity: 1;
+}
+
+.poster-image-animation {
+  filter: blur(8px);
+  opacity: 0.25;
+  transition: filter 1.5s;
 }
 
 .poster-detail {
@@ -181,6 +194,12 @@ img {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.poster-detail-animation {
+  background-color: transparent;
+  opacity: 1;
+  transition: opacity 1.5s;
 }
 
 .poster-detail-title {
@@ -195,17 +214,5 @@ img {
 
 .poster-detail-link {
   font: normal normal normal 14px NotoSansCJKkr;
-}
-
-.poster:hover .poster-detail {
-  background-color: transparent;
-  opacity: 1;
-  transition: opacity 1.5s;
-}
-
-.poster:hover .poster-image {
-  filter: blur(8px);
-  opacity: 0.25;
-  transition: filter 1.5s;
 }
 </style>

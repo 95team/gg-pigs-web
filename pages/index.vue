@@ -1,59 +1,65 @@
 <template>
   <v-container fluid pa-0>
-    <v-layout class="contents" row wrap>
-      <!-- flex1 -->
-      <v-flex xs4 md4 lg2>
-        <poster-box v-for="poster in postersFirstColumn" :key="poster.id" :poster="poster" />
-      </v-flex>
+    <v-overlay :value="overlay" :z-index="1"></v-overlay>
+    <v-row class="contents" no-gutters>
+      <!-- col1 -->
+      <v-col cols="2" xs4 md4 lg2>
+        <poster-box
+          v-for="poster in postersFirstColumn"
+          :key="poster.id"
+          :poster="poster"
+          @poster-click="clickedPoster"
+          @poster-unclick="unclickedPoster"
+        />
+      </v-col>
 
-      <!-- flex2 -->
-      <v-flex xs4 md4 lg2>
+      <!-- col2 -->
+      <v-col cols="2" xs4 md4 lg2>
         <poster-box v-for="poster in postersSecondColumn" :key="poster.id" :poster="poster" />
-      </v-flex>
+      </v-col>
 
-      <!-- flex3 -->
-      <v-flex xs4 md4 lg2>
+      <!-- col3 -->
+      <v-col cols="2" xs4 md4 lg2>
         <poster-box v-for="poster in postersThirdColumn" :key="poster.id" :poster="poster" />
-      </v-flex>
+      </v-col>
 
-      <!-- flex4 -->
-      <v-flex xs4 md4 lg2>
+      <!-- col4 -->
+      <v-col cols="2" xs4 md4 lg2>
         <poster-box v-for="poster in postersFourthColumn" :key="poster.id" :poster="poster" />
-      </v-flex>
+      </v-col>
 
-      <!-- flex5 -->
-      <v-flex xs4 md4 lg2>
+      <!-- col5 -->
+      <v-col cols="2" xs4 md4 lg2>
         <poster-box v-for="poster in postersFifthColumn" :key="poster.id" :poster="poster" />
-      </v-flex>
+      </v-col>
 
-      <!-- flex6 -->
-      <v-flex xs4 md4 lg2>
+      <!-- col6 -->
+      <v-col cols="2" xs4 md4 lg2>
         <poster-box v-for="poster in postersSixthColumn" :key="poster.id" :poster="poster" />
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
 
     <!-- Pagination -->
-    <v-layout class="mb64 centerAlign">
-      <div class="pagination centerAlign">
-        <button class="clickArea centerAlign" @click="prevPage()">
-          <img
-            :src="[dayMode ? 'icon/prePageDay.svg' : 'icon/prePageNight.svg']"
-            class="pageIcon"
-          />
-        </button>
-
-        <v-spacer></v-spacer>
-        <div class="pageNum" :class="[dayMode ? 'text-light1' : 'text-light5']">{{ page }}</div>
-        <v-spacer></v-spacer>
-
-        <button class="clickArea centerAlign" @click="nextPage()">
-          <img
-            :src="[dayMode ? 'icon/nextPageDay.svg' : 'icon/nextPageNight.svg']"
-            class="pageIcon"
-          />
-        </button>
+    <v-row class="mb64" align="center" justify="center">
+      <div class="clickArea" style="padding:6px 15px; text-align: center;" @click="prevPage()">
+        <img :src="[dayMode ? 'icon/prePageDay.svg' : 'icon/prePageNight.svg']" class="pageIcon" />
       </div>
-    </v-layout>
+
+      <div
+        class="pageNum"
+        :class="[dayMode ? 'text-light1' : 'text-light5']"
+        style="margin: 0px 70px"
+      >
+        {{ page }}
+      </div>
+
+      <div class="clickArea" style="padding:6px 15px; text-align: center;" @click="prevPage()">
+        <img
+          :src="[dayMode ? 'icon/nextPageDay.svg' : 'icon/nextPageNight.svg']"
+          class="pageIcon"
+        />
+      </div>
+    </v-row>
   </v-container>
 </template>
 
@@ -91,6 +97,7 @@ export default {
       postersFourthColumn: [],
       postersFifthColumn: [],
       postersSixthColumn: [],
+      overlay: false,
     };
   },
   computed: {
@@ -248,6 +255,14 @@ export default {
       if (this.page < maxPage) this.page += 1;
       else this.page = maxPage;
     },
+
+    /** Overlay 관련 함수들 입니다. */
+    clickedPoster() {
+      this.overlay = true;
+    },
+    unclickedPoster() {
+      this.overlay = false;
+    },
   },
 };
 </script>
@@ -260,15 +275,14 @@ export default {
   margin-right: 0px;
 }
 
-.pagination {
-  width: 250px;
-  height: 48px;
-}
-
 .clickArea {
   width: 48px;
   height: 48px;
   outline: none;
+}
+
+.clickArea:hover {
+  cursor: pointer;
 }
 
 .pageNum {
@@ -281,12 +295,6 @@ export default {
 .pageIcon {
   width: 18px;
   height: 36px;
-}
-
-.centerAlign {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 @media all and (max-width: 959px) {

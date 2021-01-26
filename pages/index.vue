@@ -1,6 +1,5 @@
 <template>
   <v-container fluid pa-0>
-    <v-overlay :value="overlay" :z-index="1"></v-overlay>
     <v-row class="contents" no-gutters>
       <!-- col1 -->
       <v-col cols="2" xs4 md4 lg2>
@@ -53,7 +52,7 @@
         {{ page }}
       </div>
 
-      <div class="clickArea" style="padding:6px 15px; text-align: center;" @click="prevPage()">
+      <div class="clickArea" style="padding:6px 15px; text-align: center;" @click="nextPage()">
         <img
           :src="[dayMode ? 'icon/nextPageDay.svg' : 'icon/nextPageNight.svg']"
           class="pageIcon"
@@ -97,7 +96,6 @@ export default {
       postersFourthColumn: [],
       postersFifthColumn: [],
       postersSixthColumn: [],
-      overlay: false,
     };
   },
   computed: {
@@ -254,14 +252,6 @@ export default {
       const maxPage = 5;
       if (this.page < maxPage) this.page += 1;
       else this.page = maxPage;
-    },
-
-    /** Overlay 관련 함수들 입니다. */
-    clickedPoster() {
-      this.overlay = true;
-    },
-    unclickedPoster() {
-      this.overlay = false;
     },
   },
 };

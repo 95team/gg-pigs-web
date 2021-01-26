@@ -1,19 +1,14 @@
 <template>
-  <v-container fluid pa-0 class="notoSansFont text-light2">
-    <div class="content">
-      <span style="margin-right: var(--spacing-lg)">
+  <v-container fluid pa-0 class="notoSansFont">
+    <v-row no-gutters align="center" class="content fz18 text-light2" style="height: 108px;">
+      <v-spacer></v-spacer>
+      <v-col cols="auto mr32">
         &copy; {{ new Date().getFullYear() }} PangGo, Inc. All rights reserved
-      </span>
-      <span style="margin-right: var(--spacing-lg)">
-        개인정보 처리방침
-      </span>
-      <span style="margin-right: var(--spacing-lg)">
-        이용 약관
-      </span>
-      <span>
-        사이트맵
-      </span>
-    </div>
+      </v-col>
+      <v-col cols="auto mr32"> 개인정보 처리방침 </v-col>
+      <v-col cols="auto mr32"> 이용 약관 </v-col>
+      <v-col cols="auto"> 사이트맵 </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -29,10 +24,6 @@ export default {};
   border-top: solid 1px var(--light3);
 }
 .content {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  height: 108px;
   margin: 0 18.3%;
 }
 </style>

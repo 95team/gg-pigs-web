@@ -1,29 +1,33 @@
 <template>
   <v-container fluid pa-0 class="notoSansFont">
-    <div class="logo-area">
-      <v-row no-gutters align="center">
-        <div>
-          <img src="~/static/image/pangoLogoDay.png" alt="광고돼지" width="200px" height="66px" />
-        </div>
-        <v-spacer></v-spacer>
-        <div>
-          <button type="button" class="click-area" style="float: left; margin-right: 32px">
-            <v-img :src="day" class="icon-area"></v-img>
-          </button>
-          <button type="button" class="click-area">
-            <v-img :src="close" class="icon-area"></v-img>
-          </button>
-        </div>
-      </v-row>
-    </div>
+    <v-row no-gutters align="center" class="content">
+      <v-col cols="auto" class="mr64">
+        <nuxt-link to="/">
+          <v-img :src="pangoLogoDay" max-height="66px" max-width="200px"></v-img>
+        </nuxt-link>
+      </v-col>
 
-    <div class="menu-area">
-      <v-tabs height="100px" color="black" slider-color="black" align-with-title>
-        <v-tab class="tab-item" :ripple="false" replace to="/ownerApply1">광고 신청</v-tab>
-        <v-tab class="tab-item" :ripple="false" replace :to="ownerPath">광고 조회</v-tab>
-        <v-tab class="tab-item" disabled>문의하기</v-tab>
-      </v-tabs>
-    </div>
+      <v-col cols="auto">
+        <v-tabs height="122px" color="black" slider-color="var(--primary2)">
+          <v-tab class="tab-item" :ripple="false" replace to="/apply/step1">광고 신청</v-tab>
+          <v-tab class="tab-item" :ripple="false" replace :to="ownerPath">광고 조회</v-tab>
+          <v-tab class="tab-item" disabled>문의하기</v-tab>
+        </v-tabs>
+      </v-col>
+
+      <v-spacer></v-spacer>
+
+      <v-col cols="auto" class="mr32">
+        <v-btn text max-width="48px" min-width="36px" height="48px" :ripple="false">
+          <v-img :src="day" max-height="36px" max-width="36px"></v-img>
+        </v-btn>
+      </v-col>
+      <v-col cols="auto">
+        <v-btn text max-width="48px" min-width="36px" height="48px" :ripple="false">
+          <v-img :src="close" max-height="36px" max-width="36px"></v-img>
+        </v-btn>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -37,7 +41,6 @@ export default {
       menus: [{ title: '광고 신청' }, { title: '광고 조회' }, { title: '문의하기' }],
       pangoLogoDay: require('~/static/image/pangoLogoDay.png'),
       day: require('~/static/icon/day.svg'),
-      night: require('~/static/icon/night.svg'),
       close: require('~/static/icon/close.svg'),
     };
   },
@@ -92,50 +95,21 @@ export default {
 </script>
 
 <style scoped>
-a {
-  color: black;
-  text-decoration: none;
-}
 .notoSansFont {
   font-family: 'Noto Sans KR', sans-serif;
 }
 .container {
-  display: flex;
-  flex-direction: column;
   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.1);
 }
-.logo-area {
-  display: flex;
-  height: 130px;
-  border-bottom: solid 1px var(--light3);
+.content {
   margin: 0 18.3%;
-}
-.menu-area {
-  display: flex;
-  min-height: 100px;
-  margin: 0 18.3%;
-}
-.click-area {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 48px;
-  height: 48px;
-}
-.icon-area {
-  width: 36px;
-  height: 36px;
-  position: absolute;
 }
 .tab-item {
-  margin-right: 1.7%;
+  font-size: 18px;
+  font-weight: bold;
 
-  width: 176px;
-  height: 100px;
-
-  font: normal normal normal 24px NotoSansCJKkr;
+  width: 148px;
 
   letter-spacing: normal;
-  color: var(--black);
 }
 </style>

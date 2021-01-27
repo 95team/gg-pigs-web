@@ -113,11 +113,13 @@
 .mt96       {   margin-top: 96px;     }
 .mt128      {   margin-top: 128px;    }
 
+.mb16       {   margin-bottom: 16px;  }
 .mb32       {   margin-bottom: 32px;  }
 .mb64       {   margin-bottom: 64px;  }
 .mb96       {   margin-bottom: 96px;  }
 .mb128      {   margin-bottom: 128px; }
 
+.mr16       {   margin-right: 16px;   }
 .mr32       {   margin-right: 32px;   }
 .mr64       {   margin-right: 64px;   }
 .mr96       {   margin-right: 96px;   }
@@ -127,3 +129,9 @@
 .ml64       {   margin-left: 64px;    }
 .ml96       {   margin-left: 96px;    }
 .ml128      {   margin-left: 128px;   }
+
+
+/* Font Size */
+.fz13       {   font-size: 13px !important;   }
+.fz18       {   font-size: 18px !important;   }
+.fz32       {   font-size: 32px !important;   }

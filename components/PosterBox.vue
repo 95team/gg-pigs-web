@@ -197,7 +197,7 @@ img {
 }
 
 .poster-detail-animation {
-  background-color: transparent;
+  background-color: transparent !important;
   opacity: 1;
   transition: opacity 1.5s;
 }

@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid pa-0 class="notoSansFont">
+  <v-container fluid pa-0 class="noto-sans-font">
     <div class="content">
       <v-row no-gutters align="center" class="mt128 mb32">
         <v-col cols="auto" class="fz32">광고 신청하기</v-col>
@@ -18,7 +18,7 @@
       <div class="mt64 mb96 fz18 ">
         <v-row no-gutters align="center">
           <v-col cols="auto" class="mr32">
-            <div class="addImg">
+            <div class="add-img">
               <label for="imgFile">이미지 첨부</label>
               <input id="imgFile" type="file" accept="image/x-png,image/gif,image/jpeg" />
             </div>
@@ -96,7 +96,7 @@
               ></v-text-field>
             </v-col>
             <v-col cols="auto">
-              <input class="verifyEmail" type="button" value="인증메일 전송" />
+              <input class="verify-email" type="button" value="인증메일 전송" />
             </v-col>
           </v-row>
           <v-row no-gutters align="center">
@@ -109,7 +109,7 @@
               ></v-text-field>
             </v-col>
             <v-col cols="auto">
-              <input class="verifyEmail" type="button" value="인증코드 확인" />
+              <input class="verify-email" type="button" value="인증코드 확인" />
             </v-col>
           </v-row>
         </v-row>
@@ -208,16 +208,16 @@ export default {
 </script>
 
 <style scoped>
-.notoSansFont {
+.noto-sans-font {
   font-family: 'Noto Sans KR', sans-serif;
 }
 .content {
   margin: 0 18.3%;
 }
-.addImg input[type='file'] {
+.add-img input[type='file'] {
   width: 0;
 }
-.addImg label {
+.add-img label {
   font-size: 18px;
   border: solid 1px var(--light2);
   border-radius: 14px;
@@ -231,7 +231,7 @@ export default {
 .v-text-field {
   border-radius: 0;
 }
-.verifyEmail {
+.verify-email {
   justify-content: center;
   align-items: center;
   width: 150px;

@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid pa-0 class="notoSansFont">
+  <v-container fluid pa-0 class="noto-sans-font">
     <div class="content">
       <v-row no-gutters align="center" class="mt128 mb32">
         <v-col cols="auto" class="fz32">광고 신청하기</v-col>
@@ -100,7 +100,7 @@
               <v-card-text class="px-12">
                 <v-select
                   v-model="period"
-                  :items="period"
+                  :items="periods"
                   color="var(--primary2)"
                   label="게시 기간을 선택해주세요."
                   class="label-font-size"
@@ -136,7 +136,6 @@
         height="176px"
         style="font-size: 52px; color: var(--light5)"
         :ripple="false"
-        to="step2"
         @click="sendInfo"
       >
         다음
@@ -153,7 +152,8 @@ export default {
       posterType: '',
       date: new Date().toISOString().substr(0, 10),
       isSelecting: false,
-      period: [{ text: '30일', value: 1 }],
+      period: { text: '30일', value: 1 },
+      periods: [{ text: '30일', value: 1 }],
     };
   },
   methods: {
@@ -161,7 +161,7 @@ export default {
       const date = new Date(this.date);
       if (this.period.value) date.setDate(date.getDate() + 30 * this.period.value - 1);
       const finishedDate = date.toISOString().substr(0, 10);
-      this.$store.commit('apply/sendInfo', {
+      this.$store.commit('apply/SEND_INFORMATION', {
         posterType: this.posterType,
         startedDate: this.date,
         finishedDate,
@@ -178,7 +178,7 @@ export default {
 </script>
 
 <style scoped>
-.notoSansFont {
+.noto-sans-font {
   font-family: 'Noto Sans KR', sans-serif;
 }
 .content {

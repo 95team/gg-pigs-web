@@ -10,3 +10,9 @@ export default class {
     return axios.get(`${baseApiUrl}/api/v2/posters`, { params: payload });
   }
 }
+
+function getPoster(posterId) {
+  return axios.get(`${baseApiUrl}/api/v1/posters/${posterId}`);
+}
+
+export { getPoster };

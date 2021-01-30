@@ -11,7 +11,6 @@ import OwnerHeader from '~/layouts/owner/header.vue';
 import OwnerFooter from '~/layouts/owner/footer.vue';
 
 export default {
-  name: 'LayoutsOwnerDefault',
   components: {
     OwnerHeader,
     OwnerFooter,

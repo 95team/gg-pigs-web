@@ -136,6 +136,7 @@
         height="176px"
         style="font-size: 52px; color: var(--light5)"
         :ripple="false"
+        to="step2"
         @click="sendInfo"
       >
         다음

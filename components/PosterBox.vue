@@ -1,6 +1,6 @@
 <template>
   <!-- Poster -->
-  <div class="poster ma-1" :style="{ 'z-index': zIndex }" @click="isClicked = !isClicked">
+  <div class="poster ma-2" :style="{ 'z-index': zIndex }" @click="isClicked = !isClicked">
     <!-- Poster 이미지 -->
     <img
       class="poster-image"
@@ -10,7 +10,7 @@
       :class="[posterBox.posterType, { 'poster-image-animation': isClicked }]"
       :style="{
         width: posterBox.posterWidth + 'px !important',
-        height: posterBox.posterHeight + 'px !important',
+        height: '100%',
       }"
     />
 
@@ -21,25 +21,25 @@
       :class="{ 'poster-detail-animation': isClicked }"
       :style="{
         width: posterBox.posterWidth + 'px !important',
-        height: posterBox.posterHeight + 'px !important',
+        height: '100%',
       }"
     >
       <v-card-text style="height:100%">
         <div
           class="bottom-content poster-detail-title"
-          style="height:30%"
+          style="height:20%"
           :style="{ color: color }"
         >
           {{ posterBox.title }}
         </div>
         <div
           class="center-content poster-detail-description"
-          style="height:30%"
+          style="height:70%"
           :style="{ color: color }"
         >
           {{ posterBox.description }}
         </div>
-        <div class="bottom-content poster-detail-link" style="height:40%">
+        <div class="bottom-content poster-detail-link" style="height:10%">
           <v-btn
             target="_blank"
             :href="posterBox.siteUrl"
@@ -152,7 +152,6 @@ export default {
 <style scoped>
 img {
   max-width: 100%;
-  height: auto !important;
 }
 
 .example-image {

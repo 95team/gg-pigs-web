@@ -2,32 +2,32 @@
   <v-container fluid pa-0>
     <v-row class="contents" no-gutters>
       <!-- col1 -->
-      <v-col xs="4" md="4" lg="2">
+      <v-col cols="4" xs="4" md="4" lg="2">
         <poster-box v-for="poster in postersFirstColumn" :key="poster.id" :poster="poster" />
       </v-col>
 
       <!-- col2 -->
-      <v-col xs="4" md="4" lg="2">
+      <v-col cols="4" xs="4" md="4" lg="2">
         <poster-box v-for="poster in postersSecondColumn" :key="poster.id" :poster="poster" />
       </v-col>
 
       <!-- col3 -->
-      <v-col xs="4" md="4" lg="2">
+      <v-col cols="4" xs="4" md="4" lg="2">
         <poster-box v-for="poster in postersThirdColumn" :key="poster.id" :poster="poster" />
       </v-col>
 
       <!-- col4 -->
-      <v-col xs="4" md="4" lg="2">
+      <v-col cols="4" xs="4" md="4" lg="2">
         <poster-box v-for="poster in postersFourthColumn" :key="poster.id" :poster="poster" />
       </v-col>
 
       <!-- col5 -->
-      <v-col xs="4" md="4" lg="2">
+      <v-col cols="4" xs="4" md="4" lg="2">
         <poster-box v-for="poster in postersFifthColumn" :key="poster.id" :poster="poster" />
       </v-col>
 
       <!-- col6 -->
-      <v-col xs="4" md="4" lg="2">
+      <v-col cols="4" xs="4" md="4" lg="2">
         <poster-box v-for="poster in postersSixthColumn" :key="poster.id" :poster="poster" />
       </v-col>
     </v-row>

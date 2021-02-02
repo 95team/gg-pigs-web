@@ -9,7 +9,7 @@ export const state = function() {
 
     /** '이미지' 관련 변수입니다. */
     logoDay: require('~/static/image/pangoLogoDay.png'),
-    logoNight: require('~/static/image/pangologoNight.png'),
+    logoNight: require('~/static/image/pangoLogoNight.png'),
     day: require('~/static/icon/day.svg'),
     night: require('~/static/icon/night.svg'),
     userInfoDay: require('~/static/icon/userInfoDay.svg'),

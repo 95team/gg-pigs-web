@@ -113,5 +113,16 @@ export default {
    */
   sitemap: {
     hostname: 'https://gg-pigs.com',
+    exclude: [
+      '/apply/**',
+      '/admin/**',
+      '/owner/**',
+      '/owner',
+      '/ownerApply1',
+      '/ownerApply2',
+      '/adminPageStatus',
+      '/adminPageApproval',
+      '/inspire',
+    ],
   },
 };

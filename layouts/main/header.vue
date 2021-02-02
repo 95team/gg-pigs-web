@@ -24,12 +24,12 @@
               <v-img v-else :src="userInfoNight" max-height="24px" max-width="24px"></v-img>
             </v-btn>
           </v-col>
-          <v-col>
+          <!-- <v-col>
             <v-btn text height="48px" min-width="48px">
               <v-img v-if="dayMode" :src="lookupDay" max-height="24px" max-width="30px"></v-img>
               <v-img v-else :src="lookupNight" max-height="24px" max-width="30px"></v-img>
             </v-btn>
-          </v-col>
+          </v-col> -->
         </v-row>
       </v-col>
     </v-row>

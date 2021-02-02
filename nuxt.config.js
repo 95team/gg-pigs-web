@@ -1,4 +1,6 @@
 import colors from 'vuetify/es5/util/colors';
+import axios from 'axios';
+import { baseApiUrl } from './api/index';
 
 export default {
   mode: 'universal',
@@ -8,7 +10,7 @@ export default {
    */
   head: {
     titleTemplate: '%s',
-    title: '이 내용인 것 같은데, 찾으시는 내용.',
+    title: '광고돼지',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -83,5 +85,25 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {},
+  },
+  /*
+   ** Generate configuration
+   */
+  generate: {
+    routes() {
+      const params = {
+        page: -1,
+        isFilteredDate: true,
+        isActivated: true,
+      };
+      return axios.get(`${baseApiUrl}/api/v2/posters`, params).then(res => {
+        return res.data.data.map(poster => {
+          return {
+            route: `/poster/${poster.id}/${poster.slug}`,
+            payload: poster,
+          };
+        });
+      });
+    },
   },
 };

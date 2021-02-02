@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-row no-gutters align="center">
       <v-col cols="auto">
-        <nuxt-link to="/">
+        <nuxt-link :to="{ name: 'index' }">
           <v-img v-if="dayMode" :src="logoDay" class="logo"></v-img>
           <v-img v-else :src="logoNight" class="logo"></v-img>
         </nuxt-link>
@@ -19,7 +19,7 @@
             </v-btn>
           </v-col>
           <v-col class="mr-2">
-            <v-btn text height="48px" min-width="48px">
+            <v-btn text height="48px" min-width="48px" :to="{ name: 'apply' }">
               <v-img v-if="dayMode" :src="userInfoDay" max-height="24px" max-width="24px"></v-img>
               <v-img v-else :src="userInfoNight" max-height="24px" max-width="24px"></v-img>
             </v-btn>

@@ -1,13 +1,13 @@
 <template>
   <v-app :class="[dayMode ? 'background-light5' : 'background-dark1']">
-    <main-header @update="toggleDayMode" />
+    <main-header />
     <nuxt />
-    <main-footer @update="toggleDayMode" />
+    <main-footer />
   </v-app>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapMutations, mapGetters } from 'vuex';
 import MainHeader from '~/layouts/main/header.vue';
 import MainFooter from '~/layouts/main/footer.vue';
 
@@ -25,9 +25,9 @@ export default {
     }),
   },
   methods: {
-    toggleDayMode() {
-      this.$store.commit('TOGGLE_DAYMODE');
-    },
+    ...mapMutations({
+      toggleDayMode: 'TOGGLE_DAYMODE',
+    }),
   },
 };
 </script>

@@ -50,6 +50,8 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    // Doc: https://sitemap.nuxtjs.org
+    '@nuxtjs/sitemap',
   ],
   /*
    ** Axios module configuration
@@ -105,5 +107,11 @@ export default {
         });
       });
     },
+  },
+  /*
+   ** Generate sitemap
+   */
+  sitemap: {
+    hostname: 'https://gg-pigs.com',
   },
 };

@@ -194,7 +194,7 @@ export default {
 
       const fullPosters = posters;
 
-      for (let i = 1; i <= this.posterLayoutSize + 1; i++) {
+      for (let i = 1; i <= this.posterLayoutSize; i++) {
         if (postersLocations[i] === EMPTY) {
           const targetRow = i;
           fullPosters.push(this.makeEmptyPoster(targetRow, targetColumn, 1));

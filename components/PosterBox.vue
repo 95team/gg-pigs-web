@@ -74,8 +74,8 @@ export default {
         title: '광고를 신청해주세요!',
         description: '광고를 신청해주세요!',
         keywords: '광고를 신청해주세요!',
-        imagePath: 'image/empty_type1.png',
-        siteUrl: 'www.example.com',
+        imagePath: 'image/empty-poster.png',
+        siteUrl: '/',
         rowPosition: '-',
         columnPosition: '-',
         posterType: ['R1', 'example-image'],
@@ -90,7 +90,7 @@ export default {
         description: '광고를 신청해주세요!',
         keywords: '광고를 신청해주세요!',
         imagePath: 'image/empty_type2.png',
-        siteUrl: 'www.example.com',
+        siteUrl: '/',
         rowPosition: '-',
         columnPosition: '-',
         posterType: ['R2', 'example-image'],
@@ -105,7 +105,7 @@ export default {
         description: '광고를 신청해주세요!',
         keywords: '광고를 신청해주세요!',
         imagePath: 'image/empty_type3.png',
-        siteUrl: 'www.example.com',
+        siteUrl: '/',
         rowPosition: '-',
         columnPosition: '-',
         posterType: ['R3', 'example-image'],
@@ -155,7 +155,7 @@ img {
 }
 
 .example-image {
-  opacity: 0.1;
+  opacity: 0.6;
 }
 
 .center-content {

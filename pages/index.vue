@@ -194,21 +194,10 @@ export default {
 
       const fullPosters = posters;
 
-      let emptyPosterSize = 0;
       for (let i = 1; i <= this.posterLayoutSize + 1; i++) {
         if (postersLocations[i] === EMPTY) {
-          emptyPosterSize++;
-        }
-
-        if (postersLocations[i] === FILLED && emptyPosterSize >= 1) {
-          const targetRow = i - emptyPosterSize;
-          fullPosters.push(this.makeEmptyPoster(targetRow, targetColumn, emptyPosterSize));
-          emptyPosterSize = 0;
-        } else if (emptyPosterSize >= 3) {
-          emptyPosterSize = 3;
-          const targetRow = i + 1 - emptyPosterSize;
-          fullPosters.push(this.makeEmptyPoster(targetRow, targetColumn, emptyPosterSize));
-          emptyPosterSize = 0;
+          const targetRow = i;
+          fullPosters.push(this.makeEmptyPoster(targetRow, targetColumn, 1));
         }
         postersLocations[i] = FILLED;
       }

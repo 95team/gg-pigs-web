@@ -4,13 +4,17 @@
       <v-divider :class="[dayMode ? 'border-light3' : 'border-dark2']" />
     </v-row>
 
-    <div class="contents" :class="[dayMode ? 'text-light2' : 'text-dark3']">
-      <v-row no-gutters align="center" justify="end" class="footer-height">
-        <v-col cols="auto">
-          &copy; {{ new Date().getFullYear() }} Pigs95team, Inc. All rights reserved
-        </v-col>
-      </v-row>
-    </div>
+    <v-row
+      no-gutters
+      align="center"
+      justify="end"
+      class="footer-height contents"
+      :class="[dayMode ? 'text-light2' : 'text-dark3']"
+    >
+      <v-col cols="auto">
+        &copy; {{ new Date().getFullYear() }} Pigs95team, Inc. All rights reserved
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

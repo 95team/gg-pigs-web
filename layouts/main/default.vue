@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 import MainHeader from '~/layouts/main/header.vue';
 import MainFooter from '~/layouts/main/footer.vue';
 
@@ -16,18 +16,8 @@ export default {
     MainHeader,
     MainFooter,
   },
-  data() {
-    return {};
-  },
   computed: {
-    ...mapGetters({
-      dayMode: 'dayMode',
-    }),
-  },
-  methods: {
-    ...mapMutations({
-      toggleDayMode: 'TOGGLE_DAYMODE',
-    }),
+    ...mapGetters(['dayMode']),
   },
 };
 </script>

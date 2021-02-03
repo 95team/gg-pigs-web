@@ -1,8 +1,8 @@
 <template>
   <v-app :class="[dayMode ? 'background-light5' : 'background-dark1']">
-    <main-header @update="toggleDayMode" />
+    <main-header />
     <nuxt />
-    <main-footer @update="toggleDayMode" />
+    <main-footer />
   </v-app>
 </template>
 
@@ -16,18 +16,8 @@ export default {
     MainHeader,
     MainFooter,
   },
-  data() {
-    return {};
-  },
   computed: {
-    ...mapGetters({
-      dayMode: 'dayMode',
-    }),
-  },
-  methods: {
-    toggleDayMode() {
-      this.$store.commit('TOGGLE_DAYMODE');
-    },
+    ...mapGetters(['dayMode']),
   },
 };
 </script>

@@ -1,21 +1,20 @@
 <template>
-  <!-- container -->
-  <v-container fluid text-right>
-    <!-- layout1 -->
-    <v-layout class="divider">
-      <v-flex>
-        <v-divider :class="[dayMode ? 'border-light3' : 'border-dark2']" />
-      </v-flex>
-    </v-layout>
+  <v-container fluid pa-0 class="noto-sans-font">
+    <v-row>
+      <v-divider :class="[dayMode ? 'border-light3' : 'border-dark2']" />
+    </v-row>
 
-    <!-- layout2 -->
-    <v-layout class="content">
-      <v-flex :class="[dayMode ? 'text-light2' : ' text-dark3']">
-        <span class="text">
-          &copy; {{ new Date().getFullYear() }} Pigs95team, All rights reserved
-        </span>
-      </v-flex>
-    </v-layout>
+    <v-row
+      no-gutters
+      align="center"
+      justify="end"
+      class="footer-height contents"
+      :class="[dayMode ? 'text-light2' : 'text-dark3']"
+    >
+      <v-col cols="auto">
+        &copy; {{ new Date().getFullYear() }} Pigs95team, Inc. All rights reserved
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -24,68 +23,52 @@ import { mapGetters } from 'vuex';
 
 export default {
   computed: {
-    ...mapGetters({
-      dayMode: 'dayMode',
-    }),
+    ...mapGetters(['dayMode']),
   },
 };
 </script>
 
 <style scoped>
-/* Viewport: ~ sm */
-@media all and (max-width: 959px) {
-  .container {
-    max-width: 900px;
-    max-height: 56px;
-    height: 56px;
+.noto-sans-font {
+  font-family: 'Noto Sans KR', sans-serif;
+}
 
-    padding-left: 30px;
-    padding-right: 30px;
-
-    font-size: 10px;
+/* Viewport: lg ~ */
+@media all and (min-width: 1264px) {
+  .contents {
+    max-width: 1880px;
+    margin: auto;
+    padding-right: var(--spacing-xl);
+    font-size: 18px;
   }
-  .divider {
-    margin-bottom: 16px;
-  }
-  .content .text {
-    margin-right: 12px;
+  .footer-height {
+    height: 108px;
   }
 }
 
 /* Viewport: md */
 @media all and (min-width: 960px) and (max-width: 1263px) {
-  .container {
+  .contents {
     max-width: 932px;
-    max-height: 108px;
-    height: 108px;
-
+    margin: auto;
+    padding-right: var(--spacing-lg);
     font-size: 18px;
   }
-  .divider {
-    margin-bottom: 32px;
-  }
-  .content .text {
-    margin-right: 32px;
+  .footer-height {
+    height: 108px;
   }
 }
 
-/* Viewport: lg ~ */
-@media all and (min-width: 1264px) {
-  .container {
-    max-width: 1880px;
-    max-height: 108px;
-    height: 108px;
-
-    padding-left: 88px;
-    padding-right: 88px;
-
-    font-size: 18px;
+/* Viewport: ~ sm */
+@media all and (max-width: 959px) {
+  .contents {
+    max-width: 932px;
+    margin: auto;
+    padding-right: var(--spacing-md);
+    font-size: 10px;
   }
-  .divider {
-    margin-bottom: 32px;
-  }
-  .content .text {
-    margin-right: 32px;
+  .footer-height {
+    height: 56px;
   }
 }
 </style>

@@ -69,7 +69,7 @@ export default {
   data() {
     return {
       posterBox: {},
-      emptyPosterType1: {
+      emptyPoster: {
         id: 0,
         title: '광고를 신청해주세요!',
         description: '광고를 신청해주세요!',
@@ -81,36 +81,6 @@ export default {
         posterType: ['R1', 'example-image'],
         posterWidth: '300',
         posterHeight: '250',
-        startedDate: '2020-01-01',
-        finishedDate: '2030-01-01',
-      },
-      emptyPosterType2: {
-        id: 0,
-        title: '광고를 신청해주세요!',
-        description: '광고를 신청해주세요!',
-        keywords: '광고를 신청해주세요!',
-        imagePath: 'image/empty_type2.png',
-        siteUrl: '/',
-        rowPosition: '-',
-        columnPosition: '-',
-        posterType: ['R2', 'example-image'],
-        posterWidth: '300',
-        posterHeight: '516',
-        startedDate: '2020-01-01',
-        finishedDate: '2030-01-01',
-      },
-      emptyPosterType3: {
-        id: 0,
-        title: '광고를 신청해주세요!',
-        description: '광고를 신청해주세요!',
-        keywords: '광고를 신청해주세요!',
-        imagePath: 'image/empty_type3.png',
-        siteUrl: '/',
-        rowPosition: '-',
-        columnPosition: '-',
-        posterType: ['R3', 'example-image'],
-        posterWidth: '300',
-        posterHeight: '782',
         startedDate: '2020-01-01',
         finishedDate: '2030-01-01',
       },
@@ -133,14 +103,7 @@ export default {
   methods: {
     init() {
       if (this.poster.type !== undefined && this.poster.type === 'EXAMPLE') {
-        this.posterBox = this.emptyPosterType1;
-        if (this.poster.size === '1') {
-          this.posterBox = this.emptyPosterType1;
-        } else if (this.poster.size === '2') {
-          this.posterBox = this.emptyPosterType2;
-        } else if (this.poster.size === '3') {
-          this.posterBox = this.emptyPosterType3;
-        }
+        this.posterBox = this.emptyPoster;
       } else {
         this.posterBox = this.poster;
       }

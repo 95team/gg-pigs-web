@@ -41,6 +41,7 @@
         </div>
         <div class="bottom-content poster-detail-link" style="height:10%">
           <v-btn
+            v-if="isClicked"
             target="_blank"
             :href="posterBox.siteUrl"
             block

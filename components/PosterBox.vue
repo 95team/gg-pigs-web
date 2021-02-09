@@ -37,12 +37,13 @@
         <v-row
           class="poster-detail-description pa-4"
           align="center"
+          justify="center"
           style="height:70%"
           :style="{ color: color }"
         >
           {{ posterBox.description }}
         </v-row>
-        <v-row class="poster-detail-link pa-4">
+        <v-row class="poster-detail-link pl-4 pr-4">
           <v-btn
             v-if="isClicked"
             target="_blank"

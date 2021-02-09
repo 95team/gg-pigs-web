@@ -25,33 +25,35 @@
       }"
     >
       <v-card-text style="height:100%">
-        <div
-          class="bottom-content poster-detail-title"
+        <v-row
+          class="poster-detail-title pa-4"
+          align="center"
+          justify="center"
           style="height:20%"
           :style="{ color: color }"
         >
           {{ posterBox.title }}
-        </div>
-        <div
-          class="center-content poster-detail-description"
+        </v-row>
+        <v-row
+          class="poster-detail-description pa-4"
+          align="center"
           style="height:70%"
           :style="{ color: color }"
         >
           {{ posterBox.description }}
-        </div>
-        <div class="bottom-content poster-detail-link" style="height:10%">
+        </v-row>
+        <v-row class="poster-detail-link pa-4">
           <v-btn
             v-if="isClicked"
             target="_blank"
             :href="posterBox.siteUrl"
             block
-            plain
             outlined
             :style="{ color: color }"
           >
             자세히 보기
           </v-btn>
-        </div>
+        </v-row>
       </v-card-text>
     </v-card>
   </div>
@@ -120,18 +122,6 @@ img {
 
 .example-image {
   opacity: 0.7;
-}
-
-.center-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.bottom-content {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
 }
 
 .poster {

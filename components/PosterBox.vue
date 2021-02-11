@@ -15,48 +15,50 @@
     />
 
     <!-- Poster 콘텐츠 -->
-    <v-card
-      elevation="0"
+    <v-container
       class="poster-detail"
+      style="max-width:100%"
       :class="{ 'poster-detail-animation': isClicked }"
       :style="{
         width: posterBox.posterWidth + 'px !important',
         height: '100%',
       }"
     >
-      <v-card-text style="height:100%">
-        <v-row
-          class="poster-detail-title pa-4"
-          align="center"
-          justify="center"
-          style="height:20%"
+      <!-- Display: desktop, tablet, laptop -->
+      <v-row class="poster-detail-title" style="height:20%" :style="{ color: color }">
+        {{ posterBox.title }}
+      </v-row>
+      <v-row class="poster-detail-description" style="height:70%" :style="{ color: color }">
+        {{ posterBox.description }}
+      </v-row>
+      <v-row class="poster-detail-link" style="height:auto">
+        <v-btn
+          v-if="isClicked"
+          block
+          outlined
+          target="_blank"
+          :href="posterBox.siteUrl"
           :style="{ color: color }"
         >
-          {{ posterBox.title }}
-        </v-row>
-        <v-row
-          class="poster-detail-description pa-4"
-          align="center"
-          justify="center"
-          style="height:70%"
+          자세히 보기
+        </v-btn>
+      </v-row>
+
+      <!-- Display: mobile -->
+      <v-row class="poster-detail-link-mobile">
+        <v-btn
+          v-if="isClicked"
+          target="_blank"
+          :href="posterBox.siteUrl"
+          block
+          outlined
+          x-small
           :style="{ color: color }"
         >
-          {{ posterBox.description }}
-        </v-row>
-        <v-row class="poster-detail-link pl-4 pr-4">
-          <v-btn
-            v-if="isClicked"
-            target="_blank"
-            :href="posterBox.siteUrl"
-            block
-            outlined
-            :style="{ color: color }"
-          >
-            자세히 보기
-          </v-btn>
-        </v-row>
-      </v-card-text>
-    </v-card>
+          자세히 보기
+        </v-btn>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
@@ -157,16 +159,58 @@ img {
 }
 
 .poster-detail-title {
+  padding: 16px;
+
   font: normal bold normal 20px NotoSansCJKkr;
+
+  align-items: flex-end !important;
+  justify-content: center !important;
 }
 
 .poster-detail-description {
+  padding: 16px;
   font: normal normal normal 14px NotoSansCJKkr;
 
   text-align: center;
+
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .poster-detail-link {
+  padding: 0px 16px;
   font: normal normal normal 14px NotoSansCJKkr;
+
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.poster-detail-link-mobile {
+  display: none;
+
+  padding: 0px 16px;
+  font: normal normal normal 10px NotoSansCJKkr;
+
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+@media all and (max-width: 600px) {
+  .poster-detail-title {
+    display: none;
+  }
+  .poster-detail-description {
+    display: none;
+  }
+  .poster-detail-link {
+    display: none;
+  }
+  .poster-detail-link-mobile {
+    display: flex;
+
+    margin-top: 0;
+
+    height: 100%;
+  }
 }
 </style>

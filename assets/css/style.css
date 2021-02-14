@@ -108,27 +108,27 @@
 .Ml5        {   margin-left: 5%;      }
 .Ml5-5      {   margin-left: 5.5%;    }
 
-.mt32       {   margin-top: 32px;     }
-.mt64       {   margin-top: 64px;     }
-.mt96       {   margin-top: 96px;     }
-.mt128      {   margin-top: 128px;    }
+.mt32       {   margin-top: 32px !important;     }
+.mt64       {   margin-top: 64px !important;     }
+.mt96       {   margin-top: 96px !important;     }
+.mt128      {   margin-top: 128px !important;    }
 
-.mb16       {   margin-bottom: 16px;  }
-.mb32       {   margin-bottom: 32px;  }
-.mb64       {   margin-bottom: 64px;  }
-.mb96       {   margin-bottom: 96px;  }
-.mb128      {   margin-bottom: 128px; }
+.mb16       {   margin-bottom: 16px !important;  }
+.mb32       {   margin-bottom: 32px !important;  }
+.mb64       {   margin-bottom: 64px !important;  }
+.mb96       {   margin-bottom: 96px !important;  }
+.mb128      {   margin-bottom: 128px !important; }
 
-.mr16       {   margin-right: 16px;   }
-.mr32       {   margin-right: 32px;   }
-.mr64       {   margin-right: 64px;   }
-.mr96       {   margin-right: 96px;   }
-.mr128      {   margin-right: 128px;  }
+.mr16       {   margin-right: 16px !important;   }
+.mr32       {   margin-right: 32px !important;   }
+.mr64       {   margin-right: 64px !important;   }
+.mr96       {   margin-right: 96px !important;   }
+.mr128      {   margin-right: 128px !important;  }
 
-.ml32       {   margin-left: 32px;    }
-.ml64       {   margin-left: 64px;    }
-.ml96       {   margin-left: 96px;    }
-.ml128      {   margin-left: 128px;   }
+.ml32       {   margin-left: 32px !important;    }
+.ml64       {   margin-left: 64px !important;    }
+.ml96       {   margin-left: 96px !important;    }
+.ml128      {   margin-left: 128px !important;   }
 
 
 /* Font Size */

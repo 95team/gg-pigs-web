@@ -33,7 +33,7 @@
     </v-row>
 
     <!-- Pagination -->
-    <v-row class="mb64" align="center" justify="center">
+    <v-row no-gutters class="mb64" align="center" justify="center">
       <div class="clickArea" style="padding:6px 15px; text-align: center;" @click="prevPage()">
         <img :src="[dayMode ? 'icon/prePageDay.svg' : 'icon/prePageNight.svg']" class="pageIcon" />
       </div>

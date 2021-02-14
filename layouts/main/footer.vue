@@ -1,6 +1,6 @@
 <template>
   <v-container fluid pa-0 class="noto-sans-font">
-    <v-row>
+    <v-row no-gutters>
       <v-divider :class="[dayMode ? 'border-light3' : 'border-dark2']" />
     </v-row>
 

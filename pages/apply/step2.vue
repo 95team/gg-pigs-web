@@ -33,6 +33,12 @@
               &nbsp;Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,
             </v-row>
           </v-col>
+          <v-spacer></v-spacer>
+          <v-col cols="auto">
+            <v-btn fab fixed depressed class="background-primary2" style="top: 42%; right: 18.3%;">
+              <v-icon class="text-light5">mdi-monitor</v-icon>
+            </v-btn>
+          </v-col>
         </v-row>
 
         <v-row no-gutters class="mt32 direction-column">

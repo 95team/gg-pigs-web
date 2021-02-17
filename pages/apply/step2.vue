@@ -35,9 +35,47 @@
           </v-col>
           <v-spacer></v-spacer>
           <v-col cols="auto">
-            <v-btn fab fixed depressed class="background-primary2" style="top: 42%; right: 18.3%;">
-              <v-icon class="text-light5">mdi-monitor</v-icon>
-            </v-btn>
+            <v-dialog width="300px">
+              <template v-slot:activator="{ on }">
+                <v-btn
+                  fab
+                  fixed
+                  depressed
+                  class="background-primary2"
+                  style="top: 42%; right: 18.3%;"
+                  v-on="on"
+                  @click="previewPoster"
+                >
+                  <v-icon class="text-light5">mdi-monitor</v-icon>
+                </v-btn>
+              </template>
+              <v-card>
+                <v-row no-gutters class="poster" @click="isClicked = !isClicked">
+                  <img
+                    id="uploadPreview"
+                    style="width: 300px;"
+                    :class="{ 'poster-image-animation': isClicked }"
+                  />
+                  <v-container
+                    class="poster-detail"
+                    :class="{ 'poster-detail-animation': isClicked }"
+                    :style="{
+                      height: '100%',
+                    }"
+                  >
+                    <v-row class="poster-detail-title" style="height:20%">
+                      {{ title }}
+                    </v-row>
+                    <v-row class="poster-detail-description" style="height:70%">
+                      {{ description }}
+                    </v-row>
+                    <v-row class="poster-detail-link" style="height:auto">
+                      <v-btn block outlined>자세히 보기</v-btn>
+                    </v-row>
+                  </v-container>
+                </v-row>
+              </v-card>
+            </v-dialog>
           </v-col>
         </v-row>
 
@@ -179,6 +217,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   layout: 'owner/default',
   data() {
@@ -208,7 +248,13 @@ export default {
           else return '';
         },
       },
+      isClicked: false,
     };
+  },
+  methods: {
+    ...mapMutations({
+      previewPoster: 'apply/PREVIEW_POSTER',
+    }),
   },
 };
 </script>
@@ -246,5 +292,56 @@ export default {
   border-radius: 14px;
   background-color: #fafbfc;
   font-size: 18px;
+}
+
+.poster {
+  position: relative;
+  cursor: pointer;
+}
+
+.poster-image-animation {
+  filter: blur(8px);
+  opacity: 0.25;
+  transition: filter 1.5s;
+}
+
+.poster-detail {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.poster-detail-animation {
+  background-color: transparent !important;
+  opacity: 1;
+  transition: opacity 1.5s;
+}
+
+.poster-detail-title {
+  padding: 16px;
+
+  font: normal bold normal 20px NotoSansCJKkr;
+
+  align-items: flex-end !important;
+  justify-content: center !important;
+}
+
+.poster-detail-description {
+  padding: 16px;
+  font: normal normal normal 14px NotoSansCJKkr;
+
+  text-align: center;
+
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.poster-detail-link {
+  padding: 0px 16px;
+  font: normal normal normal 14px NotoSansCJKkr;
+
+  align-items: center !important;
+  justify-content: center !important;
 }
 </style>

@@ -137,7 +137,7 @@
         style="font-size: 52px; color: var(--light5)"
         :ripple="false"
         to="step2"
-        @click="sendInfo"
+        @click.native="sendInfo"
       >
         다음
       </v-btn>
@@ -167,6 +167,7 @@ export default {
         startedDate: this.date,
         finishedDate,
       });
+      this.$store.commit('apply/FETCH_IMG_HEIGHT');
     },
     oneChecked() {
       const poster = document.getElementsByName('posterType');

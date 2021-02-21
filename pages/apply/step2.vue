@@ -49,19 +49,18 @@
                   <v-icon class="text-light5">mdi-monitor</v-icon>
                 </v-btn>
               </template>
-              <v-card>
+              <v-card v-if="$store.state.apply.isAttached">
                 <v-row no-gutters class="poster" @click="isClicked = !isClicked">
                   <img
                     id="uploadPreview"
                     style="width: 300px;"
+                    :style="{ height: $store.state.apply.imgHeight }"
                     :class="{ 'poster-image-animation': isClicked }"
                   />
                   <v-container
                     class="poster-detail"
                     :class="{ 'poster-detail-animation': isClicked }"
-                    :style="{
-                      height: '100%',
-                    }"
+                    style="height: 100%;"
                   >
                     <v-row class="poster-detail-title" style="height:20%">
                       {{ title }}
@@ -74,6 +73,9 @@
                     </v-row>
                   </v-container>
                 </v-row>
+              </v-card>
+              <v-card v-else>
+                이미지를 첨부해주세요!
               </v-card>
             </v-dialog>
           </v-col>

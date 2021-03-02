@@ -3,7 +3,7 @@ export const state = function() {
     posterType: '',
     startedDate: '',
     imgHeight: '',
-    isAttached: false,
+    posterUrl: null,
   };
 };
 
@@ -13,16 +13,12 @@ export const mutations = {
     state.startedDate = payload.startedDate;
     state.finishedDate = payload.finishedDate;
   },
-  PREVIEW_POSTER(state) {
-    if (document.getElementById('imgFile').files[0]) {
-      const oFReader = new FileReader();
-      oFReader.readAsDataURL(document.getElementById('imgFile').files[0]);
-
-      oFReader.onload = function(oFREvent) {
-        document.getElementById('uploadPreview').src = oFREvent.target.result;
-      };
-      state.isAttached = true;
+  PREVIEW_POSTER(state, payload) {
+    if (state.posterUrl) {
+      URL.revokeObjectURL(state.posterUrl);
     }
+    const posterImage = payload.target.files[0];
+    state.posterUrl = URL.createObjectURL(posterImage);
   },
   FETCH_IMG_HEIGHT(state) {
     if (state.posterType === 'R1') {

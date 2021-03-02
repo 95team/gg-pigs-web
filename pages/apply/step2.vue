@@ -19,8 +19,13 @@
         <v-row no-gutters align="center">
           <v-col cols="auto" class="mr32">
             <div class="add-img">
-              <label for="imgFile">이미지 첨부</label>
-              <input id="imgFile" type="file" accept="image/x-png,image/gif,image/jpeg" />
+              <label for="imageFile">이미지 첨부</label>
+              <input
+                id="imageFile"
+                type="file"
+                accept="image/x-png,image/gif,image/jpeg"
+                @change="previewPoster"
+              />
             </div>
           </v-col>
           <v-col cols="auto" class="text-light2">
@@ -44,19 +49,18 @@
                   class="background-primary2"
                   style="top: 42%; right: 18.3%;"
                   v-on="on"
-                  @click="previewPoster"
                 >
                   <v-icon class="text-light5">mdi-monitor</v-icon>
                 </v-btn>
               </template>
-              <v-card v-if="$store.state.apply.isAttached">
+              <v-card v-if="$store.state.apply.posterUrl">
                 <v-row no-gutters class="poster" @click="isClicked = !isClicked">
-                  <img
-                    id="uploadPreview"
+                  <v-img
+                    :src="$store.state.apply.posterUrl"
                     style="width: 300px;"
                     :style="{ height: $store.state.apply.imgHeight }"
                     :class="{ 'poster-image-animation': isClicked }"
-                  />
+                  ></v-img>
                   <v-container
                     class="poster-detail"
                     :class="{ 'poster-detail-animation': isClicked }"

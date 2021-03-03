@@ -136,7 +136,6 @@
         height="176px"
         style="font-size: 52px; color: var(--light5)"
         :ripple="false"
-        to="step2"
         @click="sendInfo"
       >
         다음
@@ -167,6 +166,8 @@ export default {
         startedDate: this.date,
         finishedDate,
       });
+      this.$store.commit('apply/FETCH_IMG_HEIGHT');
+      this.$router.push({ name: 'apply-step2' });
     },
     oneChecked() {
       const poster = document.getElementsByName('posterType');

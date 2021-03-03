@@ -19,8 +19,13 @@
         <v-row no-gutters align="center">
           <v-col cols="auto" class="mr32">
             <div class="add-img">
-              <label for="imgFile">이미지 첨부</label>
-              <input id="imgFile" type="file" accept="image/x-png,image/gif,image/jpeg" />
+              <label for="imageFile">이미지 첨부</label>
+              <input
+                id="imageFile"
+                type="file"
+                accept="image/x-png,image/gif,image/jpeg"
+                @change="previewPoster"
+              />
             </div>
           </v-col>
           <v-col cols="auto" class="text-light2">
@@ -32,6 +37,51 @@
               <v-img :src="warning" max-height="22px" max-width="24px"></v-img>
               &nbsp;Lorem ipsum dolor sit amet, conseteturLorem ipsum dolor sit amet,
             </v-row>
+          </v-col>
+          <v-spacer></v-spacer>
+          <v-col cols="auto">
+            <v-dialog width="300px">
+              <template v-slot:activator="{ on }">
+                <v-btn
+                  fab
+                  fixed
+                  depressed
+                  class="background-primary2"
+                  style="top: 42%; right: 18.3%;"
+                  v-on="on"
+                >
+                  <v-icon class="text-light5">mdi-monitor</v-icon>
+                </v-btn>
+              </template>
+              <v-card v-if="$store.state.apply.posterUrl">
+                <v-row no-gutters class="poster" @click="isClicked = !isClicked">
+                  <v-img
+                    :src="$store.state.apply.posterUrl"
+                    style="width: 300px;"
+                    :style="{ height: $store.state.apply.imgHeight }"
+                    :class="{ 'poster-image-animation': isClicked }"
+                  ></v-img>
+                  <v-container
+                    class="poster-detail"
+                    :class="{ 'poster-detail-animation': isClicked }"
+                    style="height: 100%;"
+                  >
+                    <v-row class="poster-detail-title" style="height:20%">
+                      {{ title }}
+                    </v-row>
+                    <v-row class="poster-detail-description" style="height:70%">
+                      {{ description }}
+                    </v-row>
+                    <v-row class="poster-detail-link" style="height:auto">
+                      <v-btn block outlined>자세히 보기</v-btn>
+                    </v-row>
+                  </v-container>
+                </v-row>
+              </v-card>
+              <v-card v-else>
+                이미지를 첨부해주세요!
+              </v-card>
+            </v-dialog>
           </v-col>
         </v-row>
 
@@ -173,6 +223,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   layout: 'owner/default',
   data() {
@@ -202,7 +254,13 @@ export default {
           else return '';
         },
       },
+      isClicked: false,
     };
+  },
+  methods: {
+    ...mapMutations({
+      previewPoster: 'apply/PREVIEW_POSTER',
+    }),
   },
 };
 </script>
@@ -240,5 +298,56 @@ export default {
   border-radius: 14px;
   background-color: #fafbfc;
   font-size: 18px;
+}
+
+.poster {
+  position: relative;
+  cursor: pointer;
+}
+
+.poster-image-animation {
+  filter: blur(8px);
+  opacity: 0.25;
+  transition: filter 1.5s;
+}
+
+.poster-detail {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.poster-detail-animation {
+  background-color: transparent !important;
+  opacity: 1;
+  transition: opacity 1.5s;
+}
+
+.poster-detail-title {
+  padding: 16px;
+
+  font: normal bold normal 20px NotoSansCJKkr;
+
+  align-items: flex-end !important;
+  justify-content: center !important;
+}
+
+.poster-detail-description {
+  padding: 16px;
+  font: normal normal normal 14px NotoSansCJKkr;
+
+  text-align: center;
+
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.poster-detail-link {
+  padding: 0px 16px;
+  font: normal normal normal 14px NotoSansCJKkr;
+
+  align-items: center !important;
+  justify-content: center !important;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <!-- Poster -->
-  <div class="poster ma-2" :style="{ 'z-index': zIndex }" @click="isClicked = !isClicked">
+  <div class="poster" :style="{ 'z-index': zIndex }" @click="isClicked = !isClicked">
     <!-- Poster 이미지 -->
     <img
       class="poster-image"
@@ -129,6 +129,7 @@ img {
 
 .poster {
   position: relative;
+  margin: 6px;
 }
 
 .poster:hover {

@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid pa-0>
+  <v-container fluid>
     <v-row class="contents" no-gutters>
       <!-- col1 -->
       <v-col cols="4" xs="4" md="4" lg="2">
@@ -34,24 +34,23 @@
 
     <!-- Pagination -->
     <v-row no-gutters class="mb64" align="center" justify="center">
-      <div class="clickArea" style="padding:6px 15px; text-align: center;" @click="prevPage()">
-        <img :src="[dayMode ? 'icon/prePageDay.svg' : 'icon/prePageNight.svg']" class="pageIcon" />
-      </div>
+      <v-col cols="auto" @click="prevPage()">
+        <img
+          :src="[dayMode ? 'icon/prevPageDay.svg' : 'icon/prevPageNight.svg']"
+          class="pageIcon"
+        />
+      </v-col>
 
-      <div
-        class="pageNum"
-        :class="[dayMode ? 'text-light1' : 'text-light5']"
-        style="margin: 0px 70px"
-      >
+      <v-col cols="auto" class="pageNum" :class="[dayMode ? 'text-light1' : 'text-light5']">
         {{ page }}
-      </div>
+      </v-col>
 
-      <div class="clickArea" style="padding:6px 15px; text-align: center;" @click="nextPage()">
+      <v-col cols="auto" @click="nextPage()">
         <img
           :src="[dayMode ? 'icon/nextPageDay.svg' : 'icon/nextPageNight.svg']"
           class="pageIcon"
         />
-      </div>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -242,47 +241,41 @@ export default {
 
 <style scoped>
 .contents {
-  margin-top: 28px;
-  margin-bottom: 28px;
-  margin-left: 0px;
-  margin-right: 0px;
-}
-
-.clickArea {
-  width: 48px;
-  height: 48px;
-  outline: none;
-}
-
-.clickArea:hover {
-  cursor: pointer;
+  margin-bottom: 32px;
 }
 
 .pageNum {
-  width: 14px;
-  height: 36px;
   font-family: 'Noto Sans KR', sans-serif;
-  font-size: 24px;
+  font-size: 20px;
+  height: 36px;
 }
 
 .pageIcon {
-  width: 18px;
-  height: 36px;
+  width: 41px;
+  height: 41px;
+  cursor: pointer;
+  margin: 0 48px 0 48px;
 }
 
-@media all and (max-width: 959px) {
-  .container {
-    max-width: 932px !important;
-  }
-}
-@media all and (min-width: 960px) and (max-width: 1263px) {
-  .container {
-    max-width: 932px !important;
-  }
-}
 @media all and (min-width: 1264px) {
   .container {
-    max-width: 1880px !important;
+    max-width: 1564px !important;
+    padding: 0 26px 0 26px;
+  }
+}
+@media all and (min-width: 600px) and (max-width: 1263px) {
+  .container {
+    max-width: 808px !important;
+    padding: 0 26px 0 26px;
+  }
+}
+@media all and (max-width: 599px) {
+  .container {
+    max-width: 552px !important;
+    padding: 0 2px 0 2px;
+  }
+  .contents {
+    margin-bottom: 16px;
   }
 }
 </style>

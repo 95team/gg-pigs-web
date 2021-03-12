@@ -8,7 +8,7 @@
       no-gutters
       align="center"
       justify="end"
-      class="footer-height contents"
+      class="contents"
       :class="[dayMode ? 'text-light2' : 'text-dark3']"
     >
       <v-col cols="auto">
@@ -36,39 +36,33 @@ export default {
 /* Viewport: lg ~ */
 @media all and (min-width: 1264px) {
   .contents {
-    max-width: 1880px;
+    height: 124px;
+    max-width: 1564px;
     margin: auto;
-    padding-right: var(--spacing-xl);
+    padding-right: 32px;
     font-size: 18px;
-  }
-  .footer-height {
-    height: 108px;
   }
 }
 
 /* Viewport: md */
-@media all and (min-width: 960px) and (max-width: 1263px) {
+@media all and (min-width: 600px) and (max-width: 1263px) {
   .contents {
-    max-width: 932px;
+    height: 124px;
+    max-width: 808px;
     margin: auto;
-    padding-right: var(--spacing-lg);
-    font-size: 18px;
-  }
-  .footer-height {
-    height: 108px;
+    padding-right: 32px;
+    font-size: 14px;
   }
 }
 
 /* Viewport: ~ sm */
-@media all and (max-width: 959px) {
+@media all and (max-width: 599px) {
   .contents {
-    max-width: 932px;
+    height: 92px;
+    max-width: 552px;
     margin: auto;
-    padding-right: var(--spacing-md);
-    font-size: 10px;
-  }
-  .footer-height {
-    height: 56px;
+    padding-right: 8px;
+    font-size: 14px;
   }
 }
 </style>

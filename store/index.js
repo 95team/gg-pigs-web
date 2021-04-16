@@ -16,6 +16,7 @@ export const state = function() {
     userInfoNight: require('~/static/icon/userInfoNight.svg'),
     lookupDay: require('~/static/icon/lookupDay.svg'),
     lookupNight: require('~/static/icon/lookupNight.svg'),
+    link: require('~/static/icon/link.svg'),
   };
 };
 
@@ -72,5 +73,8 @@ export const getters = {
   },
   lookupNight(state) {
     return state.lookupNight;
+  },
+  link(state) {
+    return state.link;
   },
 };

@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid pa-0 class="notoSansFont">
+  <!-- <v-container fluid pa-0 class="notoSansFont">
     <v-row no-gutters align="center" class="content">
       <v-col cols="auto" class="mr64">
         <nuxt-link to="/">
@@ -28,27 +28,60 @@
         </v-btn>
       </v-col>
     </v-row>
-  </v-container>
+  </v-container> -->
+  <v-app-bar
+    flat
+    :style="{
+      backgroundColor: [dayMode ? 'white' : 'var(--grey-9)'],
+    }"
+    justify="center"
+  >
+    <v-row justify="center">
+      <div class="header">
+        <v-row no-gutters align="center">
+          <v-col cols="auto">
+            <img :src="[dayMode ? logoDay : logoNight]" alt="광고돼지" class="logo" />
+          </v-col>
+          <v-col cols="auto" offset="1">
+            <v-tabs hide-slider :color="tabsColor" background-color="transparent">
+              <v-tab v-for="menu in menus" :key="menu">
+                {{ menu.title }}
+              </v-tab>
+            </v-tabs>
+          </v-col>
+          <v-col cols="auto" class="icons">
+            <v-btn text plain :ripple="false" @click="toggleDayMode">
+              <img :src="[dayMode ? day : night]" alt="다크모드" />
+            </v-btn>
+            <v-btn text plain :ripple="false">
+              <img :src="[dayMode ? dashboardDefault : dashboardDark]" alt="포스터" />
+            </v-btn>
+          </v-col>
+        </v-row>
+      </div>
+    </v-row>
+  </v-app-bar>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import { getLoginUser } from '~/api/user.js';
 
 export default {
   data() {
     return {
       menus: [{ title: '광고 신청' }, { title: '광고 조회' }, { title: '문의하기' }],
-      pangoLogoDay: require('~/static/image/pangoLogoDay.png'),
-      day: require('~/static/icon/day.svg'),
+      logoDay: '/image/pangoLogoDay.png',
+      logoNight: '/image/pangoLogoNight.png',
+      day: '/icon/day.svg',
+      night: '/icon/night.svg',
       close: require('~/static/icon/close.svg'),
+      dashboardDefault: '/icon/dashboardDefault.svg',
+      dashboardDark: '/icon/dashboardDark.svg',
     };
   },
   computed: {
-    ...mapGetters({
-      isLogin: 'isLogin',
-      loginUser: 'loginUser',
-    }),
+    ...mapGetters(['isLogin', 'loginUser', 'dayMode']),
     ownerPath() {
       const admin = 'ROLE_ADMIN';
       return this.isLogin && this.loginUser
@@ -56,6 +89,21 @@ export default {
           ? '/admin/lists'
           : '/owner'
         : '/owner/login';
+    },
+    pangoLogoDay() {
+      return this.LogoDay;
+    },
+
+    tabsColor() {
+      return this.dayMode ? 'var(--grey-9)' : 'var(--grey-0)';
+    },
+
+    tabColor() {
+      return this.dayMode ? 'var(--grey-7)' : 'var(--grey-4)';
+    },
+
+    tabsBackgroundColor() {
+      return this.dayMode ? 'white' : 'var(--grey-9)';
     },
   },
   created() {
@@ -90,20 +138,39 @@ export default {
           .catch(() => {});
       }
     },
+    ...mapMutations({
+      toggleDayMode: 'TOGGLE_DAYMODE',
+    }),
   },
 };
 </script>
 
 <style scoped>
+.v-app-bar {
+  border-bottom: 1px solid var(--grey-3);
+}
+
+.header {
+  width: 78vw;
+}
+
+.logo {
+  width: 96px;
+  height: 29px;
+}
+
 .notoSansFont {
   font-family: 'Noto Sans KR', sans-serif;
 }
+
 .container {
   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.1);
 }
+
 .content {
   margin: 0 18.3%;
 }
+
 .tab-item {
   font-size: 18px;
   font-weight: bold;
@@ -111,5 +178,9 @@ export default {
   width: 148px;
 
   letter-spacing: normal;
+}
+
+.icons {
+  margin-left: auto;
 }
 </style>

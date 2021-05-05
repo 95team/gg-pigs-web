@@ -1,6 +1,6 @@
 <template>
   <!-- Poster -->
-  <div class="poster" @click="isClicked = !isClicked">
+  <div v-if="dayMode" class="poster" @click="isClicked = !isClicked">
     <div v-if="posterBox.imagePath !== 'icon/empty-poster-default.svg'">
       <img
         :src="posterBox.imagePath"
@@ -16,16 +16,16 @@
       <!-- Display: desktop, tablet, laptop -->
       <v-container
         class="poster-cover"
-        style="max-width: 100%; height: 100%;"
+        style="max-width: 100%; height: 100%"
         :class="{ 'poster-cover-animation': isClicked }"
       ></v-container>
 
       <v-container
         class="poster-detail"
-        style="max-width: 100%; height: 100%;"
+        style="max-width: 100%; height: 100%"
         :class="{ 'poster-detail-animation': isClicked }"
       >
-        <v-row no-gutters class="poster-detail-title" style="max-width: 85%; color: var(--grey-0);">
+        <v-row no-gutters class="poster-detail-title" style="max-width: 85%; color: var(--grey-0)">
           {{ posterBox.title }}
         </v-row>
         <v-row no-gutters class="poster-detail-link">
@@ -58,6 +58,75 @@
         <img
           class="poster-empty-hover"
           src="icon/empty-poster-hover.svg"
+          :title="posterBox.title"
+          :alt="posterBox.description"
+          :style="{
+            width: posterBox.posterWidth + 'px !important',
+            height: '100%',
+          }"
+        />
+      </nuxt-link>
+    </div>
+  </div>
+
+  <div v-else class="poster" @click="isClicked = !isClicked">
+    <div v-if="posterBox.imagePath !== 'icon/empty-poster-default.svg'">
+      <img
+        :src="posterBox.imagePath"
+        :title="posterBox.title"
+        :alt="posterBox.description"
+        :style="{
+          width: posterBox.posterWidth + 'px !important',
+          height: '100%',
+        }"
+      />
+
+      <!-- Poster 콘텐츠 -->
+      <!-- Display: desktop, tablet, laptop -->
+      <v-container
+        class="poster-cover"
+        style="max-width: 100%; height: 100%"
+        :class="{ 'poster-cover-animation': isClicked }"
+      ></v-container>
+
+      <v-container
+        class="poster-detail"
+        style="max-width: 100%; height: 100%"
+        :class="{ 'poster-detail-animation': isClicked }"
+      >
+        <v-row no-gutters class="poster-detail-title" style="max-width: 85%; color: var(--grey-0)">
+          {{ posterBox.title }}
+        </v-row>
+        <v-row no-gutters class="poster-detail-link">
+          <v-btn
+            class="link-btn"
+            :class="{ 'link-btn-animation': isClicked }"
+            height="40px"
+            min-width="40px"
+            target="_blank"
+            :href="posterBox.siteUrl"
+          >
+            <v-img :src="link"></v-img>
+          </v-btn>
+        </v-row>
+      </v-container>
+    </div>
+
+    <div v-else>
+      <nuxt-link to="/apply">
+        <img
+          class="poster-empty-default"
+          src="icon/empty-poster-default-dark.svg"
+          :title="posterBox.title"
+          :alt="posterBox.description"
+          :style="{
+            width: posterBox.posterWidth + 'px !important',
+            height: '100%',
+          }"
+        />
+        <img
+          class="poster-empty-hover"
+          src="icon/empty-poster-hover-dark.svg"
           :title="posterBox.title"
           :alt="posterBox.description"
           :style="{

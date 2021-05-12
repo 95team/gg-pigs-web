@@ -5,10 +5,10 @@ export const state = function() {
     loginUser: null,
 
     /** '이미지' 관련 변수입니다. */
-    dashboardDay: require('~/static/icon/dashboardDay.svg'),
-    dashboardNight: require('~/static/icon/dashboardNight.svg'),
-    menuDay: require('~/static/icon/menuDay.svg'),
-    menuNight: require('~/static/icon/menuNight.svg'),
+    dashboardDay: '/icon/dashboardDay.svg',
+    dashboardNight: '/icon/dashboardNight.svg',
+    menuDay: '/icon/menuDay.svg',
+    menuNight: '/icon/menuNight.svg',
   };
 };
 

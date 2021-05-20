@@ -30,6 +30,7 @@
             replace
             to="/apply/step1"
             :style="{ color: [dayMode ? 'var(--grey-7)' : 'var(--grey-4)'] }"
+            disabled
           >
             광고 신청
           </v-tab>

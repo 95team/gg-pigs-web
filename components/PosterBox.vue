@@ -1,7 +1,7 @@
 <template>
   <!-- Poster -->
-  <div v-if="dayMode" class="poster" @click="isClicked = !isClicked">
-    <div v-if="posterBox.imagePath !== 'icon/empty-poster-default.svg'">
+  <div class="poster" @click="isClicked = !isClicked">
+    <div v-if="posterBox.imagePath !== ''">
       <img
         :src="posterBox.imagePath"
         :title="posterBox.title"
@@ -37,7 +37,7 @@
             target="_blank"
             :href="posterBox.siteUrl"
           >
-            <v-img :src="link"></v-img>
+            <v-img :src="ownerWebsiteLink"></v-img>
           </v-btn>
         </v-row>
       </v-container>
@@ -47,7 +47,7 @@
       <nuxt-link to="/apply">
         <img
           class="poster-empty-default"
-          src="icon/empty-poster-default.svg"
+          :src="emptyPosterBoxDefault"
           :title="posterBox.title"
           :alt="posterBox.description"
           :style="{
@@ -57,76 +57,7 @@
         />
         <img
           class="poster-empty-hover"
-          src="icon/empty-poster-hover.svg"
-          :title="posterBox.title"
-          :alt="posterBox.description"
-          :style="{
-            width: posterBox.posterWidth + 'px !important',
-            height: '100%',
-          }"
-        />
-      </nuxt-link>
-    </div>
-  </div>
-
-  <div v-else class="poster" @click="isClicked = !isClicked">
-    <div v-if="posterBox.imagePath !== 'icon/empty-poster-default.svg'">
-      <img
-        :src="posterBox.imagePath"
-        :title="posterBox.title"
-        :alt="posterBox.description"
-        :style="{
-          width: posterBox.posterWidth + 'px !important',
-          height: '100%',
-        }"
-      />
-
-      <!-- Poster 콘텐츠 -->
-      <!-- Display: desktop, tablet, laptop -->
-      <v-container
-        class="poster-cover"
-        style="max-width: 100%; height: 100%"
-        :class="{ 'poster-cover-animation': isClicked }"
-      ></v-container>
-
-      <v-container
-        class="poster-detail"
-        style="max-width: 100%; height: 100%"
-        :class="{ 'poster-detail-animation': isClicked }"
-      >
-        <v-row no-gutters class="poster-detail-title" style="max-width: 85%; color: var(--grey-0)">
-          {{ posterBox.title }}
-        </v-row>
-        <v-row no-gutters class="poster-detail-link">
-          <v-btn
-            class="link-btn"
-            :class="{ 'link-btn-animation': isClicked }"
-            height="40px"
-            min-width="40px"
-            target="_blank"
-            :href="posterBox.siteUrl"
-          >
-            <v-img :src="link"></v-img>
-          </v-btn>
-        </v-row>
-      </v-container>
-    </div>
-
-    <div v-else>
-      <nuxt-link to="/apply">
-        <img
-          class="poster-empty-default"
-          src="icon/empty-poster-default-dark.svg"
-          :title="posterBox.title"
-          :alt="posterBox.description"
-          :style="{
-            width: posterBox.posterWidth + 'px !important',
-            height: '100%',
-          }"
-        />
-        <img
-          class="poster-empty-hover"
-          src="icon/empty-poster-hover-dark.svg"
+          :src="emptyPosterBoxHover"
           :title="posterBox.title"
           :alt="posterBox.description"
           :style="{
@@ -157,7 +88,7 @@ export default {
         title: '광고를 신청해주세요!',
         description: '광고를 신청해주세요!',
         keywords: '광고를 신청해주세요!',
-        imagePath: 'icon/empty-poster-default.svg',
+        imagePath: '',
         siteUrl: '/',
         rowPosition: '-',
         columnPosition: '-',
@@ -168,10 +99,30 @@ export default {
         finishedDate: '2030-01-01',
       },
       isClicked: false,
+      emptyPosterBoxDefault: '',
+      emptyPosterBoxHover: '',
     };
   },
   computed: {
-    ...mapGetters(['dayMode', 'link']),
+    ...mapGetters([
+      'dayMode',
+      'ownerWebsiteLink',
+      'emptyPosterDefault',
+      'emptyPosterHover',
+      'emptyPosterDefaultDark',
+      'emptyPosterHoverDark',
+    ]),
+  },
+  watch: {
+    dayMode() {
+      if (this.dayMode) {
+        this.emptyPosterBoxDefault = this.emptyPosterDefault;
+        this.emptyPosterBoxHover = this.emptyPosterHover;
+      } else {
+        this.emptyPosterBoxDefault = this.emptyPosterDefaultDark;
+        this.emptyPosterBoxHover = this.emptyPosterHoverDark;
+      }
+    },
   },
   created() {
     const vm = this;
@@ -181,6 +132,13 @@ export default {
     init() {
       if (this.poster.type !== undefined && this.poster.type === 'EXAMPLE') {
         this.posterBox = this.emptyPoster;
+        if (this.dayMode) {
+          this.emptyPosterBoxDefault = this.emptyPosterDefault;
+          this.emptyPosterBoxHover = this.emptyPosterHover;
+        } else {
+          this.emptyPosterBoxDefault = this.emptyPosterDefaultDark;
+          this.emptyPosterBoxHover = this.emptyPosterHoverDark;
+        }
       } else {
         this.posterBox = this.poster;
       }

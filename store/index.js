@@ -16,6 +16,11 @@ export const state = function() {
     userInfoNight: require('~/static/icon/userInfoNight.svg'),
     lookupDay: require('~/static/icon/lookupDay.svg'),
     lookupNight: require('~/static/icon/lookupNight.svg'),
+    ownerWebsiteLink: require('~/static/icon/owner-website-link.svg'),
+    emptyPosterDefault: require('~/static/icon/empty-poster-default.svg'),
+    emptyPosterHover: require('~/static/icon/empty-poster-hover.svg'),
+    emptyPosterDefaultDark: require('~/static/icon/empty-poster-default-dark.svg'),
+    emptyPosterHoverDark: require('~/static/icon/empty-poster-hover-dark.svg'),
   };
 };
 
@@ -72,5 +77,20 @@ export const getters = {
   },
   lookupNight(state) {
     return state.lookupNight;
+  },
+  ownerWebsiteLink(state) {
+    return state.ownerWebsiteLink;
+  },
+  emptyPosterDefault(state) {
+    return state.emptyPosterDefault;
+  },
+  emptyPosterHover(state) {
+    return state.emptyPosterHover;
+  },
+  emptyPosterDefaultDark(state) {
+    return state.emptyPosterDefaultDark;
+  },
+  emptyPosterHoverDark(state) {
+    return state.emptyPosterHoverDark;
   },
 };

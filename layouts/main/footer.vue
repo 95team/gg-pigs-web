@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid pa-0 class="noto-sans-font">
+  <v-container fluid pa-0 class="main-font">
     <v-row no-gutters>
       <v-divider :class="[dayMode ? 'border-light3' : 'border-dark2']" />
     </v-row>
@@ -29,8 +29,8 @@ export default {
 </script>
 
 <style scoped>
-.noto-sans-font {
-  font-family: 'Noto Sans KR', sans-serif;
+.main-font {
+  font-family: 'Spoqa Han Sans Neo', sans-serif;
 }
 
 /* Viewport: lg ~ */
@@ -40,7 +40,7 @@ export default {
     max-width: 1564px;
     margin: auto;
     padding-right: 32px;
-    font-size: 18px;
+    font-size: 14px;
   }
 }
 

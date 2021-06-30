@@ -41,7 +41,11 @@
         />
       </v-col>
 
-      <v-col cols="auto" class="pageNum" :class="[dayMode ? 'text-light1' : 'text-light5']">
+      <v-col
+        cols="auto"
+        class="pageNum"
+        :style="{ color: [dayMode ? 'var(--grey-9)' : 'var(--grey-0)'] }"
+      >
         {{ page }}
       </v-col>
 
@@ -240,19 +244,22 @@ export default {
 </script>
 
 <style scoped>
+img {
+  display: block;
+}
+
 .contents {
   margin-bottom: 32px;
 }
 
 .pageNum {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Spoqa Han Sans Neo', sans-serif;
   font-size: 20px;
-  height: 36px;
 }
 
 .pageIcon {
-  width: 41px;
-  height: 41px;
+  width: 48px;
+  height: 48px;
   cursor: pointer;
   margin: 0 48px 0 48px;
 }

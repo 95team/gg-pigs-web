@@ -1,16 +1,17 @@
 <template>
-  <v-app>
+  <div>
     <owner-header></owner-header>
     <nuxt />
     <owner-footer></owner-footer>
-  </v-app>
+  </div>
 </template>
 
 <script>
-import OwnerHeader from '~/layouts/owner/header.vue';
+import OwnerHeader from '~/components/OwnerHeader.vue';
 import OwnerFooter from '~/layouts/owner/footer.vue';
 
 export default {
+  name: 'OwnerDefault',
   components: {
     OwnerHeader,
     OwnerFooter,
@@ -19,4 +20,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+body {
+  font-family: 'Spoqa Han Sans Neo', sans-serif;
+}
+</style>

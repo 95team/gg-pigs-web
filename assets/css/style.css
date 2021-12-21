@@ -35,6 +35,7 @@
   --color: #4d5256;
   --color-primary: #292a2b;
   --bg: #ffffff;
+  --bg-primary: #f1f5f5;
   --border-color: #e1e4e6;
 }
 
@@ -42,6 +43,7 @@
   --color: #ced3d6;
   --color-primary: #f8fafb;
   --bg: #292a2b;
+  --bg-primary: #363a3c;
   --border-color: #e1e4e6;
 }
 

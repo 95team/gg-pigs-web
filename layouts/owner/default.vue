@@ -8,7 +8,7 @@
 
 <script>
 import OwnerHeader from '~/components/OwnerHeader.vue';
-import OwnerFooter from '~/layouts/owner/footer.vue';
+import OwnerFooter from '~/components/OwnerFooter.vue';
 
 export default {
   name: 'OwnerDefault',

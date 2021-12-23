@@ -6,7 +6,7 @@
 
 /*  CSS pseudo-class */
 :root {
-  --primary1: #f06574;
+  --primary1: #ff5a60;
   --primary2: #fe7583;
   --light1: #222222;
   --light2: #b6b6b6;
@@ -35,14 +35,18 @@
   --color: #4d5256;
   --color-primary: #292a2b;
   --bg: #ffffff;
+  --bg-primary: #ffffff;
   --border-color: #e1e4e6;
+  --border-color-primary: #ced3d6;
 }
 
 .dark-mode {
   --color: #ced3d6;
   --color-primary: #f8fafb;
   --bg: #292a2b;
+  --bg-primary: #363a3c;
   --border-color: #e1e4e6;
+  --border-color-primary: #4d5256;
 }
 
 /* Color */

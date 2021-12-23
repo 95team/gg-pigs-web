@@ -10,6 +10,8 @@ export const state = function() {
     /** '로그인 사용자' 관련 변수입니다. */
     isLogin: false,
     loginUser: null,
+    email: '',
+    password: '',
 
     /** '이미지' 관련 변수입니다. */
     // header
@@ -27,6 +29,12 @@ export const mutations = {
   LOGIN_SUCCESS(state, payload) {
     state.isLogin = payload.isLogin;
     state.loginUser = payload.loginUser;
+  },
+  UPDATE_EMAIL(state, email) {
+    state.email = email;
+  },
+  UPDATE_PASSWORD(state, password) {
+    state.password = password;
   },
 };
 

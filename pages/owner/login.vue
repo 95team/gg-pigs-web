@@ -84,7 +84,7 @@ input.login-input {
   width: 587px;
   height: 64px;
 
-  background-color: var(--bg-primary);
+  background-color: var(--bg-secondary);
   color: var(--color-primary);
   font-size: 1.125rem;
 

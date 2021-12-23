@@ -35,7 +35,8 @@
   --color: #4d5256;
   --color-primary: #292a2b;
   --bg: #ffffff;
-  --bg-primary: #ffffff;
+  --bg-primary: #f1f5f5;
+  --bg-secondary: #ffffff;
   --border-color: #e1e4e6;
   --border-color-primary: #ced3d6;
 }
@@ -45,6 +46,7 @@
   --color-primary: #f8fafb;
   --bg: #292a2b;
   --bg-primary: #363a3c;
+  --bg-secondary: #363a3c;
   --border-color: #e1e4e6;
   --border-color-primary: #4d5256;
 }

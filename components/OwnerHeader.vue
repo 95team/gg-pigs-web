@@ -97,9 +97,8 @@ header {
   height: 29px;
 }
 
-.tab {
+.tab-link {
   padding: 1rem;
-  cursor: pointer;
   font-size: 1.125rem;
 }
 

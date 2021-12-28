@@ -1,72 +1,44 @@
 <template>
-  <!-- Poster -->
-  <div class="poster" @click="isClicked = !isClicked">
-    <div v-if="posterBox.imagePath !== ''">
+  <div
+    class="poster-container"
+    @mouseover="MOUSEOVER_EMPTY_POSTER"
+    @mouseout="MOUSEOUT_EMPTY_POSTER"
+    @click="isClicked = !isClicked"
+  >
+    <div>
       <img
-        :src="posterBox.imagePath"
-        :title="posterBox.title"
+        :src="
+          posterBox.imagePath
+            ? posterBox.imagePath
+            : this.$colorMode.preference === 'light'
+            ? lightEmptyPosterImage
+            : darkEmptyPosterImage
+        "
         :alt="posterBox.description"
-        :style="{
-          width: posterBox.posterWidth + 'px !important',
-          height: '100%',
-        }"
       />
+    </div>
 
-      <!-- Poster 콘텐츠 -->
-      <!-- Display: desktop, tablet, laptop -->
-      <v-container
-        class="poster-cover"
-        style="max-width: 100%; height: 100%"
-        :class="{ 'poster-cover-animation': isClicked }"
-      ></v-container>
-
-      <v-container
-        class="poster-detail"
-        style="max-width: 100%; height: 100%"
-        :class="{ 'poster-detail-animation': isClicked }"
-      >
-        <v-row no-gutters class="poster-detail-title" style="max-width: 85%; color: var(--grey-0)">
+    <div
+      v-if="posterBox.siteUrl !== 'apply'"
+      class="detail-container"
+      :class="{ 'detail-container-click': isClicked }"
+    >
+      <div class="detail-background"></div>
+      <div class="poster-detail">
+        <div class="poster-title">
           {{ posterBox.title }}
-        </v-row>
-        <v-row no-gutters class="poster-detail-link">
-          <v-btn
-            class="link-btn"
-            :class="{ 'link-btn-animation': isClicked }"
-            height="40px"
-            min-width="40px"
-            target="_blank"
-            :href="posterBox.siteUrl"
-          >
-            <v-img :src="ownerWebsiteLink"></v-img>
-          </v-btn>
-        </v-row>
-      </v-container>
+        </div>
+        <div class="poster-link">
+          <a :href="posterBox.siteUrl" target="_blank">
+            <img :src="btnSiteUrl" :alt="posterBox.title" class="link-button" />
+          </a>
+        </div>
+      </div>
     </div>
 
-    <div v-else>
-      <nuxt-link to="/apply">
-        <img
-          class="poster-empty-default"
-          :src="emptyPosterBoxDefault"
-          :title="posterBox.title"
-          :alt="posterBox.description"
-          :style="{
-            width: posterBox.posterWidth + 'px !important',
-            height: '100%',
-          }"
-        />
-        <img
-          class="poster-empty-hover"
-          :src="emptyPosterBoxHover"
-          :title="posterBox.title"
-          :alt="posterBox.description"
-          :style="{
-            width: posterBox.posterWidth + 'px !important',
-            height: '100%',
-          }"
-        />
-      </nuxt-link>
-    </div>
+    <nuxt-link v-else :to="posterBox.siteUrl">
+      <div class="empty-poster-link"></div>
+    </nuxt-link>
   </div>
 </template>
 
@@ -89,7 +61,7 @@ export default {
         description: '광고를 신청해주세요!',
         keywords: '광고를 신청해주세요!',
         imagePath: '',
-        siteUrl: '/',
+        siteUrl: 'apply',
         rowPosition: '-',
         columnPosition: '-',
         posterType: ['R1', 'example-image'],
@@ -99,48 +71,44 @@ export default {
         finishedDate: '2030-01-01',
       },
       isClicked: false,
-      emptyPosterBoxDefault: '',
-      emptyPosterBoxHover: '',
+      lightEmptyPosterImage: '',
+      darkEmptyPosterImage: '',
     };
   },
   computed: {
     ...mapGetters([
-      'dayMode',
-      'ownerWebsiteLink',
-      'emptyPosterDefault',
-      'emptyPosterHover',
-      'emptyPosterDefaultDark',
-      'emptyPosterHoverDark',
+      'lightEmptyPoster',
+      'lightEmptyPosterHover',
+      'darkEmptyPoster',
+      'darkEmptyPosterHover',
+      'btnSiteUrl',
     ]),
   },
-  watch: {
-    dayMode() {
-      if (this.dayMode) {
-        this.emptyPosterBoxDefault = this.emptyPosterDefault;
-        this.emptyPosterBoxHover = this.emptyPosterHover;
-      } else {
-        this.emptyPosterBoxDefault = this.emptyPosterDefaultDark;
-        this.emptyPosterBoxHover = this.emptyPosterHoverDark;
-      }
-    },
-  },
   created() {
-    const vm = this;
-    vm.init();
+    this.init();
   },
   methods: {
     init() {
       if (this.poster.type !== undefined && this.poster.type === 'EXAMPLE') {
         this.posterBox = this.emptyPoster;
-        if (this.dayMode) {
-          this.emptyPosterBoxDefault = this.emptyPosterDefault;
-          this.emptyPosterBoxHover = this.emptyPosterHover;
-        } else {
-          this.emptyPosterBoxDefault = this.emptyPosterDefaultDark;
-          this.emptyPosterBoxHover = this.emptyPosterHoverDark;
-        }
+        this.lightEmptyPosterImage = this.lightEmptyPoster;
+        this.darkEmptyPosterImage = this.darkEmptyPoster;
       } else {
         this.posterBox = this.poster;
+      }
+    },
+    MOUSEOVER_EMPTY_POSTER() {
+      if (this.$colorMode.preference === 'light') {
+        this.lightEmptyPosterImage = this.lightEmptyPosterHover;
+      } else {
+        this.darkEmptyPosterImage = this.darkEmptyPosterHover;
+      }
+    },
+    MOUSEOUT_EMPTY_POSTER() {
+      if (this.$colorMode.preference === 'light') {
+        this.lightEmptyPosterImage = this.lightEmptyPoster;
+      } else {
+        this.darkEmptyPosterImage = this.darkEmptyPoster;
       }
     },
   },
@@ -153,106 +121,87 @@ img {
   display: block;
 }
 
-.v-btn {
-  padding: 0 !important;
-}
-
-.poster {
+.poster-container {
   position: relative;
-  margin: 0 6px 12px 6px;
+
+  margin: 0 6px 12px;
 }
-
-.poster-empty-hover {
-  opacity: 0;
-
+.detail-container {
   position: absolute;
   top: 0;
-  left: 0;
-}
 
-.poster-cover {
-  position: absolute;
-  top: 0;
-}
+  width: 100%;
+  height: 100%;
 
+  display: none;
+}
+.detail-background {
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+}
 .poster-detail {
-  opacity: 0;
-
   position: absolute;
-  top: 0;
-}
+  bottom: 0;
+  right: 0;
 
-.poster-detail-title {
-  position: absolute;
-  right: 16px;
-  bottom: 68px;
-
-  font: normal bold normal 20px NotoSansCJKkr;
   text-align: right;
 }
+.poster-title {
+  color: var(--grey-0);
+}
+.poster-link {
+  display: flex;
 
-.poster-detail-link {
+  justify-content: flex-end;
+}
+.empty-poster-link {
   position: absolute;
-  right: 16px;
-  bottom: 16px;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
 }
 
 @media all and (min-width: 1264px) {
-  .poster:hover .poster-empty-default {
-    opacity: 0;
+  .poster-container:hover .detail-container {
+    display: block;
   }
-  .poster:hover .poster-empty-hover {
-    opacity: 1;
+  .poster-detail {
+    padding: 16px;
   }
+  .poster-title {
+    font-size: 18px;
+    line-height: 20px;
 
-  .poster:hover .poster-cover {
-    background-color: black;
-    animation: fadeout 50ms;
-    animation-fill-mode: forwards;
-  }
-
-  .poster:hover .poster-detail {
-    opacity: 1;
+    margin-bottom: 12px;
   }
 }
-
 @media all and (max-width: 1263px) {
-  .poster-cover-animation {
-    background-color: black;
-    animation: fadeout 50ms;
-    animation-fill-mode: forwards;
+  .detail-container-click {
+    display: block;
   }
-
-  .poster-detail-animation {
-    opacity: 1;
+  .poster-detail {
+    padding: 8px;
   }
+  .poster-title {
+    font-size: 14px;
+    line-height: 18px;
 
-  .link-btn {
-    display: none;
+    padding: 0 8px;
   }
-
-  .link-btn-animation {
-    display: inline;
+  .link-button {
+    padding: 8px;
   }
 }
-
 @media all and (max-width: 599px) {
-  .poster-detail-title {
+  .poster-detail {
+    padding: 0;
+  }
+  .poster-title {
     display: none;
-  }
-
-  .poster-detail-link {
-    right: 8px;
-    bottom: 8px;
-  }
-}
-
-@keyframes fadeout {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0.4;
   }
 }
 </style>

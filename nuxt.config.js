@@ -36,7 +36,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['~assets/css/style.css', '~assets/fonts/notosanskr.css'],
+  css: ['~assets/css/style.css'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -132,5 +132,9 @@ export default {
       '/adminPageApproval',
       '/inspire',
     ],
+  },
+
+  colorMode: {
+    preference: 'light',
   },
 };

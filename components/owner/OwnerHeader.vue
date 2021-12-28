@@ -4,7 +4,7 @@
       <div class="header-item">
         <nuxt-link to="/">
           <img
-            :src="!isDark ? lightMainLogo : darkMainLogo"
+            :src="isLight ? lightMainLogo : darkMainLogo"
             alt="광고돼지 메인 로고"
             class="logo-button"
           />
@@ -21,11 +21,15 @@
 
       <div class="header-item service-area">
         <div class="service-button" @click="TOGGLE_THEMEMODE">
-          <img :src="!isDark ? lightTheme : darkTheme" alt="테마 모드" class="service-icon" />
+          <img
+            :src="isLight ? lightThemeMode : darkThemeMode"
+            alt="테마 모드"
+            class="service-icon"
+          />
         </div>
         <nuxt-link to="/">
           <div class=" service-button">
-            <img :src="!isDark ? lightPoster : darkPoster" alt="메인 페이지" class="service-icon" />
+            <img :src="isLight ? lightPoster : darkPoster" alt="메인 페이지" class="service-icon" />
           </div>
         </nuxt-link>
       </div>
@@ -34,23 +38,19 @@
 </template>
 
 <script>
-import { mapState, mapMutations, createNamespacedHelpers } from 'vuex';
+import { mapGetters, mapMutations, createNamespacedHelpers } from 'vuex';
 
 const { mapState: ownerState, mapGetters: ownerGetters } = createNamespacedHelpers('owner');
 
 export default {
   name: 'OwnerHeader',
   computed: {
-    ...mapState(['isDark']),
     ...ownerState(['tabs']),
-    ...ownerGetters([
-      'lightMainLogo',
-      'lightTheme',
-      'lightPoster',
-      'darkMainLogo',
-      'darkTheme',
-      'darkPoster',
-    ]),
+    ...mapGetters(['lightMainLogo', 'darkMainLogo', 'lightThemeMode', 'darkThemeMode']),
+    ...ownerGetters(['lightPoster', 'darkPoster']),
+    isLight() {
+      return this.$colorMode.preference === 'light';
+    },
   },
   methods: {
     ...mapMutations(['TOGGLE_THEMEMODE']),

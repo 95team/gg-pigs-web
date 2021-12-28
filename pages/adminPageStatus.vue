@@ -145,7 +145,7 @@
               </v-col>
               <v-spacer></v-spacer>
               <v-col md="4" align="end">
-                <img src="../static/image/type3.png" alt="광고 이미지" />
+                <!-- <img src="../static/image/type3.png" alt="광고 이미지" /> -->
               </v-col>
             </v-row>
           </v-card-text>

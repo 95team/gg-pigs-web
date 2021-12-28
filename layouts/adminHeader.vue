@@ -1,7 +1,7 @@
 <template>
   <v-container fluid pa-0>
     <div style="margin-left: 2%;">
-      <img src="../static/image/pangoLogoDay.png" alt="광고돼지" width="118px" height="39px" />
+      <!-- <img src="../static/image/pangoLogoDay.png" alt="광고돼지" width="118px" height="39px" /> -->
     </div>
     <v-spacer></v-spacer>
     <div style="margin-right: 10%;">

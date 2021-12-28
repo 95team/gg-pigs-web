@@ -1,23 +1,27 @@
 <template>
-  <v-app :class="[dayMode ? 'background-light5' : 'background-dark1']">
-    <main-header />
+  <v-app>
+    <main-header></main-header>
     <nuxt />
-    <main-footer />
+    <main-footer></main-footer>
   </v-app>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import MainHeader from '~/layouts/main/header.vue';
-import MainFooter from '~/layouts/main/footer.vue';
+import MainHeader from '~/components/main/Header.vue';
+import MainFooter from '~/components/main/Footer.vue';
 
 export default {
+  name: 'MainDefault',
   components: {
     MainHeader,
     MainFooter,
   },
-  computed: {
-    ...mapGetters(['dayMode']),
-  },
 };
 </script>
+
+<style>
+#app {
+  background-color: var(--bg);
+  font-family: 'Spoqa Han Sans Neo', sans-serif;
+}
+</style>

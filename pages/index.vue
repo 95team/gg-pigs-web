@@ -1,59 +1,49 @@
 <template>
   <v-container fluid>
-    <v-row class="contents" no-gutters>
+    <v-row class="poster-area" no-gutters>
       <!-- col1 -->
-      <v-col cols="4" xs="4" md="4" lg="2">
+      <v-col cols="4" lg="2">
         <poster-box v-for="poster in postersFirstColumn" :key="poster.id" :poster="poster" />
       </v-col>
 
       <!-- col2 -->
-      <v-col cols="4" xs="4" md="4" lg="2">
+      <v-col cols="4" lg="2">
         <poster-box v-for="poster in postersSecondColumn" :key="poster.id" :poster="poster" />
       </v-col>
 
       <!-- col3 -->
-      <v-col cols="4" xs="4" md="4" lg="2">
+      <v-col cols="4" lg="2">
         <poster-box v-for="poster in postersThirdColumn" :key="poster.id" :poster="poster" />
       </v-col>
 
       <!-- col4 -->
-      <v-col cols="4" xs="4" md="4" lg="2">
+      <v-col cols="4" lg="2">
         <poster-box v-for="poster in postersFourthColumn" :key="poster.id" :poster="poster" />
       </v-col>
 
       <!-- col5 -->
-      <v-col cols="4" xs="4" md="4" lg="2">
+      <v-col cols="4" lg="2">
         <poster-box v-for="poster in postersFifthColumn" :key="poster.id" :poster="poster" />
       </v-col>
 
       <!-- col6 -->
-      <v-col cols="4" xs="4" md="4" lg="2">
+      <v-col cols="4" lg="2">
         <poster-box v-for="poster in postersSixthColumn" :key="poster.id" :poster="poster" />
       </v-col>
     </v-row>
 
     <!-- Pagination -->
-    <v-row no-gutters class="mb64" align="center" justify="center">
-      <v-col cols="auto" @click="prevPage()">
-        <img
-          :src="[dayMode ? 'icon/prevPageDay.svg' : 'icon/prevPageNight.svg']"
-          class="pageIcon"
-        />
+    <v-row no-gutters align="center" justify="center" class="page-area">
+      <v-col cols="auto" class="page-button" @click="prevPage()">
+        <v-img :src="isLight ? lightPrevPage : darkPrevPage" class="page-icon"></v-img>
       </v-col>
 
-      <v-col
-        cols="auto"
-        class="pageNum"
-        :style="{ color: [dayMode ? 'var(--grey-9)' : 'var(--grey-0)'] }"
-      >
+      <v-col cols="auto" class="page-number">
         {{ page }}
       </v-col>
 
-      <v-col cols="auto" @click="nextPage()">
-        <img
-          :src="[dayMode ? 'icon/nextPageDay.svg' : 'icon/nextPageNight.svg']"
-          class="pageIcon"
-        />
+      <v-col cols="auto" class="page-button" @click="nextPage()">
+        <v-img :src="isLight ? lightNextPage : darkNextPage" class="page-icon"></v-img>
       </v-col>
     </v-row>
   </v-container>
@@ -64,10 +54,11 @@ import { mapGetters } from 'vuex';
 import PosterBox from '~/components/PosterBox.vue';
 
 export default {
+  name: 'MainPage',
+  layout: 'main/default',
   components: {
     PosterBox,
   },
-  layout: 'main/default',
   async fetch() {
     const params = {
       page: this.page,
@@ -97,9 +88,9 @@ export default {
   },
   computed: {
     ...mapGetters({
-      dayMode: 'dayMode',
       posters: 'poster/fetchPosters',
     }),
+    ...mapGetters(['lightPrevPage', 'darkPrevPage', 'lightNextPage', 'darkNextPage']),
     firstColumn() {
       return String((this.page - 1) * this.posterLayoutSize + 1);
     },
@@ -117,6 +108,9 @@ export default {
     },
     sixthColumn() {
       return String((this.page - 1) * this.posterLayoutSize + 6);
+    },
+    isLight() {
+      return this.$colorMode.preference === 'light';
     },
   },
   watch: {
@@ -248,41 +242,66 @@ img {
   display: block;
 }
 
-.contents {
-  margin-bottom: 32px;
+.poster-area {
+  margin: 0 auto;
 }
 
-.pageNum {
-  font-family: 'Spoqa Han Sans Neo', sans-serif;
-  font-size: 20px;
+.page-area {
+  margin-top: 0;
+  margin-bottom: 64px;
 }
-
-.pageIcon {
+.page-button {
   width: 48px;
   height: 48px;
+
+  margin: 0 48px;
+  padding: 12px 17px;
+
   cursor: pointer;
-  margin: 0 48px 0 48px;
+}
+.page-icon {
+  width: 14px;
+  height: 24px;
+}
+.page-number {
+  width: 24px;
+  height: 24px;
+
+  font-size: 20px;
+  line-height: 25px;
+  color: var(--color-primary);
+
+  padding: 0 6px;
 }
 
 @media all and (min-width: 1264px) {
   .container {
-    max-width: 1564px !important;
-    padding: 0 26px 0 26px;
+    padding: 0 26px;
+  }
+  .poster-area {
+    max-width: 1512px;
+
+    margin-bottom: 20px;
   }
 }
 @media all and (min-width: 600px) and (max-width: 1263px) {
   .container {
-    max-width: 808px !important;
-    padding: 0 26px 0 26px;
+    padding: 0 26px;
+  }
+  .poster-area {
+    max-width: 756px;
+
+    margin-bottom: 20px;
   }
 }
 @media all and (max-width: 599px) {
   .container {
-    max-width: 552px !important;
-    padding: 0 2px 0 2px;
+    padding: 0 2px;
   }
-  .contents {
-    margin-bottom: 16px;
+  .poster-area {
+    max-width: 548px;
+
+    margin-bottom: 4px;
   }
 }
 </style>

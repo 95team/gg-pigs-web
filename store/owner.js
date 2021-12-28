@@ -15,11 +15,7 @@ export const state = function() {
 
     /** '이미지' 관련 변수입니다. */
     // header
-    lightMainLogo: require('~/assets/icn/light/main-logo.svg'),
-    lightTheme: require('~/assets/icn/light/theme.svg'),
     lightPoster: require('~/assets/icn/light/poster.svg'),
-    darkMainLogo: require('~/assets/icn/dark/main-logo.svg'),
-    darkTheme: require('~/assets/icn/dark/theme.svg'),
     darkPoster: require('~/assets/icn/dark/poster.svg'),
   };
 };

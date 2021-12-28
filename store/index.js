@@ -1,34 +1,34 @@
 export const state = function() {
   return {
-    /** '다크모드' 관련 변수입니다. */
-    isDark: false,
-
     /** '이미지' 관련 변수입니다. */
-    logoDay: require('~/static/image/pangoLogoDay.png'),
-    logoNight: require('~/static/image/pangoLogoNight.png'),
-    day: require('~/static/icon/day.svg'),
-    night: require('~/static/icon/night.svg'),
-    userInfoDay: require('~/static/icon/userInfoDay.svg'),
-    userInfoNight: require('~/static/icon/userInfoNight.svg'),
-    lookupDay: require('~/static/icon/lookupDay.svg'),
-    lookupNight: require('~/static/icon/lookupNight.svg'),
-    ownerWebsiteLink: require('~/static/icon/owner-website-link.svg'),
-    emptyPosterDefault: require('~/static/icon/empty-poster-default.svg'),
-    emptyPosterHover: require('~/static/icon/empty-poster-hover.svg'),
-    emptyPosterDefaultDark: require('~/static/icon/empty-poster-default-dark.svg'),
-    emptyPosterHoverDark: require('~/static/icon/empty-poster-hover-dark.svg'),
+    // main header component
+    lightMainLogo: require('~/assets/icn/light/main-logo.svg'),
+    darkMainLogo: require('~/assets/icn/dark/main-logo.svg'),
+    lightThemeMode: require('~/assets/icn/light/theme-mode.svg'),
+    darkThemeMode: require('~/assets/icn/dark/theme-mode.svg'),
+    lightApply: require('~/assets/icn/light/apply.svg'),
+    darkApply: require('~/assets/icn/dark/apply.svg'),
+
+    // poster component
+    lightEmptyPoster: require('~/assets/icn/light/empty-poster.svg'),
+    darkEmptyPoster: require('~/assets/icn/dark/empty-poster.svg'),
+    lightEmptyPosterHover: require('~/assets/icn/light/empty-poster-hover.svg'),
+    darkEmptyPosterHover: require('~/assets/icn/dark/empty-poster-hover.svg'),
+    btnSiteUrl: require('~/assets/icn/btn-site-url.svg'),
+    lightPrevPage: require('~/assets/icn/light/prevPage.svg'),
+    darkPrevPage: require('~/assets/icn/dark/prevPage.svg'),
+    lightNextPage: require('~/assets/icn/light/nextPage.svg'),
+    darkNextPage: require('~/assets/icn/dark/nextPage.svg'),
   };
 };
 
 export const mutations = {
   /** '다크모드' 관련 mutation 입니다. */
-  TOGGLE_THEMEMODE(state) {
+  TOGGLE_THEMEMODE() {
     if (this.$colorMode.preference === 'light') {
       this.$colorMode.preference = 'dark';
-      state.isDark = true;
     } else {
       this.$colorMode.preference = 'light';
-      state.isDark = false;
     }
   },
 };
@@ -36,49 +36,53 @@ export const mutations = {
 export const actions = {};
 
 export const getters = {
-  /** '다크모드' 관련 getter 입니다. */
-  isDark(state) {
-    return state.isDark;
+  /** '이미지' 관련 getter 입니다. */
+  // main header component
+  lightMainLogo(state) {
+    return state.lightMainLogo;
+  },
+  darkMainLogo(state) {
+    return state.darkMainLogo;
+  },
+  lightThemeMode(state) {
+    return state.lightThemeMode;
+  },
+  darkThemeMode(state) {
+    return state.darkThemeMode;
+  },
+  lightApply(state) {
+    return state.lightApply;
+  },
+  darkApply(state) {
+    return state.darkApply;
   },
 
-  /** '이미지' 관련 getter 입니다. */
-  logoDay(state) {
-    return state.logoDay;
+  // poster component
+  lightEmptyPoster(state) {
+    return state.lightEmptyPoster;
   },
-  logoNight(state) {
-    return state.logoNight;
+  darkEmptyPoster(state) {
+    return state.darkEmptyPoster;
   },
-  day(state) {
-    return state.day;
+  lightEmptyPosterHover(state) {
+    return state.lightEmptyPosterHover;
   },
-  night(state) {
-    return state.night;
+  darkEmptyPosterHover(state) {
+    return state.darkEmptyPosterHover;
   },
-  userInfoDay(state) {
-    return state.userInfoDay;
+  btnSiteUrl(state) {
+    return state.btnSiteUrl;
   },
-  userInfoNight(state) {
-    return state.userInfoNight;
+  lightPrevPage(state) {
+    return state.lightPrevPage;
   },
-  lookupDay(state) {
-    return state.lookupDay;
+  darkPrevPage(state) {
+    return state.darkPrevPage;
   },
-  lookupNight(state) {
-    return state.lookupNight;
+  lightNextPage(state) {
+    return state.lightNextPage;
   },
-  ownerWebsiteLink(state) {
-    return state.ownerWebsiteLink;
-  },
-  emptyPosterDefault(state) {
-    return state.emptyPosterDefault;
-  },
-  emptyPosterHover(state) {
-    return state.emptyPosterHover;
-  },
-  emptyPosterDefaultDark(state) {
-    return state.emptyPosterDefaultDark;
-  },
-  emptyPosterHoverDark(state) {
-    return state.emptyPosterHoverDark;
+  darkNextPage(state) {
+    return state.darkNextPage;
   },
 };

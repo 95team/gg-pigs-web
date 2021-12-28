@@ -31,7 +31,9 @@
   --grey-7: #4d5256;
   --grey-8: #363a3c;
   --grey-9: #292a2b;
+}
 
+.light-mode {
   --color: #4d5256;
   --color-primary: #292a2b;
   --bg: #ffffff;

@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import OwnerHeader from '~/components/OwnerHeader.vue';
-import OwnerFooter from '~/components/OwnerFooter.vue';
+import OwnerHeader from '~/components/owner/OwnerHeader.vue';
+import OwnerFooter from '~/components/owner/OwnerFooter.vue';
 
 export default {
   name: 'OwnerDefault',

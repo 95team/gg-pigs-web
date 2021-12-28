@@ -35,10 +35,7 @@
     <!-- Pagination -->
     <v-row no-gutters align="center" justify="center" class="page-area">
       <v-col cols="auto" class="page-button" @click="prevPage()">
-        <v-img
-          :src="this.$colorMode.preference === 'light' ? lightPrevPage : darkPrevPage"
-          class="page-icon"
-        ></v-img>
+        <v-img :src="isLight ? lightPrevPage : darkPrevPage" class="page-icon"></v-img>
       </v-col>
 
       <v-col cols="auto" class="page-number">
@@ -46,10 +43,7 @@
       </v-col>
 
       <v-col cols="auto" class="page-button" @click="nextPage()">
-        <v-img
-          :src="this.$colorMode.preference === 'light' ? lightNextPage : darkNextPage"
-          class="page-icon"
-        ></v-img>
+        <v-img :src="isLight ? lightNextPage : darkNextPage" class="page-icon"></v-img>
       </v-col>
     </v-row>
   </v-container>
@@ -114,6 +108,9 @@ export default {
     },
     sixthColumn() {
       return String((this.page - 1) * this.posterLayoutSize + 6);
+    },
+    isLight() {
+      return this.$colorMode.preference === 'light';
     },
   },
   watch: {

@@ -4,7 +4,7 @@
       <div class="header-item">
         <nuxt-link to="/">
           <img
-            :src="this.$colorMode.preference === 'light' ? lightMainLogo : darkMainLogo"
+            :src="isLight ? lightMainLogo : darkMainLogo"
             alt="광고돼지 메인 로고"
             class="logo-button"
           />
@@ -22,18 +22,14 @@
       <div class="header-item service-area">
         <div class="service-button" @click="TOGGLE_THEMEMODE">
           <img
-            :src="this.$colorMode.preference === 'light' ? lightThemeMode : darkThemeMode"
+            :src="isLight ? lightThemeMode : darkThemeMode"
             alt="테마 모드"
             class="service-icon"
           />
         </div>
         <nuxt-link to="/">
           <div class=" service-button">
-            <img
-              :src="this.$colorMode.preference === 'light' ? lightPoster : darkPoster"
-              alt="메인 페이지"
-              class="service-icon"
-            />
+            <img :src="isLight ? lightPoster : darkPoster" alt="메인 페이지" class="service-icon" />
           </div>
         </nuxt-link>
       </div>
@@ -52,6 +48,9 @@ export default {
     ...ownerState(['tabs']),
     ...mapGetters(['lightMainLogo', 'darkMainLogo', 'lightThemeMode', 'darkThemeMode']),
     ...ownerGetters(['lightPoster', 'darkPoster']),
+    isLight() {
+      return this.$colorMode.preference === 'light';
+    },
   },
   methods: {
     ...mapMutations(['TOGGLE_THEMEMODE']),

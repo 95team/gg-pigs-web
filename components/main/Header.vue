@@ -4,25 +4,17 @@
       <v-row no-gutters align="center" justify="space-between">
         <nuxt-link to="/">
           <v-col class="logo-button">
-            <v-img
-              :src="this.$colorMode.preference === 'light' ? lightMainLogo : darkMainLogo"
-            ></v-img>
+            <v-img :src="isLight ? lightMainLogo : darkMainLogo"></v-img>
           </v-col>
         </nuxt-link>
 
         <v-col cols="auto">
           <button class="service-button" @click="TOGGLE_THEMEMODE">
-            <v-img
-              :src="this.$colorMode.preference === 'light' ? lightThemeMode : darkThemeMode"
-              class="service-icon"
-            ></v-img>
+            <v-img :src="isLight ? lightThemeMode : darkThemeMode" class="service-icon"></v-img>
           </button>
           <nuxt-link to="/apply">
             <button class="service-button">
-              <v-img
-                :src="this.$colorMode.preference === 'light' ? lightApply : darkApply"
-                class="service-icon"
-              ></v-img>
+              <v-img :src="isLight ? lightApply : darkApply" class="service-icon"></v-img>
             </button>
           </nuxt-link>
         </v-col>
@@ -45,6 +37,9 @@ export default {
       'lightApply',
       'darkApply',
     ]),
+    isLight() {
+      return this.$colorMode.preference === 'light';
+    },
   },
   methods: {
     ...mapMutations(['TOGGLE_THEMEMODE']),

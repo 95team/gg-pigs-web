@@ -10,7 +10,7 @@
         :src="
           posterBox.imagePath
             ? posterBox.imagePath
-            : this.$colorMode.preference === 'light'
+            : isLight
             ? lightEmptyPosterImage
             : darkEmptyPosterImage
         "
@@ -83,6 +83,9 @@ export default {
       'darkEmptyPosterHover',
       'btnSiteUrl',
     ]),
+    isLight() {
+      return this.$colorMode.preference === 'light';
+    },
   },
   created() {
     this.init();
@@ -98,14 +101,14 @@ export default {
       }
     },
     MOUSEOVER_EMPTY_POSTER() {
-      if (this.$colorMode.preference === 'light') {
+      if (this.isLight) {
         this.lightEmptyPosterImage = this.lightEmptyPosterHover;
       } else {
         this.darkEmptyPosterImage = this.darkEmptyPosterHover;
       }
     },
     MOUSEOUT_EMPTY_POSTER() {
-      if (this.$colorMode.preference === 'light') {
+      if (this.isLight) {
         this.lightEmptyPosterImage = this.lightEmptyPoster;
       } else {
         this.darkEmptyPosterImage = this.darkEmptyPoster;

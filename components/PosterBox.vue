@@ -151,9 +151,19 @@ img {
   right: 0;
 
   text-align: right;
+
+  width: 100%;
 }
 .poster-title {
   color: var(--grey-0);
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
 }
 .poster-link {
   display: flex;

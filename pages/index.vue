@@ -92,22 +92,22 @@ export default {
     }),
     ...mapGetters(['lightPrevPage', 'darkPrevPage', 'lightNextPage', 'darkNextPage']),
     firstColumn() {
-      return String((this.page - 1) * this.posterLayoutSize + 1);
+      return (this.page - 1) * this.posterLayoutSize + 1;
     },
     secondColumn() {
-      return String((this.page - 1) * this.posterLayoutSize + 2);
+      return (this.page - 1) * this.posterLayoutSize + 2;
     },
     thirdColumn() {
-      return String((this.page - 1) * this.posterLayoutSize + 3);
+      return (this.page - 1) * this.posterLayoutSize + 3;
     },
     fourthColumn() {
-      return String((this.page - 1) * this.posterLayoutSize + 4);
+      return (this.page - 1) * this.posterLayoutSize + 4;
     },
     fifthColumn() {
-      return String((this.page - 1) * this.posterLayoutSize + 5);
+      return (this.page - 1) * this.posterLayoutSize + 5;
     },
     sixthColumn() {
-      return String((this.page - 1) * this.posterLayoutSize + 6);
+      return (this.page - 1) * this.posterLayoutSize + 6;
     },
     isLight() {
       return this.$colorMode.preference === 'light';

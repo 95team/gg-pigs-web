@@ -4,6 +4,7 @@ export const state = function() {
     startedDate: '',
     imgHeight: '',
     posterUrl: null,
+    isShowApply: false,
   };
 };
 
@@ -28,5 +29,8 @@ export const mutations = {
     } else if (state.posterType === 'R3') {
       state.imgHeight = '782px';
     }
+  },
+  SHOW_APPLICATION(state) {
+    state.isShowApply = !state.isShowApply;
   },
 };

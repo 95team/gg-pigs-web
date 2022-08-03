@@ -36,14 +36,14 @@
       </div>
     </div>
 
-    <nuxt-link v-else :to="posterBox.siteUrl">
+    <div v-else style="cursor: pointer;" @click="SHOW_APPLICATION">
       <div class="empty-poster-link"></div>
-    </nuxt-link>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   props: {
@@ -114,6 +114,7 @@ export default {
         this.darkEmptyPosterImage = this.darkEmptyPoster;
       }
     },
+    ...mapMutations('apply', ['SHOW_APPLICATION']),
   },
 };
 </script>

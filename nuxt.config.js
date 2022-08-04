@@ -1,9 +1,8 @@
-import colors from 'vuetify/es5/util/colors';
 import axios from 'axios';
+import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin';
 import { baseApiUrl } from './api/index';
 
 export default {
-  mode: 'universal',
   target: 'static',
   /*
    ** Headers of the page
@@ -27,6 +26,10 @@ export default {
         type: 'text/css',
         href: '//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css',
       },
+      {
+        href: 'https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined',
+        rel: 'stylesheet',
+      },
     ],
   },
   /*
@@ -40,7 +43,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['~plugins/vuetify.js'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -65,27 +68,16 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: process.env.BASE_URL,
+  },
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
    */
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
-    theme: {
-      dark: false,
-      themes: {
-        dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3,
-        },
-      },
-    },
+    treeShake: true,
   },
   /*
    ** Build configuration
@@ -95,6 +87,8 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {},
+    transpile: ['vuetify/lib'],
+    plugins: [new VuetifyLoaderPlugin()],
   },
   /*
    ** Generate configuration

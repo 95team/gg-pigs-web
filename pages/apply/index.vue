@@ -14,18 +14,17 @@
 
 <script>
 import { mapGetters } from 'vuex';
-
 export default {
   layout: 'main/default',
-  computed: {
-    ...mapGetters({
-      dayMode: 'dayMode',
-    }),
-  },
   data() {
     return {
       email: 'pigs95team@gmail.com',
     };
+  },
+  computed: {
+    ...mapGetters({
+      dayMode: 'dayMode',
+    }),
   },
 };
 </script>

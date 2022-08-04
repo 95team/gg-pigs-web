@@ -3,7 +3,7 @@
     <div v-if="isShowApply" class="inner">
       <div class="apply-container">
         <div class="btn-close">
-          <div class="close" @click="SHOW_APPLICATION">
+          <div class="close" @click="TOGGLE_APPLICATION">
             <span class="material-icons">
               close
             </span>
@@ -149,13 +149,12 @@ export default {
     },
   },
   methods: {
-    ...mapMutations('apply', ['SHOW_APPLICATION']),
+    ...mapMutations('apply', ['TOGGLE_APPLICATION']),
     INPUT_IMAGE(image) {
       const posterImage = image.target.files[0];
       this.imageFile = posterImage;
       this.posterName = posterImage.name;
     },
-    /*
     async submit() {
       if (this.imageFile) {
         const formData = new FormData();
@@ -177,10 +176,6 @@ export default {
           finishedDate: this.finishedDate,
         });
       }
-    },
-    */
-    submit() {
-      alert('개발중입니다.');
     },
   },
 };

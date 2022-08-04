@@ -12,9 +12,14 @@
           <button class="service-button" @click="TOGGLE_THEMEMODE">
             <v-img :src="isLight ? lightThemeMode : darkThemeMode" class="service-icon"></v-img>
           </button>
-          <button class="service-button" @click="SHOW_APPLICATION">
+          <nuxt-link to="/apply">
+            <button class="service-button">
+              <v-img :src="isLight ? lightApply : darkApply" class="service-icon"></v-img>
+            </button>
+          </nuxt-link>
+          <!-- <button class="service-button" @click="TOGGLE_APPLICATION">
             <v-img :src="isLight ? lightApply : darkApply" class="service-icon"></v-img>
-          </button>
+          </button> -->
         </v-col>
       </v-row>
     </v-container>
@@ -41,7 +46,7 @@ export default {
   },
   methods: {
     ...mapMutations(['TOGGLE_THEMEMODE']),
-    ...mapMutations('apply', ['SHOW_APPLICATION']),
+    ...mapMutations('apply', ['TOGGLE_APPLICATION']),
   },
 };
 </script>

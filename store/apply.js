@@ -30,7 +30,7 @@ export const mutations = {
       state.imgHeight = '782px';
     }
   },
-  SHOW_APPLICATION(state) {
+  TOGGLE_APPLICATION(state) {
     state.isShowApply = !state.isShowApply;
   },
 };

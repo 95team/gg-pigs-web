@@ -5,6 +5,7 @@
   "author": "pigs-pango-team",
   "private": true,
   "scripts": {
+    "local": "nuxt --dotenv .env.local",
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",

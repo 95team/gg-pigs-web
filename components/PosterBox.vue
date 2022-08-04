@@ -35,10 +35,11 @@
         </div>
       </div>
     </div>
-
-    <div v-else style="cursor: pointer;" @click="SHOW_APPLICATION">
+    <nuxt-link v-else :to="posterBox.siteUrl">
+      <!-- <div v-else style="cursor: pointer;" @click="TOGGLE_APPLICATION"> -->
       <div class="empty-poster-link"></div>
-    </div>
+      <!-- </div> -->
+    </nuxt-link>
   </div>
 </template>
 
@@ -114,7 +115,7 @@ export default {
         this.darkEmptyPosterImage = this.darkEmptyPoster;
       }
     },
-    ...mapMutations('apply', ['SHOW_APPLICATION']),
+    ...mapMutations('apply', ['TOGGLE_APPLICATION']),
   },
 };
 </script>

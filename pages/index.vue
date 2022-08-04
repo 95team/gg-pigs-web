@@ -34,16 +34,22 @@
 
     <!-- Pagination -->
     <v-row no-gutters align="center" justify="center" class="page-area">
-      <v-col cols="auto" class="page-button" @click="prevPage()">
-        <v-img :src="isLight ? lightPrevPage : darkPrevPage" class="page-icon"></v-img>
+      <v-col cols="auto">
+        <div class="page-button" @click="prevPage()">
+          <v-img :src="isLight ? lightPrevPage : darkPrevPage" class="page-icon"></v-img>
+        </div>
       </v-col>
 
-      <v-col cols="auto" class="page-number">
-        {{ page }}
+      <v-col cols="auto">
+        <div class="page-number">
+          {{ page }}
+        </div>
       </v-col>
 
-      <v-col cols="auto" class="page-button" @click="nextPage()">
-        <v-img :src="isLight ? lightNextPage : darkNextPage" class="page-icon"></v-img>
+      <v-col cols="auto">
+        <div class="page-button" @click="nextPage()">
+          <v-img :src="isLight ? lightNextPage : darkNextPage" class="page-icon"></v-img>
+        </div>
       </v-col>
     </v-row>
   </v-container>
@@ -251,9 +257,6 @@ img {
   margin-bottom: 64px;
 }
 .page-button {
-  width: 48px;
-  height: 48px;
-
   margin: 0 48px;
   padding: 12px 17px;
 
@@ -265,13 +268,12 @@ img {
 }
 .page-number {
   width: 24px;
-  height: 24px;
 
+  text-align: center;
+  font-weight: 500;
   font-size: 20px;
   line-height: 25px;
   color: var(--color-primary);
-
-  padding: 0 6px;
 }
 
 @media all and (min-width: 1264px) {

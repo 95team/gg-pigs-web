@@ -1,0 +1,48 @@
+@import '~vuetify/src/styles/styles.sass';
+
+// Globals
+$body-font-family: 'Spoqa Han Sans Neo', sans-serif;
+
+// 사용자 정의
+
+// primary colors
+$primary: #FF5A60;
+$p-light: #FF8E8D;
+$p-dark: #C62036;
+
+// greyscale colors
+$grey-0: #F8FAFB;
+$grey-1: #F1F5F5;
+$grey-2: #EAEEEF;
+$grey-3: #E1E4E6;
+$grey-4: #CED3D6;
+$grey-5: #A9AFB3;
+$grey-6: #878D91;
+$grey-7: #4D5256;
+$grey-8: #363A3C;
+$grey-9: #292A2B;
+
+// light theme
+$material-light: (
+  'text': (
+    'primary': $grey-9,
+    'secondary': $grey-6
+  ),
+  'text-fields': (
+    'outlined': $grey-4,
+  ),
+  'dividers': $grey-4
+);
+
+// dark theme
+$material-dark: (
+  'cards': $grey-9,
+  'text': (
+    'primary': $grey-0,
+    'secondary': $grey-6
+  ),
+  'text-fields': (
+    'outlined': $grey-4,
+  ),
+  'dividers': $grey-4
+);

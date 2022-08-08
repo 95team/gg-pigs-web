@@ -1,0 +1,70 @@
+// layout
+.v-card {
+  width: 794px;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+  .v-form {
+    padding: 36px 0;
+    .container {
+      max-width: 589px;
+    
+      padding: 0;
+      .v-card__title {
+        padding: 0;
+        margin-bottom: 48px;
+    
+        font-weight: 700;
+        font-size: 44px;
+        line-height: 56px;
+      }
+      .row {
+        .col {
+          margin-bottom: 16px;
+          .label {
+            margin-bottom: 4px;
+
+            font-size: 14px;
+            line-height: 18px;
+          }
+          .v-text-field {
+            .v-input__slot {
+              min-height: 64px;
+            }
+          }
+        }
+      }
+    }
+    .v-divider {
+      margin: 36px 0 52px;
+    }
+    .v-card__actions {
+      padding: 0;
+      .btn-wrapper {
+        width: 589px;
+        button {
+          &:hover {
+            background-color: $p-light !important;
+          }
+          &:active {
+            box-shadow: none !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+// color
+.theme--light {
+  .label {
+    color: $grey-7;
+  }
+}
+
+.theme--dark {
+  .label {
+    color: $grey-2;
+  }
+}

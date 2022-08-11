@@ -2,24 +2,29 @@
   <div class="header-area">
     <v-container pa-0>
       <v-row no-gutters align="center" justify="space-between">
-        <nuxt-link to="/">
-          <v-col class="logo-button">
+        <v-col cols="auto" class="logo-button">
+          <nuxt-link to="/">
             <v-img :src="isLight ? lightMainLogo : darkMainLogo"></v-img>
-          </v-col>
-        </nuxt-link>
+          </nuxt-link>
+        </v-col>
 
         <v-col cols="auto">
-          <button class="service-button" @click="TOGGLE_THEMEMODE">
-            <v-img :src="isLight ? lightThemeMode : darkThemeMode" class="service-icon"></v-img>
-          </button>
-          <nuxt-link to="/apply">
-            <button class="service-button">
-              <v-img :src="isLight ? lightApply : darkApply" class="service-icon"></v-img>
+          <v-row align="center">
+            <v-btn text plain :ripple="false" @click="TOGGLE_SIGNIN">
+              로그인
+            </v-btn>
+            <button class="service-button" @click="TOGGLE_THEMEMODE">
+              <v-img :src="isLight ? lightThemeMode : darkThemeMode" class="service-icon"></v-img>
             </button>
-          </nuxt-link>
-          <!-- <button class="service-button" @click="TOGGLE_APPLICATION">
+            <nuxt-link to="/apply">
+              <button class="service-button">
+                <v-img :src="isLight ? lightApply : darkApply" class="service-icon"></v-img>
+              </button>
+            </nuxt-link>
+            <!-- <button class="service-button" @click="TOGGLE_APPLICATION">
             <v-img :src="isLight ? lightApply : darkApply" class="service-icon"></v-img>
           </button> -->
+          </v-row>
         </v-col>
       </v-row>
     </v-container>
@@ -47,6 +52,7 @@ export default {
   methods: {
     ...mapMutations(['TOGGLE_THEMEMODE']),
     ...mapMutations('apply', ['TOGGLE_APPLICATION']),
+    ...mapMutations('sign', ['TOGGLE_SIGNIN']),
   },
 };
 </script>

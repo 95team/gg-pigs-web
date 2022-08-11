@@ -1,54 +1,85 @@
+a {
+  text-decoration: none;
+}
+
 // layout
-.v-card {
-  width: 794px;
-  top: 50%;
-  left: 50%;
-
-  transform: translate(-50%, -50%);
-  .v-form {
-    padding: 36px 0;
-    .container {
-      max-width: 589px;
-    
-      padding: 0;
-      .v-card__title {
+.inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  .v-card {
+    width: 794px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 9;
+  
+    transform: translate(-50%, -50%);
+    .v-form {
+      padding: 36px 0;
+      .container {
+        max-width: 589px;
+      
         padding: 0;
-        margin-bottom: 48px;
-    
-        font-weight: 700;
-        font-size: 44px;
-        line-height: 56px;
-      }
-      .row {
-        .col {
-          margin-bottom: 16px;
-          .label {
-            margin-bottom: 4px;
+        .v-card__title {
+          padding: 0;
+          margin-bottom: 48px;
+      
+          font-weight: 700;
+          font-size: 44px;
+          line-height: 56px;
+        }
+        .row {
+          .col {
+            margin-bottom: 16px;
+            .label {
+              margin-bottom: 4px;
+  
+              font-size: 14px;
+              line-height: 18px;
+            }
+            .v-text-field {
+              .v-input__slot {
+                min-height: 64px;
+              }
+            }
+            .certification-wrapper {
+              width: 100%;
+              height: 100%;
 
-            font-size: 14px;
-            line-height: 18px;
-          }
-          .v-text-field {
-            .v-input__slot {
-              min-height: 64px;
+              display: flex;
+              justify-content: flex-end;
+              align-items: flex-end;
+              button {
+                &:hover {
+                  background-color: $p-light !important;
+                }
+                &:active {
+                  box-shadow: none !important;
+                }
+              }
             }
           }
         }
       }
-    }
-    .v-divider {
-      margin: 36px 0 52px;
-    }
-    .v-card__actions {
-      padding: 0;
-      .btn-wrapper {
-        width: 589px;
-        button {
-          &:hover {
-            background-color: $p-light !important;
-          }
-          &:active {
-            box-shadow: none !important;
+      .v-divider {
+        margin: 36px 0 52px;
+      }
+      .v-card__actions {
+        padding: 0;
+        .btn-wrapper {
+          width: 589px;
+          button {
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 20px;
+            &:hover {
+              background-color: $p-light !important;
+            }
+            &:active {
+              box-shadow: none !important;
+            }
           }
         }
       }

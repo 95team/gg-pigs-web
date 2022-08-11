@@ -4,6 +4,8 @@
     <nuxt />
     <main-footer></main-footer>
     <ApplyPoster />
+    <SignIn />
+    <SignUp />
   </v-app>
 </template>
 
@@ -11,6 +13,8 @@
 import MainHeader from '~/components/main/Header.vue';
 import MainFooter from '~/components/main/Footer.vue';
 import ApplyPoster from '~/components/apply/ApplyPoster.vue';
+import SignIn from '~/components/sign/SignIn.vue';
+import SignUp from '~/components/sign/SignUp.vue';
 
 export default {
   name: 'MainDefault',
@@ -18,6 +22,8 @@ export default {
     MainHeader,
     MainFooter,
     ApplyPoster,
+    SignIn,
+    SignUp,
   },
 };
 </script>

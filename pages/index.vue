@@ -71,7 +71,7 @@ export default {
       isFilteredDate: true,
       isActivated: true,
     };
-    await this.$store.dispatch('poster/FETCH_LIST_V2', params);
+    await this.$store.dispatch('poster/FETCH_LIST_V2_INTERNAL', params);
 
     this.postersFirstColumn = this.makeFullPosters(this.firstColumn);
     this.postersSecondColumn = this.makeFullPosters(this.secondColumn);

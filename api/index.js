@@ -1,5 +1,3 @@
-const baseHost = 'https://gg-pigs.com';
-const basePort = '8484';
-const baseApiUrl = baseHost + ':' + basePort;
+const internalApiUrl = 'http://localhost:8484';
 
-export { baseHost, basePort, baseApiUrl };
+export { internalApiUrl };

@@ -140,7 +140,6 @@
 
 <script>
 import axios from 'axios';
-import { baseApiUrl } from '../api/index.js';
 
 export default {
   layout: 'adminDefault',
@@ -165,7 +164,6 @@ export default {
     axios({
       mehtod: 'get',
       url: '/api/v1/posters',
-      baseURL: `${baseApiUrl}`,
       params: {
         page: -1,
       },

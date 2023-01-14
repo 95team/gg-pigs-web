@@ -257,7 +257,6 @@
 
 <script>
 import axios from 'axios';
-import { baseApiUrl } from '../api/index.js';
 
 export default {
   layout: 'adminDefault',
@@ -283,8 +282,7 @@ export default {
     const vm = this;
     axios({
       mehtod: 'get',
-      url: '/api/v1/advertisements',
-      baseURL: `${baseApiUrl}`,
+      url: '/api/v1/posters',
       params: {
         page: -1,
       },

@@ -1,6 +1,5 @@
 import axios from 'axios';
-import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin';
-import { baseApiUrl } from './api/index';
+import { internalApiUrl } from './api/index';
 
 export default {
   target: 'static',
@@ -32,6 +31,9 @@ export default {
       },
     ],
   },
+  proxy: {
+    '/api': internalApiUrl,
+  },
   /*
    ** Customize the progress-bar color
    */
@@ -61,6 +63,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     // Doc: https://sitemap.nuxtjs.org
     '@nuxtjs/sitemap',
   ],
@@ -87,8 +90,8 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {},
-    transpile: ['vuetify/lib'],
-    plugins: [new VuetifyLoaderPlugin()],
+    // transpile: ['vuetify/lib'],
+    // plugins: [],
   },
   /*
    ** Generate configuration
@@ -100,7 +103,7 @@ export default {
         isFilteredDate: true,
         isActivated: true,
       };
-      return axios.get(`${baseApiUrl}/api/v2/posters`, params).then(res => {
+      return axios.get(`${internalApiUrl}/api/v2/posters`, params).then(res => {
         return res.data.data.map(poster => {
           return {
             route: `/poster/${poster.id}/${poster.slug}`,

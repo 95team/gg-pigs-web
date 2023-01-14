@@ -21,6 +21,10 @@ export const actions = {
     const response = await poster.getPosterListV2(payload);
     context.commit('SET_LIST', response.data.data);
   },
+  async FETCH_LIST_V2_INTERNAL(context, payload) {
+    const response = await poster.getPosterListV2Internal(payload);
+    context.commit('SET_LIST', response.data.data);
+  },
 };
 
 export const getters = {

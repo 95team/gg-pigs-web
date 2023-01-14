@@ -32,7 +32,7 @@ export default {
     ],
   },
   proxy: {
-    '/api': internalApiUrl,
+    '/api': process.env.BASE_URL,
   },
   /*
    ** Customize the progress-bar color
@@ -71,9 +71,7 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {
-    baseURL: process.env.BASE_URL,
-  },
+  axios: {},
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
